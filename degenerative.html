@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дегенеративті сколиоз: Ғылыми шолу</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root{
+            --brand:#02204f;
+            --muted:#34495e;
+            --accent:#6B8E23;
+            --soft:#f5f9f0;
+            --header-bg:#a7acd9;
+            --card-bg:#ffffff;
+            --radius:12px;
+        }
+
+        *{box-sizing:border-box}
+        body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:0;background:#fdfbfe;color:#3d2a3d;line-height:1.7}
+
+        /* Navbar - match pp25 home exactly */
+        header{background:var(--header-bg);box-shadow:0 2px 10px rgba(0,0,0,0.1);position:relative;z-index:1000}
+        .site-nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;height:80px}
+        .brand{display:flex;align-items:center}
+        .nav-logo-img{max-height:60px;width:auto;display:block}
+        .nav-panel{display:flex;gap:20px;align-items:center;margin:0;padding:0;list-style:none}
+        .nav-panel > li > a{display:flex;align-items:center;gap:6px;padding:8px 12px;color:var(--brand);font-weight:700;transition:color 0.3s;text-decoration:none}
+        .nav-panel > li > a:hover{color:#ffffff}
+
+        /* Dropdowns */
+        .has-sub{position:relative}
+        .submenu{position:absolute;left:0;top:100%;width:240px;background:#ffffff;border-radius:8px;padding:10px 0;box-shadow:0 10px 30px rgba(0,0,0,0.15);opacity:0;visibility:hidden;transform:translateY(10px);transition:all 0.3s ease;z-index:120}
+        .has-sub:hover .submenu,.has-sub:focus-within .submenu{opacity:1;visibility:visible;transform:translateY(0)}
+        .submenu li{list-style:none}
+        .submenu a{display:block;padding:10px 20px;color:var(--brand);font-weight:500;font-size:0.95rem;text-decoration:none}
+        .submenu a:hover{background-color:#f0f4f8;color:var(--accent)}
+        .has-sub-right{position:relative}
+        .submenu-right{position:absolute;left:100%;top:0;width:200px;background:#ffffff;border-radius:8px;padding:10px 0;box-shadow:0 10px 30px rgba(0,0,0,0.15);opacity:0;visibility:hidden;transition:all 0.3s ease;z-index:120}
+        .has-sub-right:hover .submenu-right,.has-sub-right:focus-within .submenu-right{opacity:1;visibility:visible}
+
+        /* Page content - olive theme */
+        .container{max-width:1100px;margin:20px auto;padding:28px 20px;background:var(--card-bg);box-shadow:0 6px 24px rgba(107,142,35,0.08);border-radius:12px}
+        h1{color:var(--brand);font-size:2.2rem;margin:6px 0 14px}
+        h2{color:var(--accent);border-bottom:2px solid rgba(107,142,35,0.15);padding-bottom:10px;margin-top:28px;display:flex;align-items:center;gap:10px}
+        h2 i{color:var(--accent);font-size:1.1em}
+        h3{color:#556B2F;margin-top:20px;font-weight:600}
+        p{margin-bottom:16px;color:var(--muted);text-align:justify;font-size:1.02em}
+
+        ul,ol{margin-bottom:18px;padding-left:24px}
+        ul li{margin-bottom:10px;color:var(--muted)}
+        ul li::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;margin-right:8px;color:var(--accent);position:relative;left:-22px}
+        .nav-panel li::before{content:none}
+
+        .highlight-box{background:var(--soft);border-left:5px solid var(--accent);padding:16px;margin:20px 0;border-radius:8px;color:var(--muted)}
+
+        .references{background:#f5f9f0;border:1px solid #d4e6b8;padding:20px;border-radius:10px;margin-top:32px}
+        .references h2{margin-top:0;border-bottom:none}
+
+        .image-placeholder{background:#fafafa;border:1px dashed #e6e6e6;padding:18px;border-radius:8px}
+        .image-caption{font-size:0.9em;color:#666;margin-top:6px;font-style:italic}
+
+        .nav-container{text-align:center;margin-top:34px}
+        .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;transition:all 0.25s}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(107,142,35,0.15)}
+
+        .next-article-container{text-align:center;margin-top:48px;margin-bottom:40px;padding:32px 20px;background:linear-gradient(135deg, rgba(107,142,35,0.06) 0%, rgba(107,142,35,0.02) 100%);border-radius:16px;border:2px solid rgba(107,142,35,0.1)}
+        .next-button{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1.05em;box-shadow:0 12px 32px rgba(107,142,35,0.2);transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)}
+        .next-button:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(107,142,35,0.3);background:#556B2F}
+        .next-button span{font-size:1.2em;transition:transform 0.3s}
+        .next-button:hover span{transform:translateX(4px)}
+
+        /* Responsive tweaks */
+        @media (max-width:900px){.site-nav{padding:10px}.nav-panel{gap:8px}}
+        @media (max-width:640px){.container{padding:16px}.nav-panel{overflow-x:auto}h1{font-size:1.6em}}
+    </style>
+</head>
+<body>
+  <header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+            <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                  <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                      <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="container">
+        <h2>Дегенеративті сколиоз</h2>
+        <p>Дегенеративті сколиоз, медициналық әдебиеттерде жиі <em>de novo</em> (жаңадан пайда болған) сколиоз деп те аталады, бұл ересек жастағы адамдарда, әсіресе 40-50 жастан асқан кезеңде дамитын омыртқа бағанасының құрылымдық деформациясы. Жасөспірімдік идиопатиялық сколиоздан айырмашылығы, бұл патология бұрын омыртқасы түзу болған адамдарда пайда болады және тікелей омыртқа құрылымдарының қартаюымен, тозуымен байланысты. Дегенеративті сколиоздың диагностикалық критерийі — Кобб бұрышының фронтальды жазықтықта 10 градустан асуы болып табылады (Aebi, 2005).</p>
+        
+        <p>Халықтың қартаюына байланысты бұл мәселе қазіргі ортопедия мен вертебрологияның ең өзекті тақырыптарының біріне айналуда. Эпидемиологиялық зерттеулерге сүйенсек, 60 жастан асқан адамдардың арасында дегенеративті сколиоздың таралу жиілігі 68%-ға дейін жетуі мүмкін, алайда олардың барлығында клиникалық белгілер айқын біліне бермейді (Schwab et al., 2005). Бұл аурудың негізгі қаупі — ол тек косметикалық ақау емес, науқастың өмір сүру сапасын күрт төмендететін, қатты ауырсыну мен неврологиялық тапшылыққа әкелетін прогрессивті жағдай.</p>
+
+        <div class="image-placeholder">
+            [Image of adult spine x-ray showing degenerative scoliosis]
+            <div class="image-caption">1-сурет. Ересек адамның омыртқасының дегенеративті өзгерістері мен қисаюының рентгенограммасы.</div>
+        </div>
+
+        <h2><i class="fas fa-bone"></i> Этиология және Патогенез: «Дегенеративті каскад»</h2>
+        <p>Дегенеративті сколиоздың дамуы бір сәтте болатын оқиға емес, бұл жылдар бойы жалғасатын биомеханикалық процестердің нәтижесі. Оның негізінде омыртқааралық дискілердің және фасеттік буындардың асимметриялық дегенерациясы жатыр.</p>
+        
+        <p>Процесс әдетте омыртқааралық дискінің биіктігінің төмендеуінен және оның сусыздануынан басталады. Диск өзінің амортизациялық қасиетін жоғалтқанда, жүктеме омыртқаның артқы тірек кешеніне, яғни фасеттік буындарға түседі. Бұл буындардың гипертрофиясына (үлкеюіне), буын қабының қабынуына және остеоартритке әкеледі. Егер дискінің дегенерациясы омыртқаның бір жағында басымырақ болса, сол жақтағы сегменттік коллапс орын алады, нәтижесінде омыртқа қисая бастайды.</p>
+
+        <div class="highlight-box">
+            Бұл қисаю «жағымсыз шеңберді» (vicious cycle) іске қосады: қисайған омыртқаға түсетін жүктеме асимметриялы түрде бөлінеді, бұл қисықтың ойыс жағындағы (concave side) қысымды одан әрі арттырады және деформацияның үдеуіне әкеледі (Silva & Lenke, 2010).
+        </div>
+
+        <p>Сонымен қатар, омыртқалардың бір-біріне қатысты жылжуы (спондилолистез) және ротациясы (бұралуы) жиі қосылады. Бұл өзгерістердің жиынтығы омыртқа өзегінің (спинальды каналдың) және жүйке түбіршелері шығатын фораминальды тесіктердің тарылуына — стенозға алып келеді.</p>
+
+        <h2><i class="fas fa-procedures"></i> Клиникалық көрінісі және симптоматикасы</h2>
+        <p>Дегенеративті сколиоздың клиникалық көрінісі жасөспірімдер сколиозынан мүлде бөлек. Егер жасөспірімдерде ауырсыну сирек кездессе, ересектердегі дегенеративті сколиоздың негізгі шағымы — ауырсыну синдромы. Симптомдарды шартты түрде екі үлкен топқа бөлуге болады:</p>
+
+        <ul>
+            <li><strong><i class="fas fa-exclamation-circle"></i> Аксиальды (механикалық) ауырсыну:</strong> Бұл ең жиі кездесетін шағым. Ауырсыну бел аймағында шоғырланады және тік тұрғанда немесе ұзақ жүргенде күшейеді. Бұл омыртқаның тұрақсыздығынан және бұлшықеттердің тепе-теңдікті сақтау үшін шамадан тыс жұмыс істеуінен туындайды. Науқастар көбінесе таңертеңгілік құрысуды және күннің соңында ауырсынудың үдеуін айтады.</li>
+            <li><strong><i class="fas fa-bolt"></i> Радикулярлы (неврологиялық) ауырсыну:</strong> Омыртқа өзегінің немесе фораминальды тесіктердің тарылуы жүйке құрылымдарын қысады. Бұл аяққа берілетін ауырсыну (ишиас), шаншу, ұйып қалу немесе бұлшықет әлсіздігі түрінде көрінеді.</li>
+        </ul>
+
+        <p>Дегенеративті сколиозға тән ерекше симптом — <strong>неврогендік ақсаңдау (neurogenic claudication)</strong>. Науқас белгілі бір қашықтықты жүргеннен кейін аяқтарында ауырлық, ауырсыну немесе ұю сезінеді. Бұл симптомдар отырғанда немесе алға еңкейгенде (мысалы, дүкен арбасына сүйенгенде) басылады. Мұның себебі — алға еңкейгенде омыртқа өзегінің диаметрі кеңейіп, жүйкелерге түсетін қысым уақытша азаяды (Ploumis et al., 2011).</p>
+
+        <h2><i class="fas fa-x-ray"></i> Диагностикалық әдістер және жіктелуі</h2>
+        <p>Диагностика пациенттің шағымдарын талдаудан және мұқият физикалық тексеруден басталады. Дәрігер науқастың жүрісін, дене бітімін және неврологиялық статусын (рефлекстер, сезімталдық, бұлшықет күші) тексереді. Визуализация әдістері диагнозды нақтылау үшін өте маңызды:</p>
+        
+        <ul>
+            <li><strong>Рентгенография:</strong> Толық омыртқаның (бастан жамбасқа дейін) түрегеп тұрғандағы рентген суреттері міндетті болып табылады. Қазіргі таңда <strong>EOS жүйесі</strong> сияқты аз сәулелі рентген құрылғылары науқастың шынайы 3D моделін жасауға мүмкіндік береді.</li>
+            <li><strong>МРТ (Магнитті-резонанстық томография):</strong> Жұмсақ тіндерді, әсіресе омыртқааралық дискілерді, жұлынды және жүйке түбіршелерін көру үшін «алтын стандарт». Бұл әдіс стеноздың дәрежесін анықтауға көмектеседі.</li>
+            <li><strong>КТ (Компьютерлік томография):</strong> Сүйек құрылымын, остеофиттерді және буындардың жағдайын егжей-тегжейлі көрсету үшін, әсіресе операция алдындағы жоспарлау кезінде қолданылады.</li>
+        </ul>
+
+        <p>Клиникалық тәжірибеде <em>SRS-Schwab классификациясы</em> кеңінен қолданылады. Бұл жүйе тек қисаю түрін ғана емес, сонымен қатар сагиттальды профильдің (бүйірден қарағандағы тепе-теңдік) бұзылуын ескереді, өйткені зерттеулер көрсеткендей, ауырсыну мен мүгедектік дәрежесі сколиоз бұрышына қарағанда, сагиттальды теңгерімсіздікпен тығыз байланысты (Glassman et al., 2005).</p>
+
+        <h2><i class="fas fa-briefcase-medical"></i> Консервативті (Хирургиялық емес) емдеу</h2>
+        <p>Емдеудің алғашқы сатысы әрқашан консервативті әдістерден басталады, егер науқаста үдемелі неврологиялық тапшылық (мысалы, аяқтың сал болуы немесе зәр ұстай алмау) болмаса.</p>
+        
+        <ol>
+            <li><strong>Медикаментозды терапия:</strong> Қабынуға қарсы стероидты емес препараттар (ҚҚСП) буын ауырсынуын азайту үшін қолданылады. Невропатиялық ауырсыну (жүйке қысылуынан болатын) кезінде габапентиндер тобы (габапентин, прегабалин) тиімді нәтиже көрсетеді.</li>
+            <li><strong>Физиотерапия және жаттығулар:</strong> Арқа және іш бұлшықеттерін («корсет» бұлшықеттерін) нығайту омыртқаға түсетін жүктемені азайтады. Су аэробикасы және созылу жаттығулары буындардың қозғалғыштығын сақтауға көмектеседі.</li>
+            <li><strong>Интервенциялық ем:</strong> Эпидуральды стероидты инъекциялар немесе фасеттік буындардың блокадасы қабынуды және ауырсынуды уақытша басу үшін қолданылады. Бұл әдістер әсіресе радикулярлы ауырсыну кезінде тиімді (Everett & Patel, 2007).</li>
+        </ol>
+
+        <h2><i class="fas fa-syringe"></i> Хирургиялық емдеу: Көрсеткіштері мен әдістері</h2>
+        <p>Хирургиялық араласу консервативті ем 3-6 ай ішінде нәтиже бермегенде, ауырсыну өмір сапасын қатты төмендеткенде немесе неврологиялық бұзылыстар үдеген жағдайда қарастырылады.</p>
+
+        <h3>Негізгі әдістер:</h3>
+        <ul>
+            <li><strong>Декомпрессия:</strong> Омыртқа өзегін тарылтып тұрған сүйек өсінділерін немесе байламдарды алып тастау (ламинэктомия). Бұл әдіс тек аяқ ауырсынуын басу үшін қолданылады.</li>
+            <li><strong>Декомпрессия және шектеулі фузия:</strong> Жүйкелерді босатумен қатар, деформацияның ең тұрақсыз сегменттерін металл конструкциялармен бекіту.</li>
+            <li><strong>Күрделі реконструкция:</strong> Омыртқаның үлкен бөлігін түзетіп, бекіту. Бұл деформацияны толық түзетуге және дене тепе-теңдігін қалпына келтіруге бағытталған.</li>
+        </ul>
+
+        <div class="image-placeholder">
+             [Image of spinal fusion surgery diagram]
+             <div class="image-caption">2-сурет. Омыртқаны бекіту (фузия) операциясының схемасы.</div>
+        </div>
+
+        <p>Соңғы жылдары <strong>минималды инвазивті хирургия (MIS)</strong> әдістері (мысалы, XLIF, OLIF) кеңінен дамуда. Бұл әдістер үлкен тіліктер жасамай, бұлшықеттерді зақымдамай омыртқааралық дискілерге қол жеткізуге мүмкіндік береді (Uribe et al., 2014).</p>
+
+        <h2><i class="fas fa-heartbeat"></i> Асқынулар және Болжам</h2>
+        <p>Ересектердегі сколиоз хирургиясы – жоғары тәуекелді операциялардың қатарына жатады. Егде жастағы науқастарда қосымша аурулардың (диабет, жүрек аурулары, остеопороз) болуы асқыну қаупін арттырады. Дегенмен, дұрыс таңдалған емдеу тактикасы мен заманауи технологиялардың арқасында дегенеративті сколиозбен ауыратын науқастардың басым көпшілігінде ауырсынуды айтарлықтай азайтып, белсенді өмір салтына оралуға мүмкіндік бар.</p>
+
+        <h2><i class="fas fa-dna"></i> Болашақ бағыттар</h2>
+        <p>Болашақта дегенеративті сколиозды емдеу тек механикалық түзетумен шектелмей, биологиялық шешімдерге бағытталатын болады. Сүйек тінін нығайтатын анаболикалық препараттарды (мысалы, терипаратид) қолдану, генетикалық зерттеулер және дің жасушаларын қолдану арқылы дискілерді қалпына келтіру – қазіргі ғылымның негізгі ізденіс бағыттары болып табылады.</p>
+
+        <div class="next-article-container">
+            <a href="lumbar.html" class="next-button">
+                Келесі мақала: Бел омыртқалы сколиоз <span>&#8594;</span>
+            </a>
+        </div>
+        <div class="references">
+            <h2><i class="fas fa-book"></i> Пайдаланылған әдебиеттер (References)</h2>
+            <div class="ref-item">Aebi, M. (2005). The adult scoliosis. <em>European Spine Journal</em>, 14(10), 925–948. https://doi.org/10.1007/s00586-005-1053-9</div>
+            <div class="ref-item">Everett, C. R., & Patel, R. K. (2007). A systematic literature review of nonsurgical treatment in adult scoliosis. <em>Spine</em>, 32(19), S130-S134.</div>
+            <div class="ref-item">Glassman, S. D., Berven, S., Bridwell, K., Horton, W., & Dimar, J. R. (2005). Correlation of radiographic parameters and clinical symptoms in adult scoliosis. <em>Spine</em>, 30(6), 682-688.</div>
+            <div class="ref-item">Ploumis, A., Transfledt, E. E., & Denis, F. (2011). Degenerative lumbar scoliosis associated with spinal stenosis. <em>The Spine Journal</em>, 7(4), 428-436.</div>
+            <div class="ref-item">Schwab, F., Dubey, A., Gamez, L., El Fegoun, A. B., Hwang, K., Pagala, M., & Farcy, J. P. (2005). Adult scoliosis: prevalence, SF-36, and nutritional parameters in an elderly volunteer population. <em>Spine</em>, 30(9), 1082-1085.</div>
+            <div class="ref-item">Silva, F. E., & Lenke, L. G. (2010). Adult degenerative scoliosis: evaluation and management. <em>Neurosurgical Focus</em>, 28(3), E1. https://doi.org/10.3171/2010.1.FOCUS09271</div>
+            <div class="ref-item">Smith, J. S., Shaffrey, C. I., Berven, S., Glassman, S., Hamill, C., Horton, W., ... & Schwab, F. (2011). Operative versus nonoperative treatment of leg pain in adults with scoliosis: a retrospective review of a prospective multicenter database with two-year follow-up. <em>Spine</em>, 36(20), 1690-1698.</div>
+            <div class="ref-item">Uribe, J. S., Deukmedjian, A. R., & Mummaneni, P. V. (2014). Minimally invasive spinal deformity surgery: the state of the art. <em>Neurosurgery Clinics of North America</em>, 25(2), 347-357.</div>
+        </div>
+
+    
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейробұлшықеттік сколиоз: Ғылыми шолу</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root{
+            --brand:#02204f; /* blue - matches pp25 home navbar */
+            --muted:#34495e;
+            --accent:#E85D9F; /* pink accent for content */
+            --soft:#fef6fa;
+            --header-bg:#a7acd9; /* blue header - matches pp25 home */
+            --card-bg:#ffffff;
+            --radius:12px;
+        }
+
+        *{box-sizing:border-box}
+        body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:0;background:#fdfbfe;color:#3d2a3d;line-height:1.7}
+
+        /* Header / navbar (match pp25 home but green) */
+        header{background:var(--header-bg);box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;z-index:1000}
+        .site-nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;height:72px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .nav-logo-img{height:52px;width:auto;display:block}
+    .nav-panel{display:flex;gap:20px;align-items:center;margin:0;padding:0;list-style:none}
+    .nav-panel > li > a { display:flex; align-items:center; gap:6px; padding:8px 12px; color:var(--brand); font-weight:700; transition: color 0.3s; text-decoration:none }
+    .nav-panel > li > a:hover { color:#ffffff }
+
+        /* Dropdowns */
+    .has-sub { position: relative }
+    .submenu { position: absolute; left: 0; top: 100%; width: 240px; background: #ffffff; border-radius:8px; padding:10px 0; box-shadow:0 10px 30px rgba(0,0,0,0.15); opacity:0; visibility:hidden; transform:translateY(10px); transition: all 0.3s ease; z-index:120 }
+    .has-sub:hover .submenu, .has-sub:focus-within .submenu { opacity:1; visibility:visible; transform:translateY(0) }
+    .submenu li { list-style: none }
+    .submenu a { display:block; padding:10px 20px; color:var(--brand); font-weight:500; font-size:0.95rem; text-decoration:none }
+    .submenu a:hover { background-color:#f0f4f8; color:#E85D9F }
+        .has-sub-right > .submenu-right{left:100%;top:0}
+        .submenu-right{position:absolute;display:none;left:100%;top:0;min-width:200px;background:var(--card-bg);border-radius:8px;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+        .submenu li:focus-within > .submenu-right,.submenu li:hover > .submenu-right{display:block}
+
+        /* Page content styles */
+        .container{max-width:1100px;margin:20px auto;padding:28px 20px;background:var(--card-bg);box-shadow:0 6px 24px rgba(12,20,12,0.04);border-radius:12px}
+        h1{color:var(--brand);font-size:2.2rem;margin:6px 0 14px}
+        .subtitle{color:var(--muted);margin-bottom:6px}
+        h2{color:var(--accent);border-bottom:2px solid rgba(47,143,92,0.15);padding-bottom:10px;margin-top:28px;display:flex;align-items:center;gap:10px}
+        h2 i{color:var(--accent);font-size:1.1em}
+        h3{color:#2c3e36;margin-top:20px;font-weight:600}
+        p{margin-bottom:16px;color:var(--muted);text-align:justify;font-size:1.02em}
+
+        ul{margin-bottom:18px;padding-left:24px}
+        ul li{margin-bottom:10px;color:var(--muted)}
+    ul li::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;margin-right:8px;color:var(--accent);position:relative;left:-22px}
+    /* Remove list pseudo-icons inside the top navigation */
+    .nav-panel li::before{content:none}
+
+        .info-box{background:var(--soft);border-radius:8px;padding:16px;margin:20px 0;border-left:5px solid var(--accent);color:var(--muted)}
+
+        .references{background:#FEF6FA;border:1px solid #f5d7e8;padding:20px;border-radius:10px;margin-top:32px}
+        .references h2{margin-top:0;border-bottom:none;color:var(--brand)}
+        .ref-item{margin-bottom:10px;padding-left:20px;text-indent:-20px;color:var(--muted)}
+
+        .nav-container{text-align:center;margin-top:34px}
+        .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;transition:all 0.25s}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(232,93,159,0.12)}
+        
+        .next-article-container{text-align:center;margin-top:48px;margin-bottom:40px;padding:32px 20px;background:linear-gradient(135deg, rgba(232,93,159,0.06) 0%, rgba(232,93,159,0.02) 100%);border-radius:16px;border:2px solid rgba(232,93,159,0.1)}
+        .next-button{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1.05em;box-shadow:0 12px 32px rgba(232,93,159,0.2);transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)}
+        .next-button:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(232,93,159,0.3);background:#C7476F}
+        .next-button span{font-size:1.2em;transition:transform 0.3s}
+        .next-button:hover span{transform:translateX(4px)}
+
+        /* Responsive tweaks */
+        @media (max-width:900px){.site-nav{padding:10px}.nav-panel{gap:8px}}
+        @media (max-width:640px){.container{padding:16px}.nav-panel{overflow-x:auto}h1{font-size:1.6em}}
+    </style>
+</head>
+<body>
+  <header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+          <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                  <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                      <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+
+        <h2><i class="fas fa-brain"></i>Нейробұлшықеттік сколиоз</h2>
+        <p>Нейробұлшықеттік сколиоз (НБС) — бұл орталық немесе шеткі жүйке жүйесінің бұзылыстары немесе бұлшықет патологиялары салдарынан туындайтын омыртқа бағанасының күрделі деформациясы. Идиопатиялық сколиоздан (себебі белгісіз сколиоз) айырмашылығы, нейробұлшықеттік сколиоз дербес ауру болып табылмайды; ол негізгі жүйелік аурудың симптомы немесе асқынуы ретінде қарастырылады. Scoliosis Research Society (SRS) жіктемесі бойынша, бұл жағдай омыртқаны ұстап тұратын бұлшықеттердің тепе-теңдігінің бұзылуынан, спастикадан (бұлшықеттің сіресуі) немесе гипотониядан (бұлшықет әлсіздігі) дамиды (Scoliosis Research Society, 2023).</p>
+
+        <p>Бұл патологияның морфологиялық сипаты да ерекше. Егер идиопатиялық сколиоз көбінесе "S" тәрізді қос иіліммен сипатталса, нейробұлшықеттік сколиоз ұзақ, доға тәрізді "C" пішінді қисаюды құрайды. Бұл қисаю көбінесе кеуде бөлімінен басталып, сегізкөз бен жамбас сүйектеріне дейін жалғасады, нәтижесінде жамбас сүйегінің қисаюы (pelvic obliquity) қалыптасады. Бұл пациенттің отыру қабілетіне тікелей әсер етеді және "құлайтын омыртқа" синдромына алып келуі мүмкін (Murphy & Mooney, 2019).</p>
+
+        <h2><i class="fas fa-sitemap"></i> Этиология және Жіктелуі</h2>
+        <p>Нейробұлшықеттік сколиоздың этиологиясы негізгі ауруға байланысты екі үлкен топқа бөлінеді: невропатиялық және миопатиялық. Невропатиялық себептер жүйке жүйесінің зақымдануынан туындайды және олар өз кезегінде жоғарғы және төменгі мотонейрон бұзылыстарына жіктеледі:</p>
+
+        <ul>
+            <li><strong>Жоғарғы мотонейрон аурулары:</strong> Ең жиі кездесетін мысал — Церебралды сал ауруы (ДЦП). Мұнда мидың зақымдануы салдарынан бұлшықеттер спастикалық күйге түсіп, омыртқаны асимметриялы түрде тартады. Сонымен қатар, жұлын жарақаттары, Фридрейх атаксиясы және сирингомиелия да осы топқа жатады.</li>
+            <li><strong>Төменгі мотонейрон аурулары:</strong> Бұл топқа жұлын бұлшықет атрофиясы (СМА), полиомиелит және жұлын жарығы (myelomeningocele) жатады. Бұл жағдайларда бұлшықеттердің сал болуы (паралич) омыртқаның гравитация әсерінен "құлауына" әкеледі.</li>
+        </ul>
+
+        <p>Миопатиялық себептер тікелей бұлшықет тінінің дистрофиялық өзгерістерімен байланысты. Ең көрнекті мысалы — Дюшенн бұлшықет дистрофиясы (DMD). Бұл генетикалық ауру кезінде бұлшықет талшықтары біртіндеп ыдырап, май тінімен алмасады, нәтижесінде омыртқа бағанасы өзінің тірек қызметін атқара алмай қалады (Vialle et al., 2013).</p>
+
+        <h2><i class="fas fa-chart-pie"></i> Эпидемиология және таралу жиілігі</h2>
+        <p>Сколиоздың даму жиілігі негізгі аурудың ауырлық дәрежесімен және науқастың қозғалыс қабілетімен тікелей корреляцияланады. Статистикалық мәліметтерге сүйенсек, өздігінен жүре алмайтын (non-ambulatory) пациенттерде сколиоздың даму қаупі әлдеқайда жоғары.</p>
+        
+        <div class="info-box">
+             Мысалы, церебралды сал ауруы (ДЦП) бар науқастар арасында сколиоздың таралуы 25%-дан 70%-ға дейін жетеді. Gross Motor Function Classification System (GMFCS) бойынша IV және V деңгейдегі (ауыр дәрежедегі) балаларда сколиоздың даму ықтималдығы 90%-ға жуықтайды (Persson-Bunke et al., 2012).
+        </div>
+
+        <p>Дюшенн бұлшықет дистрофиясы бар ұл балаларда, егер олар стероидтық терапия қабылдамаса және жүру қабілетінен айырылса, сколиоз 90%-дан астам жағдайда дамиды. Жұлын бұлшықет атрофиясының (СМА) ауыр түрлерінде (I және II тип) сколиоз іс жүзінде барлық науқастарда кездеседі және ол өте ерте жаста басталады.</p>
+
+        <h2><i class="fas fa-cogs"></i> Патогенез және Биомеханика</h2>
+        <p>Нейробұлшықеттік сколиоздың даму механизмі омыртқа осін ұстап тұратын күштердің теңгерімсіздігіне негізделген. Қалыпты жағдайда параспинальды бұлшықеттер, іш бұлшықеттері және диафрагма омыртқаның тік қалпын сақтау үшін симметриялы жұмыс істейді. Нейробұлшықеттік ауруларда бұл тепе-теңдік бұзылады.</p>
+        <p>Бір жағынан, спастикалық бұлшықеттер омыртқаны ойыс жаққа (concave side) қарай күшпен тартады. Екінші жағынан, әлсіреген (парездік) бұлшықеттер гравитациялық күшке қарсы тұра алмайды, бұл дөңес жақтың (convex side) одан әрі шығыңқы болуына әкеледі. Бұл процесс тек фронтальды жазықтықта (бүйірге қисаю) ғана емес, сагиттальды жазықтықта (кифоз немесе лордоз) және аксиальды жазықтықта (ротация) да жүреді.</p>
+        <p>НБС-ның ең маңызды биомеханикалық ерекшелігі — жамбас сүйегінің процеске қатысуы. Омыртқаның қисаюы жамбастың қиғаштануына (pelvic obliquity) алып келеді. Бұл жағдайда пациент отырғанда салмақ бір жамбас сүйегіне (ischial tuberosity) көбірек түседі, бұл тепе-теңдікті бұзып қана қоймай, қысым жараларының (decubitus ulcers) пайда болу қаупін арттырады (Yazici & Asher, 2001).</p>
+
+        <h2><i class="fas fa-heart-crack"></i> Клиникалық көрінісі және Асқынулар</h2>
+        <p>Нейробұлшықеттік сколиоздың клиникалық көрінісі біртіндеп үдейтін сипатқа ие. Ерте кезеңдерде баланың отырысының өзгеруі, бір жаққа қарай қисаюы байқалады. Ауру үдеген сайын келесі белгілер мен асқынулар пайда болады:</p>
+        <ul>
+            <li><strong>Отыру тепе-теңдігінің бұзылуы:</strong> Науқас өздігінен тік отыра алмайды, құлап қалмау үшін қолдарын тіреуіш ретінде пайдалануға мәжбүр болады. Бұл қолдардың функционалдығын шектейді және күнделікті өмір сапасын төмендетеді.</li>
+            <li><strong>Тыныс алу жеткіліксіздігі (Thoracic Insufficiency Syndrome):</strong> Бұл НБС-ның ең қауіпті асқынуы. Омыртқаның қатты қисаюы және ротациясы кеуде қуысының көлемін азайтады. Сонымен қатар, қабырғааралық бұлшықеттердің әлсіздігі өкпенің толық ашылуына кедергі келтіреді. Бұл рестриктивті өкпе ауруына, жиі пневмонияға және тыныс алу жеткіліксіздігіне әкеледі (Mayer et al., 2017).</li>
+            <li><strong>Ас қорыту жүйесінің мәселелері:</strong> Кеуде мен құрсақ қуысының деформациясы асқазан мен ішекке қысым түсіреді. Бұл гастроэзофагеалды рефлюкске (ГЭРБ) және тамақтанудың қиындауына себеп болуы мүмкін.</li>
+            <li><strong>Тері бүтіндігінің бұзылуы:</strong> Жамбастың қиғаштануы салдарынан бөксе аймағында қысым біркелкі таралмайды, бұл тез жазылмайтын ойық жараларға әкеледі.</li>
+            <li><strong>Ауырсыну синдромы:</strong> Бастапқы кезеңдерде ауырсыну болмауы мүмкін, бірақ деформация асқынғанда қабырғалардың мықын сүйегіне тірелуі (rib-on-pelvis impingement) қатты ауырсыну тудырады.</li>
+        </ul>
+
+        <h2><i class="fas fa-user-doctor"></i> Диагностика және Емдеу әдістері</h2>
+        
+        <h3>Диагностикалық тәсілдер</h3>
+        <p>Диагностика пациенттің жалпы жағдайын бағалаудан басталады. Физикалық тексеру кезінде "Адамс сынамасы" (алға еңкею) өткізілгенімен, арбада отырған науқастар үшін модификацияланған тексеру әдістері қолданылады. Дәрігер жамбас қиғаштығын, иық деңгейін және бастың денеге қатысты орналасуын бағалайды.</p>
+        <p>Рентгенография — диагностиканың негізгі құралы. Түсірілімдер отырған күйде (қажет болса, тартылу күшімен) жасалады. Негізгі өлшемдерге Кобб бұрышы және жамбас қиғаштығының бұрышы кіреді. Егер қисаю тез үдесе немесе неврологиялық статус өзгерсе, жұлын өзегін тексеру үшін Магнитті-резонанстық томография (МРТ) тағайындалады.</p>
+
+        <h3>Емдеу стратегиялары</h3>
+        <p>Нейробұлшықеттік сколиозды емдеу тактикасы пациенттің жасына, диагнозына, қисаю дәрежесіне және өмір сүру болжамына байланысты жеке таңдалады.</p>
+        
+        <h4>Консервативті (Хирургиялық емес) ем</h4>
+        <p>Идиопатиялық сколиоздан айырмашылығы, нейробұлшықеттік сколиозда корсет кию (брэйсинг) деформацияның түбегейлі тоқтауына сирек әсер етеді. Бұлшықеттер әлсіз болғандықтан, корсет омыртқаны ұстап тұра алмайды және ұзақ кию тері жараларына немесе тыныс алудың шектелуіне әкелуі мүмкін. Дегенмен, жұмсақ корсеттер немесе арнайы бейімделген мүгедектер арбасы (custom seating systems) отыру тепе-теңдігін сақтау және басты тік ұстау үшін қолданылады. Консервативті емнің басты мақсаты — қисаюды түзету емес, науқастың жайлылығын қамтамасыз ету (Olafsson et al., 1999).</p>
+
+        <h4>Хирургиялық ем</h4>
+        <p>Хирургиялық араласу әдетте Кобб бұрышы 40-50 градустан асқанда, тыныс алу қызметі нашарлағанда немесе отыру тепе-теңдігі жоғалғанда ұсынылады.</p>
+        <ul>
+            <li><strong>Спондилодез (Spinal Fusion):</strong> Бұл ең жиі қолданылатын әдіс. Операция барысында омыртқаның ұзын бөлігі (көбінесе жоғарғы кеуде бөлімінен сегізкөзге дейін) металл конструкциялармен (бұрандалар, ілмектер, стерженьдер) бекітіледі. Нейробұлшықеттік сколиоздың ерекшелігі — фиксацияны жамбас сүйегіне дейін жеткізу қажеттілігі. Бұл жамбас қиғаштығын түзету үшін өте маңызды.</li>
+            <li><strong>Өсетін жүйелер (Growing Rods):</strong> Егер сколиоз ерте жаста (10 жасқа дейін) дамыса, омыртқаны толық бекіту өкпенің өсуін тоқтатып тастауы мүмкін. Мұндай жағдайда "өсетін стерженьдер" немесе магнитті басқарылатын жүйелер (MAGEC) қолданылады. Олар омыртқаның ұзаруына мүмкіндік бере отырып, қисаюды бақылауда ұстайды (Akbarnia et al., 2011).</li>
+        </ul>
+
+        <h2><i class="fas fa-hand-holding-heart"></i> Болжам және Өмір сапасы</h2>
+        <p>Нейробұлшықеттік сколиозы бар науқастар үшін емдеудің түпкі мақсаты — рентген суретін "мінсіз түзу" ету емес, өмір сапасын жақсарту. Табысты емдеу (әсіресе хирургиялық түзету) науқасқа ауырсынусыз отыруға, қолдарын еркін пайдалануға, күтушілерге гигиеналық процедураларды жеңілдетуге және тыныс алу функциясын барынша сақтауға мүмкіндік береді.</p>
+        <p>Заманауи медицина, соның ішінде гендік терапия және жетілдірілген хирургиялық техникалар, бұл күрделі патологиямен ауыратын балалардың өмір сүру ұзақтығын және сапасын айтарлықтай арттыруда. Дегенмен, бұл жағдай ортопедтер, неврологтар, пульмонологтар және оңалту мамандарының бірлескен, ұзақ мерзімді бақылауын талап етеді.</p>
+ <div class="next-article-container">
+            <a href="syndromic.html" class="next-button">
+                Келесі мақала: Синдромдық сколиоз <span>&#8594;</span>
+            </a>
+        </div>
+
+        <div class="references">
+            <h2>Пайдаланылған әдебиеттер тізімі (References)</h2>
+            <div class="ref-item">Akbarnia, B. A., Cheung, K., & Noordeen, H. (2011). Next generation of growth-sparing techniques: preliminary clinical results of a magnetically controlled growing rod in 14 patients. <em>Spine</em>, 36(26), 221-229.</div>
+            <div class="ref-item">Mayer, O. H., Redding, G., & Williams, J. (2017). Pulmonary function in neuromuscular scoliosis. <em>Paediatric Respiratory Reviews</em>, 23, 11-16. https://doi.org/10.1016/j.prrv.2016.10.003</div>
+            <div class="ref-item">Murphy, R. F., & Mooney, J. F. (2019). Current concepts in neuromuscular scoliosis. <em>Current Reviews in Musculoskeletal Medicine</em>, 12(2), 220–227. https://doi.org/10.1007/s12178-019-09552-8</div>
+            <div class="ref-item">Olafsson, Y., Saraste, H., & Al-Dabbagh, Z. (1999). Brace treatment in neuromuscular spine deformity. <em>Journal of Pediatric Orthopaedics</em>, 19(3), 376-379.</div>
+            <div class="ref-item">Persson-Bunke, M., Hägglund, G., Lauge-Pedersen, H., & Westbom, L. (2012). Scoliosis in a total population of children with cerebral palsy. <em>Spine</em>, 37(12), E708-E713.</div>
+            <div class="ref-item">Scoliosis Research Society. (2023). <em>Neuromuscular Scoliosis</em>. Retrieved from https://www.srs.org/patients-and-families/conditions-and-treatments/parents/scoliosis/neuromuscular-scoliosis</div>
+            <div class="ref-item">Vialle, R., Thevenin-Lemoine, C., & Mary, P. (2013). Neuromuscular scoliosis. <em>Orthopaedics & Traumatology: Surgery & Research</em>, 99(1), S124-S139. https://doi.org/10.1016/j.otsr.2012.11.002</div>
+            <div class="ref-item">Yazici, M., & Asher, M. A. (2001). Freeze-dried allograft for posterior spinal fusion in patients with neuromuscular spinal deformities. <em>Spine</em>, 26(23), 2627-2635.</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

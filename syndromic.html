@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Синдромдық сколиоз: Толық ғылыми шолу</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root{
+            --brand:#02204f; /* blue - matches pp25 home navbar */
+            --muted:#34495e;
+            --accent:#8e44ad; /* Purple accent for Syndromic to distinguish from others */
+            --soft:#f4ecf7;   /* Soft purple background for boxes */
+            --header-bg:#a7acd9; /* blue header - matches pp25 home */
+            --card-bg:#ffffff;
+            --radius:12px;
+        }
+
+        *{box-sizing:border-box}
+        body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:0;background:#fbfdf9;color:#2c3e50;line-height:1.7}
+
+        /* Header / navbar */
+        header{background:var(--header-bg);box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;z-index:1000}
+        .site-nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;height:72px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .nav-logo-img{height:52px;width:auto;display:block}
+    .nav-panel{display:flex;gap:20px;align-items:center;margin:0;padding:0;list-style:none}
+    .nav-panel > li > a { display:flex; align-items:center; gap:6px; padding:8px 12px; color:var(--brand); font-weight:700; transition: color 0.3s; text-decoration:none }
+    .nav-panel > li > a:hover { color:#ffffff }
+
+        /* Dropdowns */
+    .has-sub { position: relative }
+    .submenu { position: absolute; left: 0; top: 100%; width: 240px; background: #ffffff; border-radius:8px; padding:10px 0; box-shadow:0 10px 30px rgba(0,0,0,0.15); opacity:0; visibility:hidden; transform:translateY(10px); transition: all 0.3s ease; z-index:120 }
+    .has-sub:hover .submenu, .has-sub:focus-within .submenu { opacity:1; visibility:visible; transform:translateY(0) }
+    .submenu li { list-style: none }
+    .submenu a { display:block; padding:10px 20px; color:var(--brand); font-weight:500; font-size:0.95rem; text-decoration:none }
+    .submenu a:hover { background-color:#f0f4f8; color:var(--accent) }
+        .has-sub-right > .submenu-right{left:100%;top:0}
+        .submenu-right{position:absolute;display:none;left:100%;top:0;min-width:200px;background:var(--card-bg);border-radius:8px;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+        .submenu li:focus-within > .submenu-right,.submenu li:hover > .submenu-right{display:block}
+
+        /* Page content styles */
+        .container{max-width:1100px;margin:20px auto;padding:28px 20px;background:var(--card-bg);box-shadow:0 6px 24px rgba(12,20,12,0.04);border-radius:12px}
+        h1{color:var(--brand);font-size:2.2rem;margin:6px 0 14px}
+        .subtitle{color:var(--muted);margin-bottom:6px}
+        h2{color:var(--accent);border-bottom:2px solid rgba(142, 68, 173, 0.15);padding-bottom:10px;margin-top:28px;display:flex;align-items:center;gap:10px}
+        h2 i{color:var(--accent);font-size:1.1em}
+        h3{color:#2c3e36;margin-top:20px;font-weight:600;font-size:1.3em;}
+        p{margin-bottom:16px;color:var(--muted);text-align:justify;font-size:1.02em}
+
+        ul{margin-bottom:18px;padding-left:24px}
+        ul li{margin-bottom:10px;color:var(--muted)}
+    ul li::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;margin-right:8px;color:var(--accent);position:relative;left:-22px}
+    /* Remove list pseudo-icons inside the top navigation */
+    .nav-panel li::before{content:none}
+
+        .info-box{background:var(--soft);border-radius:8px;padding:16px;margin:20px 0;border-left:5px solid var(--accent);color:var(--muted)}
+        
+        /* Specific styling for syndromes list to look distinct */
+        .syndrome-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+            transition: transform 0.2s;
+        }
+        .syndrome-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .syndrome-title {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .references{background:#f8f9fa;border:1px solid #e9ecef;padding:20px;border-radius:10px;margin-top:32px}
+        .references h2{margin-top:0;border-bottom:none;color:var(--brand)}
+        .ref-item{margin-bottom:10px;padding-left:20px;text-indent:-20px;color:var(--muted); font-size: 0.9em;}
+
+        .nav-container{text-align:center;margin-top:34px}
+        .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;transition:all 0.25s}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(142, 68, 173, 0.2)}
+
+        /* Responsive tweaks */
+        @media (max-width:900px){.site-nav{padding:10px}.nav-panel{gap:8px}}
+        @media (max-width:640px){.container{padding:16px}.nav-panel{overflow-x:auto}h1{font-size:1.6em}}
+    </style>
+</head>
+<body>
+
+   <header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+          <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                  <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                      <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+
+        <h2><i class="fas fa-dna"></i>Синдромдық сколиоз: Анықтамасы және Жалпы сипаттамасы</h2>
+        <p>Синдромдық сколиоз (Syndromic Scoliosis) — бұл омыртқаның үш жазықтықтағы деформациясы (қисаю және ротация), ол жекелеген ауру емес, белгілі бір жүйелік аурудың немесе генетикалық синдромның құрамдас бөлігі ретінде дамитын патология. Идиопатиялық сколиоздан (себебі белгісіз) айырмашылығы, синдромдық сколиоздың этиологиясы нақты анықталған: ол дәнекер тіннің, сүйек жүйесінің немесе метаболизмнің генетикалық бұзылыстарының тікелей салдары болып табылады (Akbarnia et al., 2011).</p>
+        
+        <p>Эпидемиологиялық зерттеулерге сүйенсек, сколиозға байланысты хирургиялық ем қабылдайтын әрбір 20 науқастың 1-і синдромдық сколиозбен ауырады. Бұл патология Марфан, Элерс-Данлос, Даун, Ретт, Прадер-Уилли синдромдары, нейрофиброматоз және остеогенездің жетілмеуі сияқты көптеген клиникалық жағдайлармен тығыз байланысты. Синдромдық сколиоздың ерекшелігі — оның ерте жаста (көбінесе 10 жасқа дейін) басталуы, деформацияның агрессивті түрде үдеуі және ішкі ағзалардың (жүрек, өкпе, бүйрек) ілеспелі патологияларымен қатар жүруі болып табылады (SRS, 2023).</p>
+
+        <div class="info-box">
+            <strong>Маңызды ерекшелік:</strong> Омыртқаның қисықтығы көбіне байламдар мен дәнекер тіндердің әлсіздігінен (гипермобильділік), бұлшықет тонусының төмендігінен (гипотония) немесе сүйек тінінің дисплазиясынан туындайды. Мысалы, Марфан синдромында фибриллин ақуызының ақауы байламдардың шамадан тыс созылғыштығына әкелсе, Остеогенездің жетілмеуінде I типті коллагеннің тапшылығы сүйек сынғыштығын тудырады.
+        </div>
+
+        <h2><i class="fas fa-stethoscope"></i> Диагностикалық алгоритм</h2>
+        <p>Синдромдық сколиозды диагностикалау кешенді және мультидисциплинарлық тәсілді қажет етеді. Диагноз қою процесі үш негізгі бағытты қамтиды:</p>
+        <ul>
+            <li><strong>Анамнез және клиникалық белгілер (стигматалар):</strong> Дәрігер науқастың сыртқы келбетіндегі синдромға тән белгілерді іздейді. Мысалы: Марфан синдромында — арахнодактилия (ұзын саусақтар), кеуде қуысының деформациясы; Нейрофиброматозда — терідегі "кофе сүтпен" (café-au-lait) дақтары; Элерс-Данлос синдромында — терінің шамадан тыс созылғыштығы.</li>
+            <li><strong>Генетикалық скрининг:</strong> Диагнозды нақтылау үшін молекулалық-генетикалық тестілеу жүргізіледі. Бұл әдіс сколиозға себеп болған нақты мутацияны анықтауға мүмкіндік береді (мысалы, <em>FBN1</em> гені — Марфан, <em>NF1</em> гені — Нейрофиброматоз, <em>COL1A1</em> гені — Остеогенез).</li>
+            <li><strong>Бейнелеу әдістері:</strong> Рентгенография арқылы Кобб бұрышы өлшенеді. Алайда, синдромдық сколиоз кезінде жұлын өзегінің аномалияларын (мысалы, Марфан синдромындағы дуральды эктазия немесе Нейрофиброматоздағы жұлын ісіктері) анықтау үшін МРТ және КТ зерттеулері міндетті түрде тағайындалады (McMaster, 2004).</li>
+        </ul>
+
+        <h2><i class="fas fa-project-diagram"></i> Негізгі клиникалық синдромдар және сколиоз</h2>
+        <p>Синдромдық сколиоздың клиникалық көрінісі мен ағымы негізгі ауруға байланысты әртүрлі болады. Төменде ең жиі кездесетін синдромдар қарастырылған:</p>
+
+        <div class="syndrome-card">
+            <div class="syndrome-title"><i class="fas fa-heartbeat"></i> 1. Марфан синдромы (Marfan Syndrome)</div>
+            <p>Бұл аутосомды-доминантты ауру дәнекер тіннің негізгі компоненті — фибриллиннің синтезіне жауап беретін <em>FBN1</em> генінің мутациясынан туындайды. Марфан синдромы бар науқастардың шамамен 60%-ында сколиоз дамиды. Қисықтық жиі "қос доғалы" болып келеді және ауырсынумен қатар жүреді. Хирургиялық ем кезіндегі басты қауіп — жүрек-қан тамырлары жүйесінің асқынулары (аорта түбінің кеңеюі) және дуральды қапшықтың кеңеюі (дуральды эктазия), бұл жұлын сұйықтығының ағуына әкелуі мүмкін (Sponseller et al., 2000).</p>
+        </div>
+
+        <div class="syndrome-card">
+            <div class="syndrome-title"><i class="fas fa-child"></i> 2. Нейрофиброматоз (Neurofibromatosis type 1 - NF1)</div>
+            <p>Нейрофиброматоз кезіндегі сколиоз екі түрге бөлінеді: дистрофиялық емес (идиопатиялық сколиозға ұқсас) және дистрофиялық. Дистрофиялық сколиоз өте қауіпті, ол қысқа сегменттегі өткір бұрышты қисаюмен, омыртқа денелерінің сына тәрізді өзгеруімен және қабырғалардың жіңішкеруімен ("pencil-pointing" ribs) сипатталады. Дистрофиялық түрі тез үдейді және ерте хирургиялық тұрақтандыруды қажет етеді (Crawford & Parikh, 2010).</p>
+        </div>
+
+        <div class="syndrome-card">
+            <div class="syndrome-title"><i class="fas fa-bone"></i> 3. Остеогенездің жетілмеуі (Osteogenesis Imperfecta)</div>
+            <p>"Шыны адам" ауруы деп аталатын бұл жағдайда сүйектердің сынғыштығы жоғары болады. Сколиоз науқастардың 40–90%-ында кездеседі. Сүйектің әлсіздігі (остеопороз) хирургиялық емді қиындатады, себебі металл конструкциялар сүйекті ұстап тұра алмауы мүмкін. Емдеу барысында сүйек тығыздығын арттыру үшін бисфосфонаттар қолданылады (Janus et al., 2013).</p>
+        </div>
+
+        <div class="syndrome-card">
+            <div class="syndrome-title"><i class="fas fa-users"></i> 4. Элерс–Данлос және Басқа синдромдар</div>
+            <p>Элерс–Данлос синдромында дәнекер тіндердің шамадан тыс созылғыштығы омыртқаның тұрақсыздығына әкеледі. Даун синдромы (Trisomy 21) бар балаларда сколиозбен қатар жоғарғы мойын омыртқаларының (C1-C2) тұрақсыздығы жиі кездеседі, бұл наркоз беру немесе тарту (тракция) кезінде аса сақтықты талап етеді. Ахондроплазия кезінде бел лордозының күшеюі және омыртқа өзегінің тарылуы (стеноз) жиі байқалады.</p>
+        </div>
+
+        <h2><i class="fas fa-user-md"></i> Емдеу стратегиялары және Болжам</h2>
+        <p>Синдромдық сколиозды емдеу — күрделі процесс, оның мақсаты тек деформацияны түзету ғана емес, сонымен қатар өмірлік маңызды ағзалардың қызметін сақтау.</p>
+        
+        <p><strong>Консервативті ем:</strong> Жеңіл жағдайларда бақылау және физиотерапия қолданылады. Алайда, синдромдық сколиоз кезінде корсет кию (брэйсинг) көбінесе нәтижесіз болады, себебі дәнекер тіндердің патологиясы омыртқаны сыртқы қысым арқылы ұстап тұруға мүмкіндік бермейді (Karol, 2011).</p>
+        
+        <p><strong>Хирургиялық ем:</strong> Деформация тез үдегенде немесе өкпе-жүрек қызметіне қауіп төнгенде хирургиялық араласу қажет. Операция әдетте "артқы спондилодез" (posterior spinal fusion) әдісімен жасалады. Синдромдық науқастарда операция кезіндегі қан жоғалту қаупі, инфекциялық асқынулар және сүйектің бірікпеуі (псевдоартроз) идиопатиялық сколиозға қарағанда жиірек кездеседі. Сондықтан операция алдында кардиолог, генетик және анестезиологтың қатысуымен толық тексеру жүргізілуі шарт.</p>
+
+        <div class="references">
+            <h2>Пайдаланылған әдебиеттер тізімі (References)</h2>
+            <div class="ref-item">Akbarnia, B. A., Yazici, M., & Thompson, G. H. (2011). <em>The Growing Spine: Management of Spinal Disorders in Young Children</em>. Springer Science & Business Media.</div>
+            <div class="ref-item">Crawford, A. H., & Parikh, S. (2010). Management of scoliosis in neurofibromatosis type 1. <em>Orthopedic Clinics of North America</em>, 41(2), 261-277.</div>
+            <div class="ref-item">Janus, G. J., Finidori, G., Engelbert, R. H., Pouliquen, M., & Pruijs, J. E. (2013). Operative treatment of severe scoliosis in osteogenesis imperfecta: results of 20 patients after halo traction and posterior spondylodesis with instrumentation. <em>European Spine Journal</em>, 9(6), 486-491.</div>
+            <div class="ref-item">Karol, L. A. (2011). The natural history of early-onset scoliosis. <em>Journal of Pediatric Orthopaedics</em>, 31(1), S107-S114.</div>
+            <div class="ref-item">McMaster, M. J. (2004). Congenital, neuromuscular, and syndromic scoliosis. In <em>Spinal Deformities: The Comprehensive Text</em> (pp. 560-580). Thieme.</div>
+            <div class="ref-item">Scoliosis Research Society (SRS). (2023). <em>Syndromic Scoliosis</em>. Retrieved from https://www.srs.org</div>
+            <div class="ref-item">Sponseller, P. D., Bhimani, M., Solacoff, D., & Dormans, J. P. (2000). Results of brace treatment of scoliosis in Marfan syndrome. <em>Spine</em>, 25(23), 3067-3071.</div>
+        </div>
+
+  <div class="next-article-container">
+            <a href="consequences.html" class="next-button">
+                Келесі мақала: Сколиоз салдары <span>&#8594;</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

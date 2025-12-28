@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бел омыртқасының сколиозы: Толық ғылыми шолу</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root{
+            --brand:#02204f; /* blue - matches pp25 home navbar */
+            --muted:#34495e;
+            --accent:#2F8F5C; /* green accent for content */
+            --soft:#eef9f0;
+            --header-bg:#a7acd9; /* blue header - matches pp25 home */
+            --card-bg:#ffffff;
+            --radius:12px;
+        }
+
+        *{box-sizing:border-box}
+        body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:0;background:#fbfdf9;color:#0b3f2f;line-height:1.7}
+
+        /* Header / navbar (match pp25 home but green) */
+        header{background:var(--header-bg);box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;z-index:1000}
+        .site-nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;height:72px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .nav-logo-img{height:52px;width:auto;display:block}
+    .nav-panel{display:flex;gap:20px;align-items:center;margin:0;padding:0;list-style:none}
+    .nav-panel > li > a { display:flex; align-items:center; gap:6px; padding:8px 12px; color:var(--brand); font-weight:700; transition: color 0.3s; text-decoration:none }
+    .nav-panel > li > a:hover { color:#ffffff }
+
+        /* Dropdowns */
+    .has-sub { position: relative }
+    .submenu { position: absolute; left: 0; top: 100%; width: 240px; background: #ffffff; border-radius:8px; padding:10px 0; box-shadow:0 10px 30px rgba(0,0,0,0.15); opacity:0; visibility:hidden; transform:translateY(10px); transition: all 0.3s ease; z-index:120 }
+    .has-sub:hover .submenu, .has-sub:focus-within .submenu { opacity:1; visibility:visible; transform:translateY(0) }
+    .submenu li { list-style: none }
+    .submenu a { display:block; padding:10px 20px; color:var(--brand); font-weight:500; font-size:0.95rem; text-decoration:none }
+    .submenu a:hover { background-color:#f0f4f8; color:#2F8F5C }
+        .has-sub-right > .submenu-right{left:100%;top:0}
+        .submenu-right{position:absolute;display:none;left:100%;top:0;min-width:200px;background:var(--card-bg);border-radius:8px;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+        .submenu li:focus-within > .submenu-right,.submenu li:hover > .submenu-right{display:block}
+
+        /* Page content styles */
+        .container{max-width:1100px;margin:20px auto;padding:28px 20px;background:var(--card-bg);box-shadow:0 6px 24px rgba(12,20,12,0.04);border-radius:12px}
+        h1{color:var(--brand);font-size:2.2rem;margin:6px 0 14px}
+        .subtitle{color:var(--muted);margin-bottom:6px}
+        h2{color:var(--accent);border-bottom:2px solid rgba(47,143,92,0.15);padding-bottom:10px;margin-top:28px;display:flex;align-items:center;gap:10px}
+        h2 i{color:var(--accent);font-size:1.1em}
+        h3{color:#2c3e36;margin-top:20px;font-weight:600}
+        p{margin-bottom:16px;color:var(--muted);text-align:justify;font-size:1.02em}
+
+        ul{margin-bottom:18px;padding-left:24px}
+        ul li{margin-bottom:10px;color:var(--muted)}
+    ul li::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;margin-right:8px;color:var(--accent);position:relative;left:-22px}
+    /* Remove list pseudo-icons inside the top navigation */
+    .nav-panel li::before{content:none}
+
+        .info-box{background:var(--soft);border-radius:8px;padding:16px;margin:20px 0;border-left:5px solid var(--accent);color:var(--muted)}
+
+        .references{background:#EAF9EF;border:1px solid #d7efe0;padding:20px;border-radius:10px;margin-top:32px}
+        .references h2{margin-top:0;border-bottom:none;color:var(--brand)}
+        .ref-item{margin-bottom:10px;padding-left:20px;text-indent:-20px;color:var(--muted)}
+
+        .nav-container{text-align:center;margin-top:34px}
+        .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;transition:all 0.25s}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(47,143,92,0.12)}
+        
+        .next-article-container{text-align:center;margin-top:48px;margin-bottom:40px;padding:32px 20px;background:linear-gradient(135deg, rgba(47,143,92,0.06) 0%, rgba(47,143,92,0.02) 100%);border-radius:16px;border:2px solid rgba(47,143,92,0.1)}
+        .next-button{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1.05em;box-shadow:0 12px 32px rgba(47,143,92,0.2);transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)}
+        .next-button:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(47,143,92,0.3);background:#1f7846}
+        .next-button span{font-size:1.2em;transition:transform 0.3s}
+        .next-button:hover span{transform:translateX(4px)}
+
+        /* Responsive tweaks */
+        @media (max-width:900px){.site-nav{padding:10px}.nav-panel{gap:8px}}
+        @media (max-width:640px){.container{padding:16px}.nav-panel{overflow-x:auto}h1{font-size:1.6em}}
+    </style>
+</head>
+<body>
+
+  <header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+           <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                  <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                      <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+
+        <h2><i class="fas fa-book-open"></i>Бел омыртқасының сколиозы</h2>
+        <p>Бел омыртқасының сколиозы (Lumbar Scoliosis) — бұл омыртқаның төменгі бөлігінде, яғни бел аймағында (L1–L5) пайда болатын, фронтальды жазықтықтағы қисықтық пен осьтік ротация арқылы сипатталатын күрделі ортопедиялық патология. Бұл жағдай сәбилерден бастап ересектерге дейінгі кез келген жас тобында кездесуі мүмкін. Омыртқа — адам денесінің негізгі тірегі және биомеханикалық осі болып табылады. Оның әрбір бөлігі (мойын, кеуде, бел) табиғи физиологиялық иілістерге ие, бұл гравитациялық жүктемені тең бөлуге және қозғалыс кезінде амортизация жасауға қызмет етеді. Егер омыртқа бір бағытқа шамадан тыс иілсе және бұралса, дененің тепе-теңдігі (сагиттальды және фронтальды баланс) бұзылып, тірек-қимыл жүйесінің дисфункциясына алып келеді (Aebi, 2005).</p>
+
+        <h2><i class="fas fa-bone"></i> Омыртқа құрылысының анатомиясы және биомеханикасы</h2>
+        <p>Адам омыртқасы анатомиялық және функционалдық тұрғыдан үш негізгі бөлімге бөлінеді: мойын (цервикальды - 7 омыртқа), кеуде (торакальды - 12 омыртқа) және бел (люмбальды - 5 омыртқа). Қалыпты жағдайда мойын және бел бөлімдерінде алға қарай иілу — <strong>лордоз</strong>, ал кеуде бөлімінде артқа қарай иілу — <strong>кифоз</strong> болады. Бел омыртқасының лордозы денені тік ұстау үшін өте маңызды (Glassman et al., 2005).</p>
+        
+        <p>Бел омыртқасы (L1-L5) — омыртқа бағанасының ең қозғалмалы және ең үлкен жүктеме түсетін бөлігі. Сколиоз кезінде осы табиғи лордоз жиі жоғалып ("flatback syndrome" немесе жазық арқа синдромы), омыртқалар бүйірге қарай қисаяды және өз осінен айналады (ротация). Бұл өзгерістер тек косметикалық ақау тудырып қана қоймай, омыртқааралық дискілерге түсетін қысымды асимметриялы етіп, олардың тез тозуына әкеледі.</p>
+
+        <h2><i class="fas fa-notes-medical"></i> Сколиоздың жіктелуі және анықтамасы</h2>
+        <p>Scoliosis Research Society (SRS) анықтамасы бойынша, сколиоз деп омыртқаның бүйірлік қисаю бұрышы (Кобб бұрышы) 10 градустан асқан жағдайды атайды. Бұл бұрыш тік тұрған күйде түсірілген рентгенография арқылы өлшенеді. Ауырлық дәрежесі бойынша сколиоз келесідей жіктеледі:</p>
+        <ul>
+            <li>Жеңіл сколиоз: 10–25° (жиі бақылауды қажет етеді);</li>
+            <li>Орташа сколиоз: 25–40° (корсет кию немесе физиотерапия қажет болуы мүмкін);</li>
+            <li>Ауыр сколиоз: 40°-тан жоғары (хирургиялық араласуды қажет етуі мүмкін);</li>
+            <li>Өте ауыр сколиоз: 80° және одан жоғары (өмірге қауіп төндіруі мүмкін).</li>
+        </ul>
+        <p>Бел сколиозының ерекшелігі — ол көбінесе "ротосколиоз" түрінде көрініс береді, яғни омыртқалардың бұралуы айқын болады. Бұл бұлшықет білігінің (muscle hump) пайда болуына және бел аймағындағы айқын асимметрияға себеп болады.</p>
+
+        <h2><i class="fas fa-search-plus"></i> Этиология: Пайда болу себептері</h2>
+        <p>Бел сколиозының этиологиясы әртүрлі және ол пациенттің жасына тікелей байланысты. Негізгі себептер мен қауіп факторларына мыналар жатады:</p>
+        <ul>
+            <li><strong>Идиопатиялық себептер:</strong> Жасөспірімдерде ең жиі кездесетін түрі (Adolescent Idiopathic Scoliosis - AIS). Нақты себебі белгісіз болғанымен, генетикалық факторлардың (тұқым қуалаушылықтың) рөлі жоғары екендігі дәлелденген (Gorman et al., 2012).</li>
+            <li><strong>Дегенеративті өзгерістер (De Novo Scoliosis):</strong> Ересектерде және егде жастағы адамдарда кездеседі. Бұл омыртқааралық дискілердің тозуы, остеопороз және фасеттік буындардың артрозы салдарынан омыртқаның тұрақсыздығынан туындайды (Silva & Lenke, 2010).</li>
+            <li><strong>Нейробұлшықеттік аурулар:</strong> Церебралды сал ауруы (ДЦП), бұлшықет дистрофиясы сияқты жағдайларда бұлшықеттердің омыртқаны тік ұстап тұруға күші жетпеуінен немесе спастикадан дамиды.</li>
+            <li><strong>Туа біткен ақаулар:</strong> Құрсақтағы даму кезінде омыртқаның дұрыс қалыптаспауы (гемивертебра) немесе бөлінбеуі.</li>
+        </ul>
+
+        <h2><i class="fas fa-user-md"></i> Клиникалық белгілері мен симптомдары</h2>
+        <p>Бел сколиозының клиникалық көрінісі көбінесе баяу дамиды, бірақ уақыт өте келе айқын симптомдар береді. Жасөспірімдерде ауырсыну сирек болса, ересектерде ауырсыну синдромы жетекші орын алады. Негізгі белгілері:</p>
+        <div class="info-box">
+            <strong>Негізгі визуалды белгілер:</strong> Бір иықтың немесе жамбастың екіншісінен жоғары орналасуы, бел сызығының тегіс болмауы, алға еңкейгенде арқаның бір жағының дөңестеніп тұруы (Адамс сынамасының оң нәтижесі).
+        </div>
+        <p><strong>Неврологиялық симптомдар:</strong> Бел аймағындағы қисықтық пен дегенерация омыртқа өзегінің тарылуына (стеноз) және жүйке түбіршелерінің қысылуына әкеледі. Бұл <em>радикулопатия</em> немесе ишиас түрінде көрініс береді: ауырсыну белден басталып, бөксеге және аяққа тарайды, аяқтың ұюы, шаншуы және бұлшықет әлсіздігі байқалады (Ploumis et al., 2011).</p>
+
+        <h2><i class="fas fa-stethoscope"></i> Диагностика және Емдеу әдістері</h2>
+        <p>Диагностика физикалық тексеруден және рентгенологиялық зерттеуден (толық омыртқа рентгені) басталады. Жүйке жүйесінің жағдайын бағалау үшін МРТ қолданылады.</p>
+        
+        <h3>Консервативті емдеу</h3>
+        <p>Жеңіл және орташа дәрежедегі сколиоз үшін, сондай-ақ операцияға қарсы көрсетілімдері бар ересектер үшін хирургиялық емес әдістер қолданылады:</p>
+        <ul>
+            <li><strong>Арнайы жаттығулар (PSSE):</strong> Schroth (Шрот) және SEAS әдістемелері бойынша жаттығулар омыртқаны ұстап тұратын терең бұлшықеттерді нығайтуға және асимметрияны түзетуге бағытталған.</li>
+            <li><strong>Корсеттеу (Bracing):</strong> Өсуі аяқталмаған балаларда (Риссер белгісі 0-2) қисықтықтың үдеуін тоқтату үшін Chêneau немесе Boston типті корсеттер қолданылады (Weinstein et al., 2013).</li>
+            <li><strong>Медикаментозды терапия және инъекциялар:</strong> Қабынуға қарсы препараттар және эпидуральды блокадалар ауырсынуды басу үшін қолданылады.</li>
+        </ul>
+
+        <h3>Хирургиялық емдеу</h3>
+        <p>Егер қисаю бұрышы 45-50 градустан асса, консервативті ем нәтижесіз болса немесе неврологиялық тапшылық үдесе, хирургиялық ем көрсетіледі. Операцияның негізгі мақсаты — декомпрессия (жүйкелерді босату) және спондилодез (омыртқаны металл конструкциялармен бекіту және біріктіру). Заманауи хирургияда минималды инвазивті әдістер кеңінен қолданылуда, бұл қалпына келу уақытын қысқартады.</p>
+
+        <h2><i class="fas fa-exclamation-triangle"></i> Қорытынды және Алдын алу</h2>
+        <p>Бел омыртқасының сколиозы — бұл науқастың өмір сүру сапасына, қозғалыс белсенділігіне және психологиялық жағдайына тікелей әсер ететін маңызды медициналық мәселе. Ерте диагностика, дұрыс таңдалған емдеу тактикасы және салауатты өмір салтын ұстану (арқа бұлшықеттерін тұрақты жаттықтыру, дұрыс тамақтану) асқынулардың алдын алуға көмектеседі. Сколиоз үкім емес, бұл тек тұрақты бақылау мен күтімді қажет ететін жағдай.</p>
+ <div class="next-article-container">
+            <a href="neuromuscular.html" class="next-button">
+                Келесі мақала: Нейробұлшықет сколиоз <span>&#8594;</span>
+            </a>
+        </div>
+
+
+        <div class="references">
+            <h2>Пайдаланылған әдебиеттер тізімі (References)</h2>
+            <div class="ref-item">Aebi, M. (2005). The adult scoliosis. <em>European Spine Journal</em>, 14(10), 925–948. https://doi.org/10.1007/s00586-005-1053-9</div>
+            <div class="ref-item">Glassman, S. D., Berven, S., Bridwell, K., Horton, W., & Dimar, J. R. (2005). Correlation of radiographic parameters and clinical symptoms in adult scoliosis. <em>Spine</em>, 30(6), 682-688.</div>
+            <div class="ref-item">Gorman, K. F., Julien, C., & Moreau, A. (2012). The genetic epidemiology of idiopathic scoliosis. <em>European Spine Journal</em>, 21(10), 1905–1919.</div>
+            <div class="ref-item">Ploumis, A., Transfledt, E. E., & Denis, F. (2011). Degenerative lumbar scoliosis associated with spinal stenosis. <em>The Spine Journal</em>, 7(4), 428-436.</div>
+            <div class="ref-item">Silva, F. E., & Lenke, L. G. (2010). Adult degenerative scoliosis: evaluation and management. <em>Neurosurgical Focus</em>, 28(3), E1.</div>
+            <div class="ref-item">Weinstein, S. L., Dolan, L. A., Wright, J. G., & Dobbs, M. B. (2013). Effects of bracing in adolescents with idiopathic scoliosis. <em>New England Journal of Medicine</em>, 369(16), 1512-1521.</div>
+        </div>
+
+      
+
+    </div>
+
+</body>
+</html>

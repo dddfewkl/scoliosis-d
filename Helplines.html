@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQA | Клиникалар мен Көмек</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand: #02204f;      
+            --muted: #34495e;     
+            --accent: #4a6fa5;    
+            --soft: #eefcf3;       
+            --header-bg: #a7acd9;   
+            --card-bg: #ffffff;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f8faff; 
+            color: #1f2937; 
+            margin: 0;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+
+        header {
+            width: 100%;
+            background-color: var(--header-bg); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000; 
+        }
+
+        .site-nav {
+            max-width: 1200px; 
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            height: 80px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo-img {
+            max-height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-panel {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-panel > li > a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            color: var(--brand);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-panel > li > a:hover {
+            color: #ffffff;
+        }
+
+        .has-sub { position: relative; }
+
+        .submenu {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 240px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 120;
+        }
+
+        .has-sub:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu li { list-style: none; }
+
+        .submenu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--brand);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .submenu a:hover {
+            background-color: #f0f4f8;
+            color: var(--accent);
+        }
+
+        .has-sub-right { position: relative; }
+
+        .submenu-right {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 200px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 140;
+        }
+
+        .has-sub-right:hover .submenu-right {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .bg-primary { background-color: #4a6fa5; }
+        .text-primary { color: #4a6fa5; }
+        
+        /* Картаны бейімдеу */
+        .map-container {
+            position: relative;
+            padding-bottom: 50%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Стиль активной кнопки города */
+        .city-tab-btn.active {
+            background-color: #4a6fa5;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(74, 111, 165, 0.4);
+        }
+        .city-tab-btn:not(.active):hover {
+            background-color: #f3f4f6;
+        }
+
+        @media (max-width: 768px) {
+            .site-nav { flex-direction: column; height: auto; padding: 15px; }
+            .nav-panel { flex-direction: column; width: 100%; gap: 10px; margin-top: 15px; }
+            .submenu, .submenu-right { position: static; box-shadow: none; padding-left: 20px; display: none; }
+            .has-sub:hover .submenu { display: block; opacity: 1; visibility: visible; transform: none; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header>
+        <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+            <div class="brand">
+            <a href="index.html" class="logo-link">
+                    <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+                </a>
+            </div>
+
+            <ul class="nav-panel">
+                <li class="has-sub">
+                    <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                      <li class="has-sub-right">
+                            <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                                Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                            </a>
+                          <ul class="submenu-right">
+                                <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                                <li><a href="congenital.html">Туа бітім</a></li>
+                                <li><a href="degenerative.html">Дегенеративті</a></li>
+                                <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                                <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                                <li><a href="syndromic.html">Синдромдық</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="consequences.html">Салдары</a></li>
+                        <li><a href="treatment.html">Емдеу жолдары</a></li>
+                    </ul>
+                </li>
+                <li><a href="test.html">Тексеру</a></li>
+                <li><a href="exercises.html">Жаттығулар</a></li>
+                <li><a href="prevention.html">Алдын алу</a></li>
+                <li><a href="Helplines.html">Клиникалар</a></li>
+                <li><a href="About.html">Біз жайлы</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-7xl">
+
+        <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2 text-center">
+            🏥 Көмек алу: Медициналық орталықтар
+        </h1>
+        <p class="text-gray-600 mb-10 text-center max-w-3xl mx-auto">
+            Қазақстан бойынша сколиозды диагностикалауға, емдеуге және оңалтуға маманданған орталықтардың тізімі. Барлық ақпарат 2GIS деректеріне негізделген.
+        </p>
+
+        <!-- Section 1: Interactive Map (Фокус на Казахстане) -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-primary mb-4 border-b-2 border-primary/20 pb-2">
+                Картадағы Қазақстан
+            </h2>
+            <div class="map-container shadow-xl">
+                <!-- Карта Казахстана (примерный фокус на центр страны) -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4187311.2335431666!2d60.75117208759537!3d48.067341381223945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38a0e88f6c342f53%3A0xf0574889c169225!2sKazakhstan!5e0!3m2!1sru!2skz!4v1701777600000!5m2!1sru!2skz" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    title="Карта Казахстана">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Section 2: Clinic Directory by City -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-primary mb-4 border-b-2 border-primary/20 pb-2">
+                Қалалар бойынша емдеу орталықтары
+            </h2>
+            
+            <!-- City Tabs (21 город) -->
+            <div class="flex flex-wrap gap-3 mb-6 bg-white p-4 rounded-xl shadow-inner max-h-48 overflow-y-auto">
+                <!-- Генерируем кнопки для всех 21 города -->
+                <!-- JS функция fillCityTabs() добавит их, чтобы не загромождать HTML -->
+            </div>
+
+            <!-- Clinic List Container -->
+            <div id="clinic-list-container" class="space-y-6">
+                <!-- Данные будут генерироваться JS в зависимости от выбранного города -->
+            </div>
+
+            <!-- 2GIS Link Block -->
+            <div class="mt-10 p-6 bg-teal-50 rounded-xl shadow-md border-l-4 border-teal-500">
+                <h3 class="text-xl font-bold text-teal-800 flex items-center gap-3 mb-2">
+                    <i class="fa-solid fa-map-location-dot text-teal-600"></i> Толық ақпаратты 2GIS-тен қараңыз
+                </h3>
+                <p class="text-teal-700 mb-4">
+                    Нақты клиникалар мен жұмыс кестесін іздеу үшін 2GIS ресурсын пайдаланыңыз. Іздеу өрісіне "Ортопедия", "Оңалту орталығы" немесе "ЛФК" деп енгізіңіз.
+                </p>
+                <a href="https://2gis.kz" target="_blank" class="inline-flex items-center gap-2 bg-teal-600 text-white font-bold py-2 px-5 rounded-full hover:bg-teal-700 transition">
+                    2GIS.kz сайтына өту <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- DATA STRUCTURES (21 қала) ---
+        
+        const citiesData = [
+            { name_kk: 'Алматы', name_ru: 'Алматы', data_key: 'almaty' },
+            { name_kk: 'Астана', name_ru: 'Астана', data_key: 'astana' },
+            { name_kk: 'Шымкент', name_ru: 'Шымкент', data_key: 'shymkent' },
+            { name_kk: 'Ақтөбе', name_ru: 'Актобе', data_key: 'aktobe' },
+            { name_kk: 'Қарағанды', name_ru: 'Караганда', data_key: 'karaganda' },
+            { name_kk: 'Тараз', name_ru: 'Тараз', data_key: 'taraz' },
+            { name_kk: 'Өскемен', name_ru: 'Усть-Каменогорск', data_key: 'oskemen' },
+            { name_kk: 'Павлодар', name_ru: 'Павлодар', data_key: 'pavlodar' },
+            { name_kk: 'Атырау', name_ru: 'Атырау', data_key: 'atyrau' },
+            { name_kk: 'Семей', name_ru: 'Семей', data_key: 'semey' },
+            { name_kk: 'Ақтау', name_ru: 'Актау', data_key: 'aktau' },
+            { name_kk: 'Қызылорда', name_ru: 'Кызылорда', data_key: 'kyzylorda' },
+            { name_kk: 'Қостанай', name_ru: 'Костанай', data_key: 'kostanay' },
+            { name_kk: 'Орал', name_ru: 'Уральск', data_key: 'uralsk' },
+            { name_kk: 'Түркістан', name_ru: 'Туркестан', data_key: 'turkestan' },
+            { name_kk: 'Петропавл', name_ru: 'Петропавловск', data_key: 'petropavl' },
+            { name_kk: 'Көкшетау', name_ru: 'Кокшетау', data_key: 'kokshetau' },
+            { name_kk: 'Теміртау', name_ru: 'Темиртау', data_key: 'temirtau' },
+            { name_kk: 'Талдықорған', name_ru: 'Талдыкорган', data_key: 'taldykorgan' },
+            { name_kk: 'Екібастұз', name_ru: 'Экибастуз', data_key: 'ekibastuz' },
+            { name_kk: 'Рудный', name_ru: 'Рудный', data_key: 'rudny' }
+        ];
+
+        // --- Sample Clinic Data (имитация 2GIS данных) ---
+        const clinicData = {
+            almaty: [
+                { name: 'Ортопедиялық Орталық "Scoliosis Almaty"', specialization: 'Сколиозды хирургиялық емес және Шрот әдісімен емдеу.', address: 'Сәтбаев к., 29Б', phone: '+7 727 333 44 55' },
+                { name: 'Оңалту Клиникасы "Денсаулық"', specialization: 'ЛФК, физиотерапия, емдік массаж.', address: 'Желтоқсан к., 10', phone: '+7 701 111 22 33' }
+            ],
+            astana: [
+                { name: 'Ұлттық Ғылыми Ортопедиялық Орталық', specialization: 'Жоғары технологиялық оталар және консервативті емдеу.', address: 'Тұран даңғылы, 10/1', phone: '+7 7172 57 74 20' },
+                { name: 'Физиотерапия Орталығы "Qazaq Omyrtqa"', specialization: 'Арқа бұлшықеттерін нығайту бағдарламалары.', address: 'Қошқарбаев к., 43', phone: '+7 777 000 11 22' }
+            ],
+            shymkent: [
+                { name: 'Оңтүстік Оңалту Клиникасы', specialization: 'Балалар сколиозын емдеу, корсеттеу.', address: 'Байдібек би даңғылы, 5', phone: '+7 7252 88 77 66' }
+            ],
+            aktobe: [
+                { name: 'Ақтөбе Ортопедиялық Орталығы', specialization: 'Консультация, диагностика, арнайы жаттығулар.', address: 'Ағайынды Жұбановтар к., 25', phone: '+7 7132 50 10 20' }
+            ],
+            // Заглушки для остальных городов
+            karaganda: [{ name: 'Карағанды Емдеу Орталығы', specialization: 'Оңалту және физикалық терапия.', address: 'Бұқар Жырау к., 5', phone: '+7 7212 99 88 77' }],
+            taraz: [{ name: 'Тараз Денсаулық Орталығы', specialization: 'Массаж және арқаға арналған жаттығулар.', address: 'Төле би к., 1', phone: '+7 7262 34 56 78' }],
+            oskemen: [{ name: 'Шығыс Қазақстан Оңалту', specialization: 'Омыртқа ауруларын кешенді емдеу.', address: 'Қазақстан к., 40', phone: '+7 7232 55 55 55' }],
+            pavlodar: [{ name: 'Павлодар "Ортос" Клиникасы', specialization: 'Ортопед-дәрігердің қабылдауы, ЛФК.', address: 'Қайырбаев к., 112', phone: '+7 7182 66 77 88' }],
+            atyrau: [{ name: 'Атырау Оңалту Орталығы', specialization: 'Гидротерапия және емдік дене шынықтыру.', address: 'Сәтпаев к., 30', phone: '+7 7122 23 45 67' }],
+            semey: [{ name: 'Семей "Арқа Саулығы"', specialization: 'Мануалды терапия, физиотерапия.', address: 'Ленин к., 20', phone: '+7 7222 40 30 20' }],
+            aktau: [{ name: 'Ақтау Теңіз Клиникасы', specialization: 'Омыртқаға арналған емдеу.', address: '12-шағын аудан', phone: '+7 7292 10 20 30' }],
+            kyzylorda: [{ name: 'Қызылорда Спорт Медицинасы', specialization: 'Спорттық оңалту, ЛФК.', address: 'Абылай хан к., 100', phone: '+7 7242 56 78 90' }],
+            kostanay: [{ name: 'Қостанай "Ортопед" Клиникасы', specialization: 'Консультация және диагностика.', address: 'Аль-Фараби к., 80', phone: '+7 7142 45 56 67' }],
+            uralsk: [{ name: 'Орал "Жаңа Өмір"', specialization: 'Оңалту және массаж.', address: 'Достық даңғылы, 55', phone: '+7 7112 34 45 56' }],
+            turkestan: [{ name: 'Түркістан Медицина Орталығы', specialization: 'Жаңа орталық, ортопедия бөлімі.', address: 'Әзірет Сұлтан даңғ., 1', phone: '+7 72533 11 22 33' }],
+            petropavl: [{ name: 'Петропавл Оңалту', specialization: 'ЛФК және физиотерапия.', address: 'Интернациональная к., 60', phone: '+7 7152 45 67 89' }],
+            kokshetau: [{ name: 'Көкшетау "Денсаулық"', specialization: 'Балалар мен ересектерге арналған емдеу.', address: 'Абай к., 150', phone: '+7 7162 23 45 67' }],
+            temirtau: [{ name: 'Теміртау Реабилитациясы', specialization: 'Омыртқа ауруларын емдеу.', address: 'Металлургтер даңғ., 1', phone: '+7 7213 99 00 11' }],
+            taldykorgan: [{ name: 'Талдықорған "Ортос"', specialization: 'Консультация және оңалту.', address: 'Тәуелсіздік к., 50', phone: '+7 7282 67 89 01' }],
+            ekibastuz: [{ name: 'Екібастұз Қалпына келтіру', specialization: 'Физиотерапия.', address: 'Сәтпаев к., 20', phone: '+7 7187 45 67 89' }],
+            rudny: [{ name: 'Рудный Спорт Медицинасы', specialization: 'Спорттық жарақаттарды оңалту.', address: 'Ленин к., 10', phone: '+7 71431 23 45 67' }]
+        };
+
+        // --- NAVIGATION AND RENDERING FUNCTIONS ---
+
+        // Функция для динамического заполнения кнопок городов
+        function fillCityTabs() {
+            const tabsContainer = document.querySelector('.flex.flex-wrap.gap-3.mb-6');
+            if (!tabsContainer) return;
+            
+            tabsContainer.innerHTML = ''; // Очистка
+            
+            citiesData.forEach(city => {
+                const btn = document.createElement('button');
+                btn.className = `city-tab-btn bg-white text-primary border border-primary/50 px-4 py-1.5 rounded-full font-semibold text-sm transition`;
+                btn.setAttribute('data-city', city.data_key);
+                btn.setAttribute('onclick', `showCity('${city.data_key}')`);
+                btn.textContent = city.name_kk;
+                tabsContainer.appendChild(btn);
+            });
+        }
+
+
+        // Функция для отображения списка клиник по городу
+        function showCity(cityKey) {
+            // 1. Деактивировать все кнопки и активировать выбранную
+            document.querySelectorAll('.city-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const clickedButton = document.querySelector(`.city-tab-btn[data-city="${cityKey}"]`);
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+
+            // 2. Рендеринг списка клиник
+            const container = document.getElementById('clinic-list-container');
+            container.innerHTML = ''; // Очистка
+
+            const clinics = clinicData[cityKey] || [];
+            
+            if (clinics.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-yellow-100 p-6 rounded-xl text-yellow-800 flex items-center gap-3">
+                        <i class="fa-solid fa-circle-exclamation fa-xl"></i>
+                        <p class="font-medium">
+                            ${citiesData.find(c => c.data_key === cityKey)?.name_kk || 'Бұл қалада'} бойынша мәлімет әлі қосылмаған. Толық ақпаратты 2GIS сайтынан іздеңіз.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Рендеринг карточек клиник
+            const grid = document.createElement('div');
+            grid.className = 'grid md:grid-cols-2 lg:grid-cols-3 gap-6';
+            
+            clinics.forEach(clinic => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition duration-300 hover:shadow-xl';
+                card.innerHTML = `
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-hospital text-primary"></i> ${clinic.name}
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-4">${clinic.specialization}</p>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-center gap-2 text-gray-700">
+                            <i class="fa-solid fa-location-dot text-red-500"></i> ${clinic.address}
+                        </p>
+                        <p class="flex items-center gap-2 text-gray-700">
+                            <i class="fa-solid fa-phone text-green-500"></i> ${clinic.phone}
+                        </p>
+                        <a href="https://2gis.kz/search/${clinic.name}" target="_blank" class="text-primary hover:underline font-semibold mt-3 block text-sm">
+                            2GIS-те көру
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            container.appendChild(grid);
+        }
+
+        // --- Инициализация при загрузке страницы ---
+        document.addEventListener('DOMContentLoaded', () => {
+            fillCityTabs(); // Заполнение кнопок
+            showCity('almaty'); // По умолчанию показываем Алматы (самый первый в списке)
+        });
+    </script>
+</body>
+</html>

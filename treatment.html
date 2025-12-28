@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сколиозды емдеу жолдары: Шрот, Корсет және Хирургия</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root {
+            --brand: #02204f;      
+            --muted: #34495e;     
+            --accent: #4a6fa5;    
+            --soft: #eefcf3;       
+            --header-bg: #a7acd9;   
+            --card-bg: #ffffff;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            margin: 0;
+            background-color: #f7fbff;
+            color: var(--brand);
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+
+        header {
+            width: 100%;
+            background-color: var(--header-bg); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000; 
+        }
+
+        .site-nav {
+            max-width: 1200px; 
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            height: 80px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo-img {
+            max-height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-panel {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-panel > li > a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            color: var(--brand);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-panel > li > a:hover {
+            color: #ffffff;
+        }
+
+        .has-sub { position: relative; }
+
+        .submenu {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 240px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .has-sub:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu li { list-style: none; }
+
+        .submenu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--brand);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .submenu a:hover {
+            background-color: #f0f4f8;
+            color: var(--accent);
+        }
+
+        .has-sub-right { position: relative; }
+
+        .submenu-right {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 200px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .has-sub-right:hover .submenu-right {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Page content styles */
+        .container{max-width:1100px;margin:20px auto;padding:28px 20px;background:var(--card-bg);box-shadow:0 6px 24px rgba(12,20,12,0.04);border-radius:12px}
+        h1{color:var(--brand);font-size:2.2rem;margin:6px 0 14px}
+        .subtitle{color:var(--muted);margin-bottom:6px}
+        h2{color:var(--accent);border-bottom:2px solid rgba(22, 160, 133, 0.15);padding-bottom:10px;margin-top:28px;display:flex;align-items:center;gap:10px}
+        h2 i{color:var(--accent);font-size:1.1em}
+        h3{color:#2c3e36;margin-top:20px;font-weight:600;font-size:1.3em;}
+        p{margin-bottom:16px;color:var(--muted);text-align:justify;font-size:1.02em}
+
+        ul{margin-bottom:18px;padding-left:24px}
+        ul li{margin-bottom:10px;color:var(--muted)}
+    ul li::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;margin-right:8px;color:var(--accent);position:relative;left:-22px}
+    /* Remove list pseudo-icons inside the top navigation */
+    .nav-panel li::before{content:none}
+
+        .info-box{background:var(--soft);border-radius:8px;padding:16px;margin:20px 0;border-left:5px solid var(--accent);color:var(--muted)}
+
+        .image-placeholder {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .references{background:#f8f9fa;border:1px solid #e9ecef;padding:20px;border-radius:10px;margin-top:32px}
+        .references h2{margin-top:0;border-bottom:none;color:var(--brand)}
+        .ref-item{margin-bottom:10px;padding-left:20px;text-indent:-20px;color:var(--muted); font-size: 0.9em;}
+
+        .nav-container{text-align:center;margin-top:34px}
+        .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;transition:all 0.25s}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(22, 160, 133, 0.2)}
+
+        /* Responsive tweaks */
+        @media (max-width:900px){.site-nav{padding:10px}.nav-panel{gap:8px}}
+        @media (max-width:640px){.container{padding:16px}.nav-panel{overflow-x:auto}h1{font-size:1.6em}}
+    </style>
+</head>
+<body>
+
+  <header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+           <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                  <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                      <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+
+        <h1>Сколиозды емдеудің заманауи стратегиялары</h1>
+        <div class="subtitle">Консервативті терапия, Шрот әдісі және Хирургия</div>
+
+        <h2><i class="fas fa-notes-medical"></i> Кіріспе</h2>
+        <p>Сколиозды емдеу — заманауи ортопедия мен оңалту медицинасының ең күрделі мәселелерінің бірі. Емдеу тактикасы пациенттің жасына, қаңқасының жетілу деңгейіне (Риссер белгісі), сколиоздың түріне және ең бастысы — Кобб бұрышының шамасына байланысты қатаң түрде жеке таңдалады. Халықаралық Scoliosis Research Society (SRS) және SOSORT ұйымдарының консенсусына сәйкес, емдеудің негізгі мақсаты — қисаюдың үдеуін тоқтату, тыныс алу функциясын жақсарту, ауырсынуды басу және науқастың өмір сапасын арттыру болып табылады (Negrini et al., 2018).</p>
+
+        <h2><i class="fas fa-eye"></i> 1. Бақылау тактикасы (Observation)</h2>
+        <p>Бұл тәсіл, яғни "күту және бақылау", сколиоздың жеңіл дәрежелерінде қолданылады. Әдетте, сүйек өсуі аяқталмаған балалар мен жасөспірімдерде <strong>Кобб бұрышы 10° пен 25° аралығында</strong> болған жағдайда белсенді ем шаралары (корсет немесе операция) бірден тағайындалмайды. Алайда, бұл науқасты назардан тыс қалдыру дегенді білдірмейді.</p>
+        
+        <div class="info-box">
+            <strong>Динамикалық бақылаудың хаттамасы:</strong><br>
+            Егер екі тексеріс арасында қисаю бұрышы 5 градустан артық өссе, бұл аурудың үдемелі түрі (progressive scoliosis) екенін көрсетеді. Бұл жағдайда тактика дереу өзгертіліп, консервативті ем басталады.
+        </div>
+
+        <p>Сүйек өсуі аяқталғаннан кейін (Риссер 5), 30 градустан төмен қисықтар әдетте тұрақты болып қалады. Ал 50 градустан асқан қисықтар жылына орта есеппен 0.5–1 градусқа нашарлауы мүмкін, сондықтан ересектерге де 1-2 жылда бір рет тексерістен өту ұсынылады (Weinstein et al., 2008).</p>
+
+        <h2><i class="fas fa-walking"></i> 2. Консервативті ем: Арнайы жаттығулар (PSSE)</h2>
+        <p>Идиопатиялық сколиозды емдеудегі ең үлкен қателіктердің бірі — қарапайым дене шынықтыру, жүзу немесе массаж қисықты түзете алады деп сену. Ғылыми зерттеулер көрсеткендей, тек <strong>Сколиозға Арналған Арнайы Физиотерапиялық Жаттығулар (Physiotherapeutic Specific Exercises - PSSE)</strong> ғана деформацияға әсер ете алады.</p>
+
+        <h3>2.1. Шрот терапиясы (Schroth Method)</h3>
+        <p>Бұл әдісті 1920 жылдары Германияда Катарина Шрот ойлап тапқан. Ол омыртқаны "үрленген доп" қағидатымен түзететін жүйені жасап шыққан.</p>
+        <ul>
+            <li><strong>Үш өлшемді түзету (3D Correction):</strong> Шрот терапиясы омыртқаны үш жазықтықта бірдей түзетеді: ұзарту (elongation), бұралуды жазу (derotation) және бүйірлік ығысуды түзету (deflection).</li>
+            <li><strong>Айналмалы бұрыштық тыныс алу:</strong> Науқас дем алған кезде ауаны саналы түрде "қысылған" (ойыс) аймаққа бағыттайды. Бұл іштен қысым жасап, қабырғаларды сыртқа итереді (Berdishevsky et al., 2016).</li>
+            <li><strong>Бұлшықеттік корсет:</strong> Науқас денесін дұрыс қалыпта изометриялық бұлшықет кернеуі арқылы ұстап тұруға жаттығады.</li>
+        </ul>
+
+        <div class="image-placeholder">
+            [Сурет: Шрот терапиясы кезіндегі науқастың жаттығу жасау сәті]
+        </div>
+
+        <h3>2.2. SEAS және Барселона мектебі</h3>
+        <p><strong>SEAS әдісі</strong> "белсенді өзін-өзі түзетуге" негізделген және күрделі жабдықтарды қажет етпейді. <strong>Барселона мектебі (BSPTS)</strong> — Шрот әдісінің заманауи, жетілдірілген нұсқасы, ол әрбір қисық түріне арнайы когнитивті жаттығуларды ұсынады.</p>
+
+        <h2><i class="fas fa-tshirt"></i> 3. Корсеттеу (Bracing)</h2>
+        <p>Егер жасөспірімде өсу процесі жалғасуда болса және Кобб бұрышы <strong>25-45 градус</strong> аралығында болса, корсет кию — хирургиялық операцияның алдын алудың жалғыз дәлелденген жолы (BRAIST зерттеуі, 2013).</p>
+
+        <ul>
+            <li><strong>Шено (Chêneau) корсеті:</strong> Ең кең тараған "алтын стандарт". Бұл — жеке науқастың денесінен өлшем алынып жасалатын қатты пластик корсет. Ол қысым зоналары мен босаңсу камералары арқылы омыртқаны түзетеді.</li>
+            <li><strong>Түнгі корсеттер:</strong> Тек ұйықтағанда киіледі және омыртқаны қатты иіп (гиперкоррекция) түзетеді.</li>
+        </ul>
+
+        <div class="image-placeholder">
+            [Сурет: Шено корсетінің құрылымы және науқасқа кигізілуі]
+        </div>
+
+        <p><strong>Маңызды ереже:</strong> Корсеттің тиімділігі оны кию уақытына тікелей байланысты. Оң нәтижеге жету үшін корсетті тәулігіне кемінде <strong>18–23 сағат</strong> кию қажет (Katz et al., 2010).</p>
+
+        <h2><i class="fas fa-user-md"></i> 4. Хирургиялық емдеу</h2>
+        <p>Хирургиялық араласу — бұл ең соңғы шешім. Ол консервативті ем нәтиже бермегенде немесе сколиоз Кобб бұрышы <strong>45–50 градустан</strong> асқанда қарастырылады.</p>
+
+        <h3>4.1. Спондилодез (Spinal Fusion)</h3>
+        <p>Бұл — сколиоз хирургиясының "алтын стандарты". Хирург омыртқаларға металл бұрандалар мен стерженьдер орнатып, оларды бір-бірімен бітістіреді. Бұл деформацияны біржола түзетеді, бірақ омыртқаның бекітілген бөлігі қозғалмай қалады.</p>
+
+        <div class="image-placeholder">
+            [Сурет: Омыртқаға орнатылған титан конструкцияларының рентген суреті]
+        </div>
+
+        <h3>4.2. Фьюжнсіз технологиялар және Өсетін жүйелер</h3>
+        <p>Заманауи медицинаның жаңа бағыты — <strong>VBT (Vertebral Body Tethering)</strong>. Бұл әдісте омыртқаның иілгіштігі сақталады, себебі қатты стерженьнің орнына иілгіш арқан қолданылады. Ал 10 жасқа дейінгі балалар үшін <strong>MAGEC</strong> (магнитті басқарылатын стерженьдер) қолданылады, бұл баланы жиі операциядан құтқарады.</p>
+
+        <h2><i class="fas fa-check-double"></i> Қорытынды</h2>
+        <p>Сколиозды емдеу — ұзақ мерзімді және кешенді процесс. Оның сәтті болуы Дәрігердің дұрыс тактикасына, Оңалтушының сапалы жұмысына және Науқастың тәртібіне байланысты. Ерте анықталған жағдайда, Шрот терапиясы мен Шено корсетін дұрыс үйлестіру арқылы күрделі оталардың алдын алуға толық мүмкіндік бар.</p>
+
+        <div class="references">
+            <h2>Пайдаланылған әдебиеттер тізімі (References)</h2>
+            <div class="ref-item">Akbarnia, B. A., Cheung, K., & Noordeen, H. (2011). Next generation of growth-sparing techniques: preliminary clinical results of a magnetically controlled growing rod in 14 patients. <em>Spine</em>, 36(26), 221-229.</div>
+            <div class="ref-item">Berdishevsky, H., Lebel, V. A., Bettany-Saltikov, J., et al. (2016). Physiotherapy scoliosis-specific exercises – a comprehensive review of seven major schools. <em>Scoliosis and Spinal Disorders</em>, 11, 20.</div>
+            <div class="ref-item">Katz, D. E., Herring, J. A., Browne, R. H., Kelly, D. M., & Birch, J. G. (2010). Brace wear control of curve progression in adolescent idiopathic scoliosis. <em>The Journal of Bone & Joint Surgery</em>, 92(6), 1343-1352.</div>
+            <div class="ref-item">Negrini, S., Donzelli, S., Aulisa, A. G., et al. (2018). 2016 SOSORT guidelines: orthopaedic and rehabilitation treatment of idiopathic scoliosis during growth. <em>Scoliosis and Spinal Disorders</em>, 13(1), 3.</div>
+            <div class="ref-item">Newton, P. O., Kluck, D. G., Saito, W., et al. (2018). Anterior spinal growth tethering for skeletally immature adolescent idiopathic scoliosis: a comparison with posterior spinal fusion. <em>The Journal of Bone & Joint Surgery</em>, 100(19), 1659-1667.</div>
+            <div class="ref-item">Romano, M., Negrini, A., Parzini, S., Tavernaro, M., & Zaina, F. (2008). SEAS (Scientific Exercises Approach to Scoliosis): a modern and effective evidence based approach to physiotherapic specific scoliosis exercises. <em>Scoliosis</em>, 3, 9.</div>
+            <div class="ref-item">Schreiber, S., Parent, E. C., Moez, E. K., et al. (2015). The effect of Schroth exercises added to the standard of care on the quality of life and muscle endurance in adolescents with idiopathic scoliosis. <em>Scoliosis</em>, 10, 24.</div>
+            <div class="ref-item">Weinstein, S. L., Dolan, L. A., Cheng, J. C., Danielsson, A., & Morcuende, J. A. (2008). Adolescent idiopathic scoliosis. <em>The Lancet</em>, 371(9623), 1527-1537.</div>
+            <div class="ref-item">Weinstein, S. L., Dolan, L. A., Wright, J. G., & Dobbs, M. B. (2013). Effects of bracing in adolescents with idiopathic scoliosis. <em>New England Journal of Medicine</em>, 369(16), 1512-1521.</div>
+        </div>
+
+        <div class="nav-container">
+            <a href="info.html" class="btn"><i class="fas fa-arrow-left"></i> Артқа: Сколиоз туралы ақпарат</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

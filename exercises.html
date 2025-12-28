@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQA | Жаттығулар</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand: #02204f;      
+            --muted: #34495e;     
+            --accent: #4a6fa5;    
+            --soft: #eefcf3;       
+            --header-bg: #a7acd9;   
+            --card-bg: #ffffff;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f8faff; 
+            color: #1f2937; 
+            margin: 0;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+
+        header {
+            width: 100%;
+            background-color: var(--header-bg); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000; 
+        }
+
+        .site-nav {
+            max-width: 1200px; 
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            height: 80px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo-img {
+            max-height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-panel {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-panel > li > a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            color: var(--brand);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-panel > li > a:hover {
+            color: #ffffff;
+        }
+
+        .has-sub { position: relative; }
+
+        .submenu {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 240px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 120;
+        }
+
+        .has-sub:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu li { list-style: none; }
+
+        .submenu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--brand);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .submenu a:hover {
+            background-color: #f0f4f8;
+            color: var(--accent);
+        }
+
+        .has-sub-right { position: relative; }
+
+        .submenu-right {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 200px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 140;
+        }
+
+        .has-sub-right:hover .submenu-right {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Анимациялар */
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Карточкалар */
+        .level-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+        .level-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+
+        /* Прогресс шеңбері */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+
+        /* Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        @media (max-width: 768px) {
+            .site-nav { flex-direction: column; height: auto; padding: 15px; }
+            .nav-panel { flex-direction: column; width: 100%; gap: 10px; margin-top: 15px; }
+            .submenu, .submenu-right { position: static; box-shadow: none; padding-left: 20px; display: none; }
+            .has-sub:hover .submenu { display: block; opacity: 1; visibility: visible; transform: none; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header>
+        <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+            <div class="brand">
+               <a href="index.html" class="logo-link">
+                    <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+                </a>
+            </div>
+
+            <ul class="nav-panel">
+                <li class="has-sub">
+                    <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                      <li class="has-sub-right">
+                            <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                                Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                            </a>
+                          <ul class="submenu-right">
+                                <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                                <li><a href="congenital.html">Туа бітім</a></li>
+                                <li><a href="degenerative.html">Дегенеративті</a></li>
+                                <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                                <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                                <li><a href="syndromic.html">Синдромдық</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="consequences.html">Салдары</a></li>
+                        <li><a href="treatment.html">Емдеу жолдары</a></li>
+                    </ul>
+                </li>
+                <li><a href="test.html">Тексеру</a></li>
+                <li><a href="exercises.html">Жаттығулар</a></li>
+                <li><a href="prevention.html">Алдын алу</a></li>
+                <li><a href="Helplines.html">Клиникалар</a></li>
+                <li><a href="About.html">Біз жайлы</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="flex items-center justify-end px-4 py-2 bg-white border-b" id="user-header">
+        <span id="user-display" class="text-sm text-gray-600 mr-2">Кіру керек</span>
+        <button id="profile-btn" onclick="toggleProfile()" class="text-gray-500 hover:text-[#4a6fa5] transition mr-3 hidden">
+            <i class="fa-solid fa-user-circle fa-lg"></i>
+        </button>
+        <button onclick="toggleAuth()" class="text-gray-500 hover:text-[#4a6fa5] transition">
+            <i class="fa-solid fa-user fa-lg"></i>
+        </button>
+    </div>
+
+    <!-- PERSONAL ACCOUNT MODAL (Личный кабинет) -->
+    <div id="profile-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl max-h-96 overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Личный кабинет</h2>
+                <button onclick="toggleProfile()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fa-solid fa-times fa-lg"></i>
+                </button>
+            </div>
+
+            <!-- User Info Section -->
+            <div id="profile-info" class="mb-6 pb-6 border-b">
+                <h3 class="text-lg font-bold text-gray-800 mb-3">Профиль</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <span class="text-gray-500">Аты-жөнеңіз:</span>
+                        <p id="profile-fullname" class="font-semibold text-gray-900">—</p>
+                    </div>
+                    <div>
+                        <span class="text-gray-500">Email:</span>
+                        <p id="profile-email" class="font-semibold text-gray-900">—</p>
+                    </div>
+                    <div>
+                        <span class="text-gray-500">Тіркелген күні:</span>
+                        <p id="profile-created" class="font-semibold text-gray-900">—</p>
+                    </div>
+                    <div>
+                        <span class="text-gray-500">Деңгейі:</span>
+                        <p id="profile-level" class="font-semibold text-gray-900">—</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracker Section -->
+            <div id="progress-section" class="mb-6 pb-6 border-b">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Прогресс (30 күндік)</h3>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium text-gray-600">Аяқталған күндер</span>
+                            <span id="progress-days" class="text-sm font-bold text-[#4a6fa5]">0/30</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div id="progress-bar" class="bg-gradient-to-r from-[#4a6fa5] to-[#2c4a75] h-3 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div id="stats-section" class="mb-6 pb-6 border-b">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Статистика</h3>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div class="bg-blue-50 p-3 rounded-lg">
+                        <p id="stat-workouts" class="text-2xl font-bold text-[#4a6fa5]">0</p>
+                        <p class="text-xs text-gray-600">Жаттығулар</p>
+                    </div>
+                    <div class="bg-green-50 p-3 rounded-lg">
+                        <p id="stat-minutes" class="text-2xl font-bold text-green-600">0</p>
+                        <p class="text-xs text-gray-600">Минут</p>
+                    </div>
+                    <div class="bg-orange-50 p-3 rounded-lg">
+                        <p id="stat-streak" class="text-2xl font-bold text-orange-600">0</p>
+                        <p class="text-xs text-gray-600">Серия</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div id="activity-section" class="mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-3">Соңғы белсенділік</h3>
+                <div id="activity-list" class="space-y-2 text-sm text-gray-600">
+                    <p class="text-gray-400">Белсенділік жоқ</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-3">
+                <button onclick="logoutUser()" class="flex-1 bg-red-600 text-white font-bold py-2 rounded-lg hover:bg-red-700 transition">
+                    Шығу
+                </button>
+                <button onclick="toggleProfile()" class="flex-1 bg-gray-200 text-gray-800 font-bold py-2 rounded-lg hover:bg-gray-300 transition">
+                    Жабу
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- AUTH MODAL -->
+        <div id="auth-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl">
+                <!-- Signup Tab -->
+                <div id="auth-signup" class="auth-tab">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-900">Тіркелу</h2>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Аты-жөнеңіз</label>
+                        <input type="text" id="signup-fullname" placeholder="Толық аты-жөнеңіз" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4a6fa5]">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="signup-email" placeholder="email@example.com" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4a6fa5]">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Пароль</label>
+                        <input type="password" id="signup-password" placeholder="Күшті пароль" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4a6fa5]">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Пароль растау</label>
+                        <input type="password" id="signup-confirm" placeholder="Пароль қайтадан теріңіз" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4a6fa5]">
+                    </div>
+                    <button onclick="signupUser()" class="w-full bg-[#4a6fa5] text-white font-bold py-3 rounded-lg hover:bg-[#3d5a8a] transition mb-3">Тіркелу</button>
+                    <p class="text-center text-sm text-gray-600">Тіркеліңіз бе? <button onclick="toggleAuthTab()" class="text-[#4a6fa5] font-bold hover:underline">Кіріңіз</button></p>
+                </div>
+
+                <!-- Login Tab -->
+                <div id="auth-login" class="auth-tab hidden">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-900">Кіру</h2>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="login-email" placeholder="email@example.com" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4a6fa5]">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Пароль</label>
+                        <input type="password" id="login-password" placeholder="Пароль теріңіз" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4a6fa5]">
+                    </div>
+                    <button onclick="loginUser()" class="w-full bg-[#4a6fa5] text-white font-bold py-3 rounded-lg hover:bg-[#3d5a8a] transition mb-3">Кіру</button>
+                    <p class="text-center text-sm text-gray-600">Есептіңіз жоқ па? <button onclick="toggleAuthTab()" class="text-[#4a6fa5] font-bold hover:underline">Тіркеліңіз</button></p>
+                </div>
+
+                <button onclick="toggleAuth()" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition mt-3">Жабу</button>
+            </div>
+        </div>
+
+        <!-- VIEW 1: LEVELS (ДЕҢГЕЙЛЕР) -->
+        <div id="view-levels" class="view-section active fade-in">
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">Жаттығу жоспарын таңдаңыз</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">Сколиозды емдеуге арналған арнайы бағдарламалар. Өз деңгейіңізге сәйкес келетін жүктемені таңдап, 30 күндік курсты бастаңыз.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Beginner -->
+                <div onclick="selectLevel('beginner')" class="level-card bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl h-96 relative flex shadow-xl group text-white">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition"></div>
+                    <div class="relative z-10 p-8 flex flex-col justify-between w-full h-full">
+                        <div>
+                            <span class="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">5-10 мин</span>
+                            <h3 class="text-3xl font-bold mt-4">Бастаушы</h3>
+                            <p class="text-green-100 text-sm mt-2 opacity-90">Жеңіл созылу және базалық құлау.</p>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <i class="fa-solid fa-seedling text-6xl opacity-50 group-hover:scale-110 transition duration-500"></i>
+                            <span class="font-bold tracking-widest text-lg opacity-80">BEGINNER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intermediate -->
+                <div onclick="selectLevel('intermediate')" class="level-card bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl h-96 relative flex shadow-xl group text-white">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition"></div>
+                    <div class="relative z-10 p-8 flex flex-col justify-between w-full h-full">
+                        <div>
+                            <span class="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">9-15 мин</span>
+                            <h3 class="text-3xl font-bold mt-4">Орташа</h3>
+                            <p class="text-blue-100 text-sm mt-2 opacity-90">Күштік жаттығулар мен тұрақтандыру.</p>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <i class="fa-solid fa-person-running text-6xl opacity-50 group-hover:scale-110 transition duration-500"></i>
+                            <span class="font-bold tracking-widest text-lg opacity-80">INTERMEDIATE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced -->
+                <div onclick="selectLevel('advanced')" class="level-card bg-gradient-to-br from-orange-400 to-red-600 rounded-2xl h-96 relative flex shadow-xl group text-white">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition"></div>
+                    <div class="relative z-10 p-8 flex flex-col justify-between w-full h-full">
+                        <div>
+                            <span class="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">12-18 мин</span>
+                            <h3 class="text-3xl font-bold mt-4">Күрделі</h3>
+                            <p class="text-orange-100 text-sm mt-2 opacity-90">Интенсивті түзету және бұлшықет күші.</p>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <i class="fa-solid fa-dumbbell text-6xl opacity-50 group-hover:scale-110 transition duration-500"></i>
+                            <span class="font-bold tracking-widest text-lg opacity-80">ADVANCED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: PLAN (КҮНДЕР КЕСТЕСІ) -->
+        <div id="view-plan" class="view-section fade-in">
+            <div class="flex items-center mb-8">
+                <button onclick="showView('view-levels')" class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-gray-600 hover:text-[#6a5398] mr-4 transition">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div>
+                    <h2 id="plan-title" class="text-3xl font-bold text-gray-900">Жоспар</h2>
+                    <p class="text-gray-500 text-sm">30 күндік бағдарлама</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4" id="days-grid">
+                <!-- JS will populate days -->
+            </div>
+        </div>
+
+        <!-- VIEW 3: OVERVIEW (КҮНДІК ШОЛУ) -->
+        <div id="view-overview" class="view-section fade-in">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                    <!-- Header Image -->
+                    <div class="h-48 bg-gradient-to-r from-[#6a5398] to-[#8b70cf] relative p-8 flex flex-col justify-end">
+                        <button onclick="showView('view-plan')" class="absolute top-6 left-6 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition">
+                            <i class="fa-solid fa-arrow-left fa-lg"></i>
+                        </button>
+                        <h2 id="overview-day-title" class="text-4xl font-extrabold text-white">1-Күн</h2>
+                        <div class="flex items-center gap-4 mt-2 text-white/90">
+                            <span class="flex items-center gap-2"><i class="fa-regular fa-clock"></i> <span id="overview-time">5 мин</span></span>
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-layer-group"></i> <span id="overview-count">8 жаттығу</span></span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 md:p-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-gray-800">Бүгінгі жаттығулар тізімі</h3>
+                            <span class="text-xs font-semibold text-gray-400 bg-gray-100 px-2 py-1 rounded">30с / жаттығу</span>
+                        </div>
+
+                        <div id="exercise-list" class="space-y-3 custom-scrollbar max-h-[500px] overflow-y-auto pr-2">
+                            <!-- Exercises injected here -->
+                        </div>
+
+                        <button onclick="startWorkout()" class="w-full mt-8 bg-[#6a5398] hover:bg-[#58427c] text-white font-bold text-lg py-4 rounded-xl shadow-lg transform hover:scale-[1.02] transition flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-play"></i> БАСТАУ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 4: WORKOUT (БЕЛСЕНДІ ЖАТТЫҒУ) -->
+        <div id="view-workout" class="view-section fade-in max-w-3xl mx-auto pt-4 pb-20">
+            
+            <!-- Top Controls -->
+            <div class="flex justify-between items-center mb-6">
+                <button onclick="quitWorkout()" class="text-gray-400 hover:text-red-500 transition">
+                    <i class="fa-solid fa-xmark fa-2x"></i>
+                </button>
+                <div class="flex flex-col items-center">
+                    <span class="text-xs text-gray-400 uppercase font-bold tracking-wider">Прогресс</span>
+                    <span id="workout-step" class="text-lg font-bold text-[#6a5398]">1 / 10</span>
+                </div>
+                <button onclick="toggleTips()" class="text-gray-400 hover:text-yellow-500 transition relative">
+                    <i class="fa-regular fa-lightbulb fa-2x"></i>
+                    <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
+                    </span>
+                </button>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="flex-1 flex flex-col items-center justify-center relative min-h-[600px]">
+                
+                <!-- Tips Overlay -->
+                <div id="tips-overlay" class="hidden absolute top-0 left-0 w-full h-full bg-white/95 backdrop-blur-sm z-20 rounded-3xl p-8 flex flex-col justify-center items-center text-center shadow-lg border border-yellow-100">
+                    <div class="bg-yellow-100 p-4 rounded-full mb-4 text-yellow-600">
+                        <i class="fa-solid fa-lightbulb fa-3x"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Пайдалы кеңес</h3>
+                    <p id="tip-text" class="text-lg text-gray-600 leading-relaxed mb-8 max-w-sm">Арқаңызды тік ұстаңыз...</p>
+                    <button onclick="toggleTips()" class="px-8 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">Жабу</button>
+                </div>
+
+                <!-- Exercise Icon & Animation -->
+                <div class="mb-8 text-center" id="workout-icon-container">
+                    <i class="fa-solid fa-cat text-9xl text-[#6a5398] animate-pulse"></i>
+                </div>
+                
+                <h2 id="workout-name" class="text-3xl md:text-4xl font-black text-gray-900 text-center mb-2 leading-tight">Cat-Cow</h2>
+                <p id="workout-category" class="text-gray-500 font-medium mb-10 uppercase tracking-wide text-sm">Жаттығу</p>
+
+                <!-- YouTube Link -->
+                <a id="youtube-link" href="#" target="_blank" class="mb-8 bg-red-600 text-white px-6 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-red-700 transition shadow-lg">
+                    <i class="fa-brands fa-youtube fa-lg"></i> YouTube видео
+                </a>
+
+                <!-- Timer -->
+                <div class="relative w-64 h-64 mb-10">
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle class="text-gray-200 stroke-current" stroke-width="12" cx="128" cy="128" r="120" fill="transparent"></circle>
+                        <circle id="timer-circle" class="text-[#6a5398] transition-all duration-1000 stroke-current" stroke-width="12" stroke-linecap="round" cx="128" cy="128" r="120" fill="transparent" stroke-dasharray="753.98" stroke-dashoffset="0"></circle>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center flex-col">
+                        <span id="timer-display" class="text-6xl font-black text-gray-800 tabular-nums">00:30</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Controls -->
+            <div class="grid grid-cols-3 gap-6 fixed bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl px-4">
+                <button onclick="prevExercise()" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 rounded-2xl py-4 shadow-sm flex items-center justify-center">
+                    <i class="fa-solid fa-backward-step fa-xl"></i>
+                </button>
+                <button id="btn-play-pause" onclick="toggleTimer()" class="bg-[#6a5398] hover:bg-[#58427c] text-white rounded-2xl py-4 shadow-lg shadow-indigo-200 flex items-center justify-center transform active:scale-95 transition">
+                    <i class="fa-solid fa-pause fa-2x"></i>
+                </button>
+                <button onclick="nextExercise()" class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 rounded-2xl py-4 shadow-sm flex items-center justify-center">
+                    <i class="fa-solid fa-forward-step fa-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW 5: TRIUMPH (НӘТИЖЕ) -->
+        <div id="view-result" class="view-section fade-in text-center py-12">
+            <div class="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-xl">
+                <div class="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
+                    <i class="fa-solid fa-trophy text-5xl text-yellow-500"></i>
+                </div>
+                
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Керемет!</h2>
+                <p class="text-gray-500 mb-8">Бүгінгі жоспар сәтті аяқталды.</p>
+
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="bg-gradient-to-br from-purple-100 to-purple-50 p-6 rounded-2xl">
+                        <span class="block text-3xl font-bold text-[#6a5398]" id="result-time">4:00</span>
+                        <span class="text-xs text-gray-600 uppercase font-bold">Уақыт</span>
+                    </div>
+                    <div class="bg-gradient-to-br from-green-100 to-green-50 p-6 rounded-2xl">
+                        <span class="block text-3xl font-bold text-green-600" id="result-count">8</span>
+                        <span class="text-xs text-gray-600 uppercase font-bold">Жаттығу</span>
+                    </div>
+                </div>
+
+                <h3 class="font-bold text-gray-700 mb-4">Өзіңді қалай сезінесің?</h3>
+                <div class="flex justify-center gap-4 mb-8">
+                    <button class="text-3xl hover:scale-125 transition grayscale hover:grayscale-0">😫</button>
+                    <button class="text-3xl hover:scale-125 transition grayscale hover:grayscale-0">😐</button>
+                    <button class="text-3xl hover:scale-125 transition grayscale hover:grayscale-0">🙂</button>
+                    <button class="text-3xl hover:scale-125 transition grayscale hover:grayscale-0">😃</button>
+                    <button class="text-3xl hover:scale-125 transition grayscale hover:grayscale-0">🤩</button>
+                </div>
+
+                <button onclick="finishWorkout()" class="w-full bg-gray-900 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-gray-800 transition">
+                    Мәзірге оралу
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- DATA STRUCTURES ---
+        
+        // Comprehensive Exercises Database with Categories and Tips
+        const exercisesDB = {
+            // I. Flexibility & Mobility Exercises (30)
+            flexibility: [
+                { id: 'cat-cow', name: 'Cat-Cow', duration: 30, icon: 'fa-cat', tips: ['Арқаңызды түзу ұстаңыз', 'Тыныс алуды ұмытпаңыз', 'Қозғалысты жұмсақ орындаңыз'] },
+                { id: 'childs-pose', name: 'Child\'s Pose', duration: 30, icon: 'fa-person-praying', tips: ['Иығыңызды босаңсыту', 'Тыныс ұдайы бертін алыңыз', 'Болмаса ауырсындаңыз'] },
+                { id: 'puppy-stretch', name: 'Puppy Pose Stretch', duration: 35, icon: 'fa-dog', tips: ['Т-омыртқаны созылту', 'Жай-жақсы қозғалыңыз', 'Ауырсын болса шығыңыз'] },
+                { id: 'thoracic-rotation', name: 'Thoracic Rotation Stretch', duration: 25, icon: 'fa-person-hiking', tips: ['Арқа аймағын айналдыру', 'Екі жағын тең созыңыз', 'Сүтті белді қауіпке салмаңыз'] },
+                { id: 'lumbar-rotation', name: 'Lumbar Rotation (Supine)', duration: 30, icon: 'fa-person-drowning', tips: ['Беліңізді созыңыз', 'Қозғалысты жұмсақ қос', 'Екі жағын тең істеңіз'] },
+                { id: 'hamstring-lying', name: 'Hamstring Stretch (Lying)', duration: 25, icon: 'fa-person', tips: ['Ұйқы күйінде істеңіз', 'Ауырсын қауіпке салмаңыз', 'Екі аяқын істеңіз'] },
+                { id: 'hamstring-standing', name: 'Hamstring Stretch (Standing)', duration: 25, icon: 'fa-person', tips: ['Түзу тұрыңыз', 'Баланс сақтаңыз', 'Қозғалысты жай-жақсы істеңіз'] },
+                { id: 'hip-flexor', name: 'Hip Flexor Stretch', duration: 30, icon: 'fa-person-walking', tips: ['Мәйеінді созыңыз', 'Тәрezі түзу', 'Кеуде орындарын түзетіңіз'] },
+                { id: 'piriformis', name: 'Piriformis Stretch', duration: 30, icon: 'fa-person-circle-plus', tips: ['Бұлшықеттерді өлшеңіз', 'Деңгей бойынша созыңыз', 'Қаш-қалтын өндіңіз'] },
+                { id: 'glute-figure4', name: 'Glute Stretch (Figure 4)', duration: 30, icon: 'fa-person-circle-minus', tips: ['Ұясын вертикалді бұра', 'Жай-жақсы өндіңіз', 'Екі жағын істеңіз'] },
+                { id: 'quad-stretch', name: 'Quadriceps Stretch', duration: 25, icon: 'fa-person', tips: ['Аяғыңызды сұра', 'Балансты сақтаңыз', 'Өнегеге ұтқыра жығыңыз'] },
+                { id: 'side-bend-standing', name: 'Side Bending Stretch (Standing)', duration: 20, icon: 'fa-person', tips: ['Бүркетіңізді сэргілеу', 'Екі жағын тең істеңіз', 'Ағын балансты сақтаңыз'] },
+                { id: 'side-bend-kneeling', name: 'Side Bending Stretch (Kneeling)', duration: 25, icon: 'fa-person', tips: ['Тіліп отырындағы блюдо', 'Сэргі ұдайы сәтті', 'Бүркеті тарап еңкеңіз'] },
+                { id: 'cobra-gentle', name: 'Cobra Stretch (Gentle)', duration: 20, icon: 'fa-person', tips: ['Арқасын жай-жақсы узындату', 'Мойныңызды зақымдамаңыз', 'Қиындалса төмендетіңіз'] },
+                { id: 'sphinx-pose', name: 'Sphinx Pose', duration: 25, icon: 'fa-person', tips: ['Арқа өндіктейтінді', 'Құлын сұрағы', 'Мойны ептегіз'] },
+                { id: 'seated-fold', name: 'Seated Forward Fold', duration: 30, icon: 'fa-person', tips: ['Вертикалді құлыну', 'Ауырсын көнтіріңіз', 'Балмасағы созыңыз'] },
+                { id: 'wall-lat-stretch', name: 'Wall Lat Stretch', duration: 25, icon: 'fa-person-hiking', tips: ['Қабырғаға тағдырын', 'Латы сәтті', 'Екі жағын істеңіз'] },
+                { id: 'chair-lat-stretch', name: 'Chair Assisted Lat Stretch', duration: 25, icon: 'fa-chair', tips: ['Орындықты қолдану', 'Латы созыңыз', 'Жай істеңіз'] },
+                { id: 'chest-opener', name: 'Chest Opener Stretch', duration: 25, icon: 'fa-person', tips: ['Кеуде ашу', 'Құсбағасын ерте', 'Ағын балансты істеңіз'] },
+                { id: 'shoulder-blade', name: 'Shoulder Blade Stretch', duration: 20, icon: 'fa-person', tips: ['Іске сағы бұра', 'Деңгейді төмендету', 'Екі жағын істеңіз'] },
+                { id: 'upper-trap', name: 'Upper Trap Stretch', duration: 20, icon: 'fa-person', tips: ['Мойын бүйрейінен бұра', 'Жай-жақсы қозғалыңыз', 'Екі жағын істеңіз'] },
+                { id: 'levator-scapulae', name: 'Levator Scapulae Stretch', duration: 20, icon: 'fa-person', tips: ['Мойны төмендету', '肩 мен мойны қысу', 'Екі жағын істеңіз'] },
+                { id: 'scalene-neck', name: 'Scalene Neck Stretch', duration: 20, icon: 'fa-person', tips: ['Мойны бүйреңізге', 'Жай-жақсы қозғалыңыз', 'Екі жағын істеңіз'] },
+                { id: 'neck-lateral', name: 'Neck Lateral Flexion Stretch', duration: 20, icon: 'fa-person', tips: ['Мойны қағалақ ағына', 'Қысуды қауіпке сәтсі', 'Екі жағын істеңіз'] },
+                { id: 'neck-extension', name: 'Neck Extension Stretch', duration: 20, icon: 'fa-person', tips: ['Мойны артқа еңкеңіз', 'Жай-жақсы қозғалыңыз', 'Мөлік сахсамалы'] },
+                { id: 'tspine-roller', name: 'T-spine Extension Over Foam Roller', duration: 30, icon: 'fa-person', tips: ['Поролон роликті қолдану', 'Т-омыртқаны созыңыз', 'Жай істеңіз'] },
+                { id: 'child-side-reach', name: 'Child Pose With Side Reach', duration: 30, icon: 'fa-person-praying', tips: ['Балла ұрпағын сэргі', 'Қабырғаға еңкеңіз', 'Екі жағын істеңіз'] },
+                { id: 'hip-90-90', name: '90/90 Hip Stretch', duration: 30, icon: 'fa-person-circle-plus', tips: ['Екі аяқын 90° бұра', 'Іске сағы еңкеңіз', 'Адал байвынды осындай истиңіз'] },
+                { id: 'calf-wall', name: 'Calf Stretch (Wall)', duration: 20, icon: 'fa-person-hiking', tips: ['Қабырғаға тағдырын', 'Ағына соңына орындалтыңыз', 'Екі аяқын істеңіз'] },
+                { id: 'hip-external-rotation', name: 'Hip External Rotation Stretch', duration: 30, icon: 'fa-person-circle-plus', tips: ['Мәйе шапасын тарату', 'Жай-жақсы дамысыңыз', 'Ауырсын байланды'] }
+            ],
+
+            // II. Strength & Stabilization Exercises (50)
+            strength: {
+                core: [
+                    { id: 'dead-bug', name: 'Dead Bug', duration: 25, icon: 'fa-person', tips: ['Құлыны ұстаңыз', 'Өндіктелерді сағындараңыз', 'Бір уақты орын ауыстыруы'] },
+                    { id: 'bird-dog', name: 'Bird-Dog', duration: 25, icon: 'fa-crow', tips: ['Балансты сақтаңыз', 'Орын түзетіңіз', 'Уақыт бойынша ұстаңыз'] },
+                    { id: 'plank-classic', name: 'Plank (Classic)', duration: 30, icon: 'fa-person', tips: ['Дене түзу', 'Құлыны сағындараңыз', 'Тыныс алыңыз'] },
+                    { id: 'side-plank-kneeling', name: 'Side Plank (Kneeling)', duration: 25, icon: 'fa-person', tips: ['Белді ұстаңыз', 'Балансты сақтаңыз', 'Орындарын түзетіңіз'] },
+                    { id: 'side-plank-full', name: 'Side Plank (Full)', duration: 30, icon: 'fa-person', tips: ['Дене сызықты', 'Құлыны сағындараңыз', 'Екі жағын істеңіз'] },
+                    { id: 'plank-arm-reach', name: 'Plank With Arm Reach', duration: 25, icon: 'fa-person', tips: ['Балансты сақтаңыз', 'Орынын ауыстырмаңыз', 'Жай-жақсы қозғалыңыз'] },
+                    { id: 'plank-leg-lift', name: 'Plank With Leg Lift', duration: 25, icon: 'fa-person', tips: ['Дене түзу', 'Аяғын төмендетіңіз', 'Орындарын стабиль'] },
+                    { id: 'glute-bridge', name: 'Glute Bridge', duration: 25, icon: 'fa-person-circle-minus', tips: ['Мәйе құстарын ажыраңыз', 'Құлыны ұстаңыз', 'Орындарын қайшы'] },
+                    { id: 'marching-bridge', name: 'Marching Glute Bridge', duration: 30, icon: 'fa-person-circle-minus', tips: ['Мәйе құстарын ажыраңыз', 'Аяғын ауыстыруы', 'Балансты сақтаңыз'] },
+                    { id: 'hip-thrust', name: 'Hip Thrust', duration: 30, icon: 'fa-person', tips: ['Мәйе құстарын ажыраңыз', 'Орындарын түзетіңіз', 'Жай-жақсы істеңіз'] },
+                    { id: 'iso-hold', name: 'Isometric Abdominal Hold', duration: 20, icon: 'fa-person', tips: ['Құлыны ұстаңыз', 'Тыныс алыңыз', 'Жылдамдықты ұйтқасыңыз'] },
+                    { id: 'hollow-hold', name: 'Hollow Hold (Light)', duration: 20, icon: 'fa-person', tips: ['Денені құстаңыз', 'Балансты сақтаңыз', 'Режам бағындыңыз'] },
+                    { id: 'pilates-hundred', name: 'Pilates Hundred', duration: 30, icon: 'fa-person', tips: ['Құлыны сағындараңыз', 'Балмасағы жүкте', 'Жай істеңіз'] },
+                    { id: 'pilates-leg-stretch', name: 'Pilates Single-Leg Stretch', duration: 25, icon: 'fa-person', tips: ['Құлыны сағындараңыз', 'Аяғын ауыстыруы', 'Балансты сақтаңыз'] },
+                    { id: 'pilates-double-leg', name: 'Pilates Double-Leg Stretch', duration: 30, icon: 'fa-person', tips: ['Құлыны сағындараңыз', 'Балмасағы жүкте', 'Жай істеңіз'] },
+                    { id: 'pilates-scissors', name: 'Pilates Scissors', duration: 25, icon: 'fa-person', tips: ['Құлыны сағындараңыз', 'Аяғын ауыстыруы', 'Орындарын балансты'] },
+                    { id: 'pelvic-tilt', name: 'Pelvic Tilt', duration: 20, icon: 'fa-person', tips: ['Белді жыпты ағына', 'Жай-жақсы қозғалыңыз', 'Әуелдерін істеңіз'] },
+                    { id: 'pelvic-march', name: 'Pelvic Tilt With March', duration: 25, icon: 'fa-person', tips: ['Белді жыпты ағына', 'Аяғын ауыстыруы', 'Орындарын балансты'] },
+                    { id: 'core-bracing', name: 'Core Bracing Exercises', duration: 25, icon: 'fa-person', tips: ['Құлыны ұстаңыз', 'Тыныс алыңыз', 'Жай-жақсы істеңіз'] },
+                    { id: 'pallof-press', name: 'Standing Core Anti-Rotation', duration: 30, icon: 'fa-person', tips: ['Түзу тұрыңыз', 'Құлыны сағындараңыз', 'Қосылмасын өндіңіз'] }
+                ],
+                back: [
+                    { id: 'superman-light', name: 'Superman (Light Version)', duration: 25, icon: 'fa-person', tips: ['Арқасын жай-жақсы ажыраңыз', 'Балансты сақтаңыз', 'Мойныңызды зақымдамаңыз'] },
+                    { id: 'superman-full', name: 'Superman (Full)', duration: 30, icon: 'fa-person', tips: ['Денені ажыраңыз', 'Тыныс алыңыз', 'Жай-жақсы істеңіз'] },
+                    { id: 'prone-arm-leg', name: 'Prone Arm/Leg Lifts', duration: 25, icon: 'fa-person', tips: ['Бір жағын істеңіз', 'Балансты сақтаңыз', 'Орындарын түзетіңіз'] },
+                    { id: 'prone-t-raise', name: 'Prone T-Raises', duration: 25, icon: 'fa-person', tips: ['Арқа өндіктейтінді', 'Иықыңызды ажыраңыз', 'Жай істеңіз'] },
+                    { id: 'prone-y-raise', name: 'Prone Y-Raises', duration: 25, icon: 'fa-person', tips: ['Арқа өндіктейтінді', 'Қолыңызды ажыраңыз', 'Балансты сақтаңыз'] },
+                    { id: 'prone-w-raise', name: 'Prone W-Raises', duration: 25, icon: 'fa-person', tips: ['Арқа өндіктейтінді', 'Өндіктелерді сағындараңыз', 'Жай істеңіз'] },
+                    { id: 'back-extension-mat', name: 'Back Extension On Mat', duration: 30, icon: 'fa-person', tips: ['Арқасын жай-жақсы ажыраңыз', 'Балансты сақтаңыз', 'Мойныңызды зақымдамаңыз'] },
+                    { id: 'back-extension-bench', name: 'Back Extension On Bench', duration: 30, icon: 'fa-person', tips: ['Скамейка құтқарып', 'Жүктемесін төмендету', 'Орындарын түзетіңіз'] },
+                    { id: 'reverse-hyper', name: 'Reverse Hyperextension (Light)', duration: 25, icon: 'fa-person', tips: ['Бәндті қолдану', 'Жай-жақсы қозғалыңыз', 'Жүктемесін орындалты'] },
+                    { id: 'swimming-pilates', name: 'Swimming (Pilates)', duration: 30, icon: 'fa-person-swimming', tips: ['Аяғын ауыстыруы', 'Балансты сақтаңыз', 'Тыныс алыңыз'] },
+                    { id: 'cobra-lift', name: 'Cobra Lift (Light Amplitude)', duration: 20, icon: 'fa-person', tips: ['Жай-жақсы ажыраңыз', 'Мойныңызды зақымдамаңыз', 'Аз орындалты'] },
+                    { id: 'sphinx-activation', name: 'Sphinx Back Activation', duration: 25, icon: 'fa-person', tips: ['Арқасын өндіктейтіңіз', 'Орындарын балансты', 'Жай істеңіз'] },
+                    { id: 'wall-angels', name: 'Wall Angels', duration: 30, icon: 'fa-person', tips: ['Қабырғаға тағдырын', 'Жай-жақсы қозғалыңыз', 'Балансты сақтаңыз'] },
+                    { id: 'floor-angels', name: 'Floor Angels', duration: 30, icon: 'fa-person', tips: ['Еңселі ұрпағын істеңіз', 'Балмасағы жүкте', 'Жай-жақсы қозғалыңыз'] },
+                    { id: 'doorway-scapula', name: 'Doorway Scapula Retraction', duration: 25, icon: 'fa-person', tips: ['Есік қабылдау', 'Өндіктелерді сағындараңыз', 'Жай істеңіз'] }
+                ],
+                scapular: [
+                    { id: 'scapular-retraction', name: 'Scapular Retraction', duration: 20, icon: 'fa-person', tips: ['Өндіктелерді сағындараңыз', 'Балансты сақтаңыз', 'Жай істеңіз'] },
+                    { id: 'scapular-depression', name: 'Scapular Depression', duration: 20, icon: 'fa-person', tips: ['Өндіктелерді төмендету', 'Жай-жақсы қозғалыңыз', 'Балансты сақтаңыз'] },
+                    { id: 'shoulder-squeezes', name: 'Shoulder Blade Squeezes', duration: 20, icon: 'fa-person', tips: ['Өндіктелерді қысу', 'Ұстаңыз 2 сек', 'Қайталаңыз'] },
+                    { id: 'band-rows', name: 'Resistance Band Rows', duration: 25, icon: 'fa-person', tips: ['Бәндті қолдану', 'Орындарын балансты', 'Жай-жақсы істеңіз'] },
+                    { id: 'face-pulls', name: 'Face Pulls (Band)', duration: 25, icon: 'fa-person', tips: ['Бәндті қолдану', 'Лицең әуелдерін', 'Жай істеңіз'] },
+                    { id: 'band-pull-aparts', name: 'Band Pull-Aparts', duration: 25, icon: 'fa-person', tips: ['Бәндті ажыраңыз', 'Балансты сақтаңыз', 'Жай-жақсы қозғалыңыз'] },
+                    { id: 'band-external-rotation', name: 'Band External Rotation', duration: 20, icon: 'fa-person', tips: ['Бәндті қолдану', 'Жай-жақсы бұра', 'Баланс сақтаңыз'] },
+                    { id: 'band-internal-rotation', name: 'Band Internal Rotation', duration: 20, icon: 'fa-person', tips: ['Бәндті қолдану', 'Жай-жақсы бұра', 'Балансты сақтаңыз'] },
+                    { id: 'reverse-fly', name: 'Reverse Fly (Light Weight)', duration: 25, icon: 'fa-person', tips: ['Жеңіл бәлгі', 'Балансты сақтаңыз', 'Жай істеңіз'] },
+                    { id: 'seated-row', name: 'Seated Row (Machine)', duration: 30, icon: 'fa-person', tips: ['Машинаны қолдану', 'Орындарын түзетіңіз', 'Жай-жақсы істеңіз'] },
+                    { id: 'standing-row', name: 'Standing Row', duration: 25, icon: 'fa-person', tips: ['Түзу тұрыңыз', 'Бәндті қолдану', 'Жай істеңіз'] },
+                    { id: 'lat-pulldown', name: 'Lat Pull-Down (Light Weight)', duration: 30, icon: 'fa-person', tips: ['Жеңіл бәлгі', 'Балансты сақтаңыз', 'Жай-жақсы істеңіз'] },
+                    { id: 'serratus-punches', name: 'Serratus Punches', duration: 25, icon: 'fa-person', tips: ['Орындарын түзетіңіз', 'Жай-жақсы ығыңыз', 'Балансты сақтаңыз'] },
+                    { id: 'wall-slides', name: 'Wall Slides', duration: 30, icon: 'fa-person', tips: ['Қабырғаға тағдырын', 'Жай-жақсы қозғалыңыз', 'Балансты сақтаңыз'] },
+                    { id: 'snow-angels', name: 'Snow Angels Against Wall', duration: 30, icon: 'fa-person', tips: ['Қабырғаға тағдырын', 'Жай-жақсы қозғалыңыз', 'Балансты сақтаңыз'] }
+                ]
+            },
+
+            // III. Functional & Symmetry Exercises (20)
+            functional: [
+                { id: 'posture-walk', name: 'Walking With Posture Control', duration: 30, icon: 'fa-person-walking', tips: ['Орындарын түзетіңіз', 'Балансты сақтаңыз', 'Жай-жақсы жүріңіз'] },
+                { id: 'farmer-carry', name: 'Farmer Carry (Light Dumbbells)', duration: 25, icon: 'fa-person', tips: ['Жеңіл жүктеме', 'Орындарын түзетіңіз', 'Балансты сақтаңыз'] },
+                { id: 'suitcase-carry', name: 'Suitcase Carry (One Dumbbell)', duration: 25, icon: 'fa-person', tips: ['Бір жағын істеңіз', 'Орындарын балансты', 'Жай-жақсы жүріңіз'] },
+                { id: 'heel-toe-walk', name: 'Heel-to-Toe Walking', duration: 30, icon: 'fa-person-walking', tips: ['Бәл төбесінен басыңыз', 'Орындарын түзетіңіз', 'Балансты сақтаңыз'] },
+                { id: 'balance-leg', name: 'Balance On One Leg', duration: 25, icon: 'fa-person', tips: ['Балансты сақтаңыз', 'Өндіктелерді балансты', 'Екі аяқын істеңіз'] },
+                { id: 'bosu-balance', name: 'Bosu Ball Balance (Light)', duration: 20, icon: 'fa-person', tips: ['BOSU топпағы', 'Жай-жақсы балансты', 'Орындарын түзетіңіз'] },
+                { id: 'band-side-steps', name: 'Resistance Band Walk (Side Steps)', duration: 25, icon: 'fa-person', tips: ['Бәндті қолдану', 'Бүйін ажыраңыз', 'Жай-жақсы жүріңіз'] },
+                { id: 'monster-walk', name: 'Monster Walk (Band)', duration: 25, icon: 'fa-person', tips: ['Бәндті қолдану', 'Құлыны сағындараңыз', 'Жай істеңіз'] },
+                { id: 'clamshell', name: 'Clamshell', duration: 30, icon: 'fa-person', tips: ['Бүйін ажыраңыз', 'Орындарын балансты', 'Екі жағын істеңіз'] },
+                { id: 'side-leg-lifts', name: 'Side-Lying Leg Lifts', duration: 25, icon: 'fa-person', tips: ['Құлыны өндіңіз', 'Балансты сақтаңыз', 'Екі жағын істеңіз'] },
+                { id: 'step-ups', name: 'Step-Ups', duration: 30, icon: 'fa-person-hiking', tips: ['Балансты сақтаңыз', 'Жай-жақсы істеңіз', 'Екі аяқын істеңіз'] },
+                { id: 'reverse-lunges', name: 'Reverse Lunges (Controlled)', duration: 30, icon: 'fa-person', tips: ['Орындарын түзетіңіз', 'Балансты сақтаңыз', 'Жай-жақсы істеңіз'] },
+                { id: 'wall-sit', name: 'Wall Sit', duration: 30, icon: 'fa-person', tips: ['Қабырғаға тағдырын', 'Орындарын түзетіңіз', 'Ұстаңыз'] },
+                { id: 'chair-squat', name: 'Chair Squat (Slow)', duration: 30, icon: 'fa-chair', tips: ['Орындықты қолдану', 'Жай-жақсы әнді', 'Орындарын түзетіңіз'] },
+                { id: 'sumo-squat', name: 'Sumo Squat (Light)', duration: 25, icon: 'fa-person', tips: ['Аяқын ажыраңыз', 'Жай-жақсы әнді', 'Орындарын балансты'] },
+                { id: 'bridge-abduction', name: 'Bridge With Band Abduction', duration: 30, icon: 'fa-person', tips: ['Бәндті қолдану', 'Мәйе құстарын ажыра', 'Балансты сақтаңыз'] },
+                { id: 'thoracic-mobility', name: 'Thoracic Mobility With Stick', duration: 25, icon: 'fa-person', tips: ['Палканы қолдану', 'Жай-жақсы бұра', 'Орындарын балансты'] },
+                { id: 'seated-posture', name: 'Seated Posture Correction Drills', duration: 20, icon: 'fa-person', tips: ['Орындарын түзетіңіз', 'Балмасағы түзу', 'Жай істеңіз'] },
+                { id: 'passive-hang', name: 'Hanging From Bar (Passive Hang)', duration: 30, icon: 'fa-person', tips: ['Омыртқаны босаңсыту', 'Балансты сақтаңыз', 'Жай-жақсы ұстаңыз'] },
+                { id: 'breathing-diaphragm', name: 'Breathing Exercises (Diaphragm-Focused)', duration: 20, icon: 'fa-person', tips: ['Құлыны босаңсыту', 'Тыныс ұдайы алыңыз', 'Жай істеңіз'] }
+            ]
+        };
+
+        // Convert exercises to array format for display
+        function getAllExercises() {
+            const all = [];
+            all.push(...exercisesDB.flexibility);
+            all.push(...exercisesDB.strength.core);
+            all.push(...exercisesDB.strength.back);
+            all.push(...exercisesDB.strength.scapular);
+            all.push(...exercisesDB.functional);
+            return all;
+        }
+
+        // Beginner Schedule (5-10 min range)
+        const beginnerSchedule = {
+            1: 5, 2: 5.5, 3: 6, 4: 6.5, 5: 7, 6: 7.5, 7: 0, // rest
+            8: 8, 9: 8.5, 10: 9, 11: 9.5, 12: 9.75, 13: 10, 14: 0, // rest
+            15: 9.5, 16: 10, 17: 9.75, 18: 10, 19: 9.5, 20: 10, 21: 10, 22: 0, // rest
+            23: 10, 24: 10, 25: 10, 26: 10, 27: 10, 28: 10, 29: 0, // rest
+            30: 10
+        };
+
+        // Intermediate Schedule (9-15 min range)
+        const intermediateSchedule = {
+            1: 9, 2: 9.5, 3: 10, 4: 10.5, 5: 11, 6: 11.5, 7: 0, // rest
+            8: 12, 9: 12.5, 10: 13, 11: 13.5, 12: 14, 13: 14.5, 14: 0, // rest
+            15: 14, 16: 15, 17: 14.5, 18: 15, 19: 14, 20: 15, 21: 15, 22: 0, // rest
+            23: 15, 24: 15, 25: 15, 26: 15, 27: 15, 28: 15, 29: 0, // rest
+            30: 15
+        };
+
+        // Advanced Schedule (12-18 min range)
+        const advancedSchedule = {
+            1: 12, 2: 12.5, 3: 13, 4: 13.5, 5: 14, 6: 14.5, 7: 0, // rest
+            8: 15, 9: 15.5, 10: 16, 11: 16.5, 12: 17, 13: 17.5, 14: 0, // rest
+            15: 17, 16: 18, 17: 17.5, 18: 18, 19: 17, 20: 18, 21: 18, 22: 0, // rest
+            23: 18, 24: 18, 25: 18, 26: 18, 27: 18, 28: 18, 29: 0, // rest
+            30: 18
+        };
+
+        // Plans Data
+        const plans = {
+            beginner: {
+                title: 'Жеңіл деңгей',
+                color: 'bg-pink-100',
+                btnColor: 'bg-pink-500',
+                days: 30,
+                schedule: beginnerSchedule,
+                getDay: (day) => {
+                    const allExercises = getAllExercises();
+                    const time = beginnerSchedule[day] || 10;
+                    if (time === 0) return { day: day, time: 0, exercises: [], isRest: true };
+                    
+                    // Select variety of exercises: flexibility + some strength
+                    const dayExercises = [];
+                    const flexCount = Math.floor(time / 2.5);
+                    const strengthCount = Math.ceil(time / 3);
+                    
+                    for(let i = 0; i < flexCount; i++) {
+                        dayExercises.push(exercisesDB.flexibility[(day + i) % exercisesDB.flexibility.length]);
+                    }
+                    for(let i = 0; i < strengthCount; i++) {
+                        dayExercises.push(exercisesDB.strength.core[(day + i) % exercisesDB.strength.core.length]);
+                    }
+                    
+                    return { day: day, time: time, exercises: dayExercises };
+                }
+            },
+            intermediate: {
+                title: 'Орта деңгей',
+                color: 'bg-purple-100',
+                btnColor: 'bg-purple-500',
+                days: 30,
+                schedule: intermediateSchedule,
+                getDay: (day) => {
+                    const time = intermediateSchedule[day] || 15;
+                    if (time === 0) return { day: day, time: 0, exercises: [], isRest: true };
+                    
+                    const dayExercises = [];
+                    const flexCount = Math.floor(time / 2);
+                    const strengthCount = Math.ceil(time / 2.5);
+                    
+                    for(let i = 0; i < flexCount; i++) {
+                        dayExercises.push(exercisesDB.flexibility[(day + i) % exercisesDB.flexibility.length]);
+                    }
+                    for(let i = 0; i < strengthCount; i++) {
+                        const strengthArray = [
+                            ...exercisesDB.strength.core,
+                            ...exercisesDB.strength.back,
+                            ...exercisesDB.strength.scapular
+                        ];
+                        dayExercises.push(strengthArray[(day + i) % strengthArray.length]);
+                    }
+                    
+                    return { day: day, time: time, exercises: dayExercises };
+                }
+            },
+            advanced: {
+                title: 'Ауыр деңгей',
+                color: 'bg-indigo-100',
+                btnColor: 'bg-indigo-500',
+                days: 30,
+                schedule: advancedSchedule,
+                getDay: (day) => {
+                    const time = advancedSchedule[day] || 18;
+                    if (time === 0) return { day: day, time: 0, exercises: [], isRest: true };
+                    
+                    const dayExercises = [];
+                    const flexCount = Math.floor(time / 1.8);
+                    const strengthCount = Math.ceil(time / 2.2);
+                    const funcCount = Math.floor(time / 3);
+                    
+                    for(let i = 0; i < flexCount; i++) {
+                        dayExercises.push(exercisesDB.flexibility[(day + i) % exercisesDB.flexibility.length]);
+                    }
+                    for(let i = 0; i < strengthCount; i++) {
+                        const strengthArray = [
+                            ...exercisesDB.strength.core,
+                            ...exercisesDB.strength.back,
+                            ...exercisesDB.strength.scapular
+                        ];
+                        dayExercises.push(strengthArray[(day + i) % strengthArray.length]);
+                    }
+                    for(let i = 0; i < funcCount; i++) {
+                        dayExercises.push(exercisesDB.functional[(day + i) % exercisesDB.functional.length]);
+                    }
+                    
+                    return { day: day, time: time, exercises: dayExercises };
+                }
+            }
+        };
+
+        // --- STATE MANAGEMENT ---
+        let state = {
+            level: 'beginner',
+            day: 1,
+            currentExercises: [],
+            currentExerciseIndex: 0,
+            timer: null,
+            timeLeft: 0,
+            isPaused: false,
+            totalDuration: 0 // for result
+        };
+
+        // --- NAVIGATION FUNCTIONS ---
+
+        function showView(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function selectLevel(level) {
+            state.level = level;
+            const plan = plans[level];
+            
+            // Render Plan View
+            document.getElementById('plan-title').innerText = plan.title;
+            const grid = document.getElementById('days-grid');
+            grid.innerHTML = '';
+
+            for (let i = 1; i <= plan.days; i++) {
+                const dayData = plan.getDay(i);
+                // Style based on level color but simplifying here to red/pink theme from image 6.png
+                // Using generic pinkish red as base
+                const btn = document.createElement('button');
+                btn.className = `bg-[#db7093] hover:bg-[#c75d80] text-white p-4 rounded-lg shadow-sm flex justify-between items-center transition transform hover:scale-105`;
+                btn.onclick = () => openDayOverview(i);
+                btn.innerHTML = `
+                    <span class="font-bold text-lg">${i} күн</span>
+                    <span class="text-sm bg-white/20 px-2 py-1 rounded">${dayData.time} мин</span>
+                `;
+                grid.appendChild(btn);
+            }
+            showView('view-plan');
+        }
+
+        function openDayOverview(day) {
+            state.day = day;
+            const plan = plans[state.level];
+            const data = plan.getDay(day);
+            state.currentExercises = data.exercises;
+            state.totalDuration = data.time * 60; // Approximate seconds
+
+            // Render Overview
+            document.getElementById('overview-day-title').innerText = `${day}-Күн`;
+            document.getElementById('overview-time').innerText = `${data.time} мин`;
+            document.getElementById('overview-count').innerText = `${data.exercises.length} жаттығу`;
+
+            const list = document.getElementById('exercise-list');
+            list.innerHTML = '';
+            
+            data.exercises.forEach(ex => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center bg-white p-3 rounded-xl shadow-sm border border-gray-100';
+                item.innerHTML = `
+                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 mr-4">
+                        <i class="fa-solid ${ex.icon} fa-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800">${ex.name}</h4>
+                        <span class="text-xs text-gray-400">00:${ex.duration}</span>
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+
+            showView('view-overview');
+        }
+
+        // --- WORKOUT LOGIC ---
+
+        function startWorkout() {
+            state.currentExerciseIndex = 0;
+            loadExercise(0);
+            showView('view-workout');
+        }
+
+        function loadExercise(index) {
+            if (index >= state.currentExercises.length) {
+                showResult();
+                return;
+            }
+
+            const ex = state.currentExercises[index];
+            state.timeLeft = ex.duration;
+            state.isPaused = false;
+            state.currentExerciseIndex = index;
+            
+            // Update UI
+            document.getElementById('workout-name').innerText = ex.name;
+            document.getElementById('workout-step').innerText = `${index + 1} / ${state.currentExercises.length}`;
+            document.getElementById('workout-icon-container').innerHTML = `<i class="fa-solid ${ex.icon} text-9xl text-[#6a5398] animate-pulse"></i>`;
+            
+            // Populate tips
+            const tipText = document.getElementById('tip-text');
+            if (ex.tips && ex.tips.length > 0) {
+                tipText.innerText = ex.tips[0];
+            }
+            
+            // Set YouTube link (placeholder)
+            const youtubeLink = document.getElementById('youtube-link');
+            youtubeLink.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name)}`;
+            
+            // Timer Reset
+            clearInterval(state.timer);
+            updateTimerDisplay();
+            document.getElementById('btn-play-pause').innerHTML = '<i class="fa-solid fa-pause fa-2x"></i>';
+            document.getElementById('tips-overlay').classList.add('hidden');
+            
+            // Auto Start Timer
+            state.timer = setInterval(tick, 1000);
+        }
+
+        function tick() {
+            if (state.isPaused) return;
+
+            if (state.timeLeft > 0) {
+                state.timeLeft--;
+                updateTimerDisplay();
+            } else {
+                nextExercise();
+            }
+        }
+
+        function updateTimerDisplay() {
+            const display = document.getElementById('timer-display');
+            const mins = Math.floor(state.timeLeft / 60);
+            const secs = state.timeLeft % 60;
+            display.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            
+            // Update Circle Progress
+            const circle = document.getElementById('timer-circle');
+            const currentEx = state.currentExercises[state.currentExerciseIndex];
+            const percent = state.timeLeft / currentEx.duration;
+            const circumference = 753.98; // Pre-calculated SVG circumference
+            const offset = circumference - (percent * circumference);
+            
+            circle.style.strokeDashoffset = offset;
+        }
+
+        function toggleTimer() {
+            state.isPaused = !state.isPaused;
+            const btn = document.getElementById('btn-play-pause');
+            if (state.isPaused) {
+                btn.innerHTML = '<i class="fa-solid fa-play fa-2x"></i>';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-pause fa-2x"></i>';
+            }
+        }
+
+        function nextExercise() {
+            state.currentExerciseIndex++;
+            loadExercise(state.currentExerciseIndex);
+        }
+
+        function prevExercise() {
+            if (state.currentExerciseIndex > 0) {
+                state.currentExerciseIndex--;
+                loadExercise(state.currentExerciseIndex);
+            }
+        }
+
+        function quitWorkout() {
+            if(confirm("Жаттығуды тоқтатқыңыз келе ме?")) {
+                clearInterval(state.timer);
+                showView('view-overview');
+            }
+        }
+
+        function toggleTips() {
+            const overlay = document.getElementById('tips-overlay');
+            overlay.classList.toggle('hidden');
+        }
+
+        function showResult() {
+            clearInterval(state.timer);
+            const count = state.currentExercises.length;
+            const time = plans[state.level].getDay(state.day).time;
+            
+            document.getElementById('result-time').innerText = `${time}:00`;
+            document.getElementById('result-count').innerText = count;
+            
+            showView('view-result');
+        }
+
+        function finishWorkout() {
+            // Save progress if user is logged in
+            const currentUser = localStorage.getItem('arqa_current_user');
+            if (currentUser && state.day) {
+                const totalDuration = state.totalDuration || 0;
+                saveWorkoutProgress(state.day, state.currentExercises, totalDuration);
+            }
+            showView('view-levels');
+        }
+
+        function toggleAuth() {
+            const modal = document.getElementById('auth-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                // Show signup tab by default
+                showAuthTab('signup');
+            }
+        }
+
+        function toggleAuthTab() {
+            const signupTab = document.getElementById('auth-signup');
+            const loginTab = document.getElementById('auth-login');
+            
+            if (signupTab.classList.contains('hidden')) {
+                signupTab.classList.remove('hidden');
+                loginTab.classList.add('hidden');
+            } else {
+                signupTab.classList.add('hidden');
+                loginTab.classList.remove('hidden');
+            }
+        }
+
+        function showAuthTab(tab) {
+            const signupTab = document.getElementById('auth-signup');
+            const loginTab = document.getElementById('auth-login');
+            
+            if (tab === 'signup') {
+                signupTab.classList.remove('hidden');
+                loginTab.classList.add('hidden');
+            } else {
+                signupTab.classList.add('hidden');
+                loginTab.classList.remove('hidden');
+            }
+        }
+
+        function signupUser() {
+            const fullname = document.getElementById('signup-fullname').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+
+            // Validation
+            if (!fullname || !email || !password || !confirm) {
+                alert('Барлық өрістерді толтырыңыз');
+                return;
+            }
+
+            if (!email.includes('@')) {
+                alert('Дұрыс email теріңіз');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Пароль кемінде 6 символ болуы керек');
+                return;
+            }
+
+            if (password !== confirm) {
+                alert('Парольдер сәйкес келмеді');
+                return;
+            }
+
+            // Check if email already exists
+            let users = JSON.parse(localStorage.getItem('arqa_users')) || [];
+            if (users.find(u => u.email === email)) {
+                alert('Бұл email балам қолданылған');
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: Date.now(),
+                fullname,
+                email,
+                password: btoa(password), // Simple base64 encoding (not secure for production)
+                createdAt: new Date(),
+                workoutProgress: {}
+            };
+
+            users.push(newUser);
+            localStorage.setItem('arqa_users', JSON.stringify(users));
+            localStorage.setItem('arqa_current_user', JSON.stringify(newUser));
+
+            document.getElementById('user-display').innerText = fullname;
+            
+            // Clear form
+            document.getElementById('signup-fullname').value = '';
+            document.getElementById('signup-email').value = '';
+            document.getElementById('signup-password').value = '';
+            document.getElementById('signup-confirm').value = '';
+
+            alert('Сәтті тіркелді! Қош келдіңіз!');
+            toggleAuth();
+        }
+
+        function loginUser() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            if (!email || !password) {
+                alert('Email және пароль теріңіз');
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('arqa_users')) || [];
+            const user = users.find(u => u.email === email && u.password === btoa(password));
+
+            if (!user) {
+                alert('Email немесе пароль қате');
+                return;
+            }
+
+            // Set current user
+            localStorage.setItem('arqa_current_user', JSON.stringify(user));
+            document.getElementById('user-display').innerText = user.fullname;
+
+            // Clear form
+            document.getElementById('login-email').value = '';
+            document.getElementById('login-password').value = '';
+
+            alert('Сәтті кірдіңіз!');
+            toggleAuth();
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('arqa_current_user');
+            document.getElementById('user-display').innerText = 'Кіру керек';
+            document.getElementById('profile-btn').classList.add('hidden');
+            toggleProfile();
+            alert('Сәтті шықтыңыз');
+        }
+
+        function toggleProfile() {
+            const modal = document.getElementById('profile-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                loadUserProfile();
+            }
+        }
+
+        function loadUserProfile() {
+            const currentUser = localStorage.getItem('arqa_current_user');
+            if (!currentUser) return;
+
+            const user = JSON.parse(currentUser);
+            
+            // Load profile info
+            document.getElementById('profile-fullname').innerText = user.fullname;
+            document.getElementById('profile-email').innerText = user.email;
+            document.getElementById('profile-created').innerText = new Date(user.createdAt).toLocaleDateString('kk-KZ');
+            document.getElementById('profile-level').innerText = state.level ? state.level.charAt(0).toUpperCase() + state.level.slice(1) : 'Таңдалмаған';
+
+            // Load progress
+            const progressData = user.workoutProgress || {};
+            const completedDays = Object.keys(progressData).length;
+            document.getElementById('progress-days').innerText = `${completedDays}/30`;
+            document.getElementById('progress-bar').style.width = `${(completedDays / 30) * 100}%`;
+
+            // Load statistics
+            let totalWorkouts = 0;
+            let totalMinutes = 0;
+            const activities = [];
+
+            for (const [day, data] of Object.entries(progressData)) {
+                if (data.completed) {
+                    totalWorkouts++;
+                    totalMinutes += data.duration || 0;
+                    activities.push(`День ${day}: ${data.exercises ? data.exercises.length : 0} жаттығулар`);
+                }
+            }
+
+            document.getElementById('stat-workouts').innerText = totalWorkouts;
+            document.getElementById('stat-minutes').innerText = totalMinutes;
+            
+            // Calculate streak
+            const streak = calculateStreak(progressData);
+            document.getElementById('stat-streak').innerText = streak;
+
+            // Load recent activity
+            const activityList = document.getElementById('activity-list');
+            if (activities.length > 0) {
+                activityList.innerHTML = activities.slice(-5).reverse().map(a => 
+                    `<p class="text-gray-700 flex items-center gap-2"><i class="fa-solid fa-check text-green-600"></i> ${a}</p>`
+                ).join('');
+            } else {
+                activityList.innerHTML = '<p class="text-gray-400">Белсенділік жоқ</p>';
+            }
+        }
+
+        function calculateStreak(progressData) {
+            if (Object.keys(progressData).length === 0) return 0;
+            
+            let streak = 0;
+            let currentDay = new Date();
+            
+            for (let i = 0; i < 30; i++) {
+                const dayKey = String(i + 1);
+                if (progressData[dayKey] && progressData[dayKey].completed) {
+                    streak++;
+                } else {
+                    break;
+                }
+            }
+            return streak;
+        }
+
+        function saveWorkoutProgress(day, exercises, duration) {
+            const currentUser = localStorage.getItem('arqa_current_user');
+            if (!currentUser) return;
+
+            const user = JSON.parse(currentUser);
+            if (!user.workoutProgress) user.workoutProgress = {};
+
+            user.workoutProgress[day] = {
+                completed: true,
+                exercises: exercises,
+                duration: duration,
+                timestamp: new Date()
+            };
+
+            localStorage.setItem('arqa_current_user', JSON.stringify(user));
+
+            // Update users database
+            let users = JSON.parse(localStorage.getItem('arqa_users')) || [];
+            const userIndex = users.findIndex(u => u.email === user.email);
+            if (userIndex !== -1) {
+                users[userIndex] = user;
+                localStorage.setItem('arqa_users', JSON.stringify(users));
+            }
+        }
+
+        // Check user on page load
+        window.addEventListener('load', function() {
+            const currentUser = localStorage.getItem('arqa_current_user');
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                document.getElementById('user-display').innerText = user.fullname;
+                document.getElementById('profile-btn').classList.remove('hidden');
+            }
+        });
+
+    </script>
+</body>
+</html>

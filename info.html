@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQA | Сколиоз деген не?</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+        :root {
+            --brand: #02204f;
+            --muted: #34495e;
+            --accent: #4a6fa5;
+            --soft: #eefcf3;
+            --header-bg: #a7acd9;
+            --card-bg: #ffffff;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            margin: 0;
+            color: var(--brand);
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+
+        header {
+            width: 100%;
+            background-color: var(--header-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .site-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            height: 80px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo-img {
+            max-height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-panel {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-panel > li > a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            color: var(--brand);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-panel > li > a:hover {
+            color: #ffffff;
+        }
+
+        .has-sub { position: relative; }
+
+        .submenu {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 240px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .has-sub:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu li { list-style: none; }
+
+        .submenu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--brand);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .submenu a:hover {
+            background-color: #f0f4f8;
+            color: var(--accent);
+        }
+
+        .has-sub-right { position: relative; }
+
+        .submenu-right {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 200px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .has-sub-right:hover .submenu-right {
+            opacity: 1;
+            visibility: visible;
+        }
+        .next-article-container{text-align:center;margin-top:48px;margin-bottom:40px;padding:32px 20px;background:linear-gradient(135deg, rgba(106,83,152,0.06) 0%, rgba(106,83,152,0.02) 100%);border-radius:16px;border:2px solid rgba(106,83,152,0.08)}
+        .next-button{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1.05em;box-shadow:0 12px 32px rgba(106,83,152,0.2);transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)}
+        .next-button:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(106,83,152,0.3);background:#5a3f7a}
+        .next-button span{font-size:1.2em;transition:transform 0.3s}
+        .next-button:hover span{transform:translateX(4px)}
+
+        /* Make main content full width (edge-to-edge) */
+        .page-full { width: 100%; padding-left: 16px; padding-right: 16px; }
+        @media (min-width: 768px) { .page-full { padding-left: 32px; padding-right: 32px; } }
+    </style>
+
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+            <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                  <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                      <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <main class="flex-grow w-full page-full py-10">
+        
+        <article class="bg-white p-8 md:p-12 rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-gray-100">
+            
+            <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-8 pb-4 border-b-4 border-violet-500 inline-block">
+                Сколиоз деген не?
+            </h1>
+            
+            <section class="mb-10">
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                    Сколиоз — бұл жай ғана "арқаның қисаюы" емес, бұл омыртқа бағанасының үш жазықтықтағы (фронтальды, сагиттальды және көлденең) күрделі деформациясы. Қалыпты жағдайда омыртқа түзу сызықты құраса, сколиоз кезінде ол "C" немесе "S" әрпіне ұқсас пішінге енеді. Медициналық анықтама бойынша, сколиоз диагнозы рентгенограммада омыртқаның қисаю бұрышы (Кобб бұрышы) 10 градустан асқанда қойылады.
+                </p>
+                <div class="bg-violet-50 border-l-4 border-violet-500 p-4 rounded-r-lg">
+                    <p class="text-violet-900 italic">
+                        Бұл жағдай тек сүйектердің орналасуына ғана емес, сонымен қатар ішкі органдардың жұмысына, әсіресе жүрек-өкпе жүйесіне және адамның психологиялық жағдайына әсер етуі мүмкін.
+                    </p>
+                </div>
+            </section>
+            
+            <section class="mb-12 p-6 md:p-8 bg-gray-50 rounded-2xl">
+                <h2 class="text-2xl font-bold text-violet-700 mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-chart-pie"></i> Статистика: Мәселенің ауқымы
+                </h2>
+                
+                <p class="text-gray-700 leading-relaxed mb-6">
+                    Сколиоз — әлемдегі ең кең таралған ортопедиялық аурулардың бірі. Статистикаға сүйенсек, бұл мәселенің ауқымын түсіну оңайырақ:
+                </p>
+                
+                <ul class="space-y-4 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-violet-500 mt-1"></i>
+                        <span><strong class="text-gray-900">Таралуы:</strong> Сколиоз жалпы халықтың шамамен 2–3%-ында кездеседі. Бұл дегеніміз, әлемде миллиондаған адам осы диагнозбен өмір сүруде.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-violet-500 mt-1"></i>
+                        <span><strong class="text-gray-900">Жыныстық ерекшелік:</strong> Жеңіл дәрежелі сколиоз ұлдар мен қыздарда бірдей жиілікте кездеседі. Алайда, емдеуді қажет ететін прогрессивті қисаюлар қыздарда 8 есе жиі байқалады.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-violet-500 mt-1"></i>
+                        <span><strong class="text-gray-900">Жасөспірімдік кезең:</strong> Сколиоз жағдайларының басым көпшілігі (шамамен 80%) — идиопатиялық, яғни себебі белгісіз.</span>
+                    </li>
+                </ul>
+
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Бұл неге маңызды?</h3>
+                    <p class="text-gray-700 mb-4">Уақытында емделмеген сколиоздың салдары:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-gray-900 mb-1">Биомеханика</h4>
+                            <p class="text-sm text-gray-600">Буындарға артық жүктеме, ерте артроз.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-gray-900 mb-1">Тыныс алу</h4>
+                            <p class="text-sm text-gray-600">Өкпе көлемінің азаюы (ауыр формада).</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-gray-900 mb-1">Ауырсыну</h4>
+                            <p class="text-sm text-gray-600">Созылмалы арқа ауруы.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-gray-900 mb-1">Психология</h4>
+                            <p class="text-sm text-gray-600">Өзіне деген сенімсіздік.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">🧬 Сколиоздың даму себептері</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-violet-50 p-5 rounded-xl">
+                        <span class="block text-violet-600 font-bold text-lg mb-2">Идиопатиялық (80%)</span>
+                        <p class="text-gray-700 text-sm">Себебі белгісіз. Генетикалық және өсу факторларының үйлесімі. "Дұрыс отырмаудан" емес.</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-5 rounded-xl">
+                        <span class="block text-gray-800 font-bold text-lg mb-2">Туа біткен</span>
+                        <p class="text-gray-600 text-sm">Құрсақтағы даму кезеңінде омыртқалардың дұрыс қалыптаспауы.</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-5 rounded-xl">
+                        <span class="block text-gray-800 font-bold text-lg mb-2">Жүйке-бұлшықеттік</span>
+                        <p class="text-gray-600 text-sm">ДЦП, бұлшықет дистрофиясы салдарынан.</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-5 rounded-xl">
+                        <span class="block text-gray-800 font-bold text-lg mb-2">Дегенеративті</span>
+                        <p class="text-gray-600 text-sm">Ересек адамдарда буындардың тозуына байланысты.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">🚩 Байқауға болатын белгілер</h2>
+                <div class="bg-amber-50 p-6 rounded-2xl border border-amber-100">
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-gray-800">
+                            <span class="w-8 h-8 flex items-center justify-center bg-amber-200 rounded-full text-amber-800 font-bold">1</span>
+                            Бір иықтың екіншісінен жоғары тұруы.
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-800">
+                            <span class="w-8 h-8 flex items-center justify-center bg-amber-200 rounded-full text-amber-800 font-bold">2</span>
+                            Жамбас сүйектерінің асимметриясы.
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-800">
+                            <span class="w-8 h-8 flex items-center justify-center bg-amber-200 rounded-full text-amber-800 font-bold">3</span>
+                            Алға еңкейгенде қабырға өркешінің пайда болуы (Адамс сынамасы).
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-800">
+                            <span class="w-8 h-8 flex items-center justify-center bg-amber-200 rounded-full text-amber-800 font-bold">4</span>
+                            Киімнің денеге дұрыс отырмауы.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="pt-8 border-t border-gray-200 text-center">
+                <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+                    Сколиоз — үкім емес. Заманауи медицинада консервативті емдеу әдістері (арнайы жаттығулар, SEAS, Schroth) жоғары тиімділік көрсетуде.
+                </p>
+               <div class="next-article-container">
+            <a href="idiopathic.html" class="next-button">
+                Келесі мақала: Сколиоз түрлері <span>&#8594;</span>
+            </a>
+        </div>
+            </section>
+
+            <section class="mt-16 pt-8 border-t border-dashed border-gray-300">
+                <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-4">Пайдаланылған әдебиеттер</h3>
+                <ul class="space-y-2 text-xs text-gray-500">
+                    <li>Asher, M. A., & Burton, D. C. (2006). Adolescent idiopathic scoliosis: natural history and long term treatment effects. <span class="italic">Scoliosis, 1</span>(1), 2. https://doi.org/10.1186/1748-7161-1-2.
+</li>
+                    <li>Konieczny, M. R., Senyurt, H., & Krauspe, R. (2013). Epidemiology of adolescent idiopathic scoliosis. <span class="italic">Journal of Children's Orthopaedics, 7</span>(1), 3–9. https://doi.org/10.1007/s11832-012-0457-4
+</li>
+                    <li>Scoliosis Research Society. (2023). <span class="italic">Adolescent Idiopathic Scoliosis.</span>Retrieved from https://www.srs.org.</li>
+                <li>Weinstein, S. L., Dolan, L. A., Cheng, J. C., Danielsson, A., & Morcuende, J. A. (2008). Adolescent idiopathic scoliosis. <span class="italic">The Lancet, 371</span>(9623), 1527-1537. https://doi.org/10.1016/S0140-6736(08)60658-3
+</li>
+                  </ul>
+            </section>
+
+        </article>
+    </main>
+
+    <footer class="bg-gray-50 py-8 border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            &copy; 2025 ARQA. Барлық құқықтар қорғалған.
+        </div>
+    </footer>
+
+</body>
+</html>

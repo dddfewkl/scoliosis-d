@@ -1,0 +1,69 @@
+/* --- Основная Навигационная Панель --- */
+.site-nav {
+    display: flex;             /* Включаем Flexbox */
+    justify-content: space-between; /* Логотип влево, меню вправо */
+    align-items: center;       /* Выравнивание по вертикали (по центру) */
+    background-color: #a7acd9; /* Ваш цвет фона */
+    padding: 0 40px;           /* Отступы по бокам, чтобы не прилипало к краям экрана */
+    height: 80px;              /* Фиксированная высота панели (можно менять) */
+    position: relative;        /* Нужно для позиционирования выпадающих меню */
+}
+
+/* --- Настройка Логотипа --- */
+.nav-logo-img {
+    height: 60px;  /* Высота картинки (подстройте под высоту панели) */
+    width: auto;   /* Сохраняем пропорции */
+    display: block;
+}
+
+/* --- Настройка Списка Меню (ul) --- */
+.nav-panel {
+    display: flex;       /* Выстраиваем ссылки в ряд, а не столбик */
+    list-style: none;    /* Убираем точки списка */
+    margin: 0;
+    padding: 0;
+    gap: 30px;           /* Расстояние между ссылками меню */
+}
+
+/* --- Ссылки в меню --- */
+.nav-panel > li > a {
+    text-decoration: none;
+    color: #02204f;      /* <-- ВАШ НОВЫЙ ЦВЕТ ТЕКСТА */
+    font-weight: bold;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.nav-panel > li > a:hover {
+    color: #2a4a8b; /* Можете изменить этот цвет, если хотите эффект при наведении */
+}
+
+/* --- БАЗОВЫЕ СТИЛИ ДЛЯ ВЫПАДАЮЩЕГО МЕНЮ (чтобы не ломалось) --- */
+.has-sub {
+    position: relative;
+}
+
+.submenu {
+    display: none;       /* Скрываем подменю по умолчанию */
+    position: absolute;  /* Вырываем из потока */
+    top: 100%;           /* Показываем ровно под родителем */
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Показываем меню при наведении */
+.has-sub:hover .submenu {
+    display: block;
+}
+
+.submenu li a {
+    color: #02204f;      /* <-- ЦВЕТ ТЕКСТА В ВЫПАДАЮЩЕМ МЕНЮ */
+    text-decoration: none;
+    display: block;
+    padding: 8px 10px;
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Туа біткен сколиоз: Ғылыми шолу</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root{
+            --brand:#02204f;
+            --muted:#34495e;
+            --accent:#B83D00;
+            --soft:#fef6fa;
+            --header-bg:#a7acd9;
+            --card-bg:#ffffff;
+            --radius:12px;
+        }
+
+        *{box-sizing:border-box}
+        body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:0;background:#fdfbfe;color:#3d2a3d;line-height:1.7}
+
+        /* Navbar - match pp25 home exactly */
+        header{background:var(--header-bg);box-shadow:0 2px 10px rgba(0,0,0,0.1);position:relative;z-index:1000}
+        .site-nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;height:80px}
+        .brand{display:flex;align-items:center}
+        .nav-logo-img{max-height:60px;width:auto;display:block}
+        .nav-panel{display:flex;gap:20px;align-items:center;margin:0;padding:0;list-style:none}
+        .nav-panel > li > a{display:flex;align-items:center;gap:6px;padding:8px 12px;color:var(--brand);font-weight:700;transition:color 0.3s;text-decoration:none}
+        .nav-panel > li > a:hover{color:#ffffff}
+
+        /* Dropdowns */
+        .has-sub{position:relative}
+        .submenu{position:absolute;left:0;top:100%;width:240px;background:#ffffff;border-radius:8px;padding:10px 0;box-shadow:0 10px 30px rgba(0,0,0,0.15);opacity:0;visibility:hidden;transform:translateY(10px);transition:all 0.3s ease;z-index:120}
+        .has-sub:hover .submenu,.has-sub:focus-within .submenu{opacity:1;visibility:visible;transform:translateY(0)}
+        .submenu li{list-style:none}
+        .submenu a{display:block;padding:10px 20px;color:var(--brand);font-weight:500;font-size:0.95rem;text-decoration:none}
+        .submenu a:hover{background-color:#f0f4f8;color:#B83D00}
+        .has-sub-right{position:relative}
+        .submenu-right{position:absolute;left:100%;top:0;width:200px;background:#ffffff;border-radius:8px;padding:10px 0;box-shadow:0 10px 30px rgba(0,0,0,0.15);opacity:0;visibility:hidden;transition:all 0.3s ease;z-index:120}
+        .has-sub-right:hover .submenu-right,.has-sub-right:focus-within .submenu-right{opacity:1;visibility:visible}
+
+        /* Page content - warm orange/brown theme */
+        .container{max-width:1100px;margin:20px auto;padding:28px 20px;background:var(--card-bg);box-shadow:0 6px 24px rgba(184,61,0,0.08);border-radius:12px}
+        h1{color:var(--brand);font-size:2.2rem;margin:6px 0 14px}
+        h2{color:var(--accent);border-bottom:2px solid rgba(184,61,0,0.15);padding-bottom:10px;margin-top:28px;display:flex;align-items:center;gap:10px}
+        h2 i{color:var(--accent);font-size:1.1em}
+        h3{color:#8B4513;margin-top:20px;font-weight:600}
+        p{margin-bottom:16px;color:var(--muted);text-align:justify;font-size:1.02em}
+
+        ul{margin-bottom:18px;padding-left:24px}
+        ul li{margin-bottom:10px;color:var(--muted)}
+        ul li::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;margin-right:8px;color:var(--accent);position:relative;left:-22px}
+        .nav-panel li::before{content:none}
+
+        .highlight-box{background:var(--soft);border-left:5px solid var(--accent);padding:16px;margin:20px 0;border-radius:8px;color:var(--muted)}
+
+        .references{background:#FEF6FA;border:1px solid #f5d7e8;padding:20px;border-radius:10px;margin-top:32px}
+        .references h2{margin-top:0;border-bottom:none;color:var(--brand)}
+        .ref-item{margin-bottom:10px;padding-left:20px;text-indent:-20px;color:var(--muted)}
+
+        .image-placeholder{background:#fafafa;border:1px dashed #e6e6e6;padding:18px;border-radius:8px}
+        .image-caption{font-size:0.9em;color:#666;margin-top:6px;font-style:italic}
+
+        .nav-container{text-align:center;margin-top:34px}
+        .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;transition:all 0.25s}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(184,61,0,0.15)}
+
+        .next-article-container{text-align:center;margin-top:48px;margin-bottom:40px;padding:32px 20px;background:linear-gradient(135deg, rgba(184,61,0,0.06) 0%, rgba(184,61,0,0.02) 100%);border-radius:16px;border:2px solid rgba(184,61,0,0.1)}
+        .next-button{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1.05em;box-shadow:0 12px 32px rgba(184,61,0,0.2);transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)}
+        .next-button:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(184,61,0,0.3);background:#8B2E00}
+        .next-button span{font-size:1.2em;transition:transform 0.3s}
+        .next-button:hover span{transform:translateX(4px)}
+
+        /* Responsive tweaks */
+        @media (max-width:900px){.site-nav{padding:10px}.nav-panel{gap:8px}}
+        @media (max-width:640px){.container{padding:16px}.nav-panel{overflow-x:auto}h1{font-size:1.6em}}
+    </style>
+</head>
+<body>
+
+     <header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+          <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                  <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                      <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+<h2>Туа біткен сколиоз</h2>
+        <p>Туа біткен сколиоз (Congenital Scoliosis) — бұл эмбриондық даму кезеңінде омыртқа бағанасының дұрыс қалыптаспауы нәтижесінде туындайтын, туған сәттен бастап бар болатын омыртқа деформациясы. Идиопатиялық сколиоздан айырмашылығы, бұл патологияның нақты анатомиялық себебі — сүйек құрылымының ақауы болып табылады. Эпидемиологиялық деректерге сүйенсек, туа біткен сколиоздың таралу жиілігі әрбір 1000 тірі туған нәрестеге шаққанда шамамен 0,5-тен 1 жағдайды құрайды (Mackel et al., 2018). Бұл патология сирек кездесетініне қарамастан, ол клиникалық тұрғыдан өте маңызды, себебі омыртқаның қисаюы баланың өсу процесімен бірге үдеп, дененің жалпы биомеханикасы мен ішкі ағзалардың қызметіне кері әсерін тигізуі мүмкін.</p>
+
+        <div class="image-placeholder">
+            
+
+[Image of spine anatomy showing normal vs scoliosis curve]
+
+            <div class="image-caption">1-сурет. Қалыпты омыртқа мен сколиоздың салыстырмалы көрінісі.</div>
+        </div>
+
+        <h2><i class="fas fa-dna"></i>Этиология және эмбриогенез</h2>
+        <p>Омыртқаның қалыптасу процесі жүктіліктің өте ерте кезеңінде, нақтырақ айтқанда, гестацияның 4-ші және 6-шы апталары аралығында жүзеге асады. Бұл кезеңде мезодермальды жасушалар сомиттерге жіктеліп, олардан кейін склеротомалар — болашақ омыртқалар мен қабырғалардың негізі қалыптасады. Туа біткен сколиоз дәл осы күрделі процестің бұзылуынан туындайды (Burnei et al., 2015). Бұл бұзылыстардың нақты себептері әлі күнге дейін толық зерттелмегенімен, ғалымдар генетикалық бейімділік пен қоршаған орта факторларының (ананың қант диабеті, гипертермия, алкогольді пайдалану немесе гипоксия) өзара әрекеттесуі маңызды рөл атқаратынын болжайды.</p>
+
+        <h2><i class="fas fa-list"></i>Патоморфологиялық жіктелуі</h2>
+        <p>Туа біткен сколиоздың даму механизмі омыртқа ақауының сипатына қарай үш негізгі топқа бөлінеді:</p>
+        <ul>
+            <li><strong>Қалыптасудың бұзылуы (Failure of formation):</strong> Бұл жағдайда омыртқаның бір бөлігі толық дамымай қалады, нәтижесінде «гемивертебра» (жартылай омыртқа) пайда болады. Гемивертебра омыртқа қатарында сына тәрізді қосымша сүйек ретінде орналасып, омыртқа бағанасының қарсы жаққа қарай қисаюына әкеледі.</li>
+            <li><strong>Сегментацияның бұзылуы (Failure of segmentation):</strong> Бұл екі немесе одан да көп омыртқалардың бір-бірінен дұрыс ажырамай, сүйектік блок немесе «сегменттелмеген бар» (unsegmented bar) түрінде бірігіп кетуімен сипатталады. Мұндай ақау омыртқаның бір жағындағы өсуді тежейді, ал қарама-қарсы жағы өсуін жалғастыра беретіндіктен, деформация өте жылдам үдейді (Winter et al., 1968).</li>
+            <li><strong>Аралас ақаулар:</strong> Мұнда қалыптасу және сегментация бұзылыстары қатар кездеседі. Әсіресе, омыртқаның бір жағында сегменттелмеген бардың болуы және оған қарама-қарсы жақта гемивертебраның орналасуы ең қауіпті және тез өршитін деформация болып саналады.</li>
+        </ul>
+
+        <h2><i class="fas fa-stethoscope"></i>Клиникалық көрінісі және ілеспелі ақаулар</h2>
+        <p>Жаңа туған нәрестелерде деформация сырт көзге бірден байқалмауы мүмкін, алайда бала өскен сайын белгілер айқындала түседі. Ата-аналар мен дәрігерлер иық белдеуінің асимметриясын, жамбас сүйектерінің деңгейлес болмауын немесе арқадағы тері өзгерістерін (түкті дақтар, гемангиомалар немесе шұңқырлар) байқауы мүмкін.</p>
+        <p>Туа біткен сколиоздың ең маңызды ерекшелігі — оның басқа органдар жүйесінің ақауларымен тығыз байланысты болуы. Зерттеулер көрсеткендей, науқастардың шамамен 60%-ында ілеспелі патологиялар анықталады:</p>
+        <ul>
+            <li>Жұлынның даму ақаулары (интраспинальды аномалиялар, диастематомиелия) — 20-40% жағдайда;</li>
+            <li>Несеп-жыныс жүйесінің ақаулары (бүйректің жоқ болуы немесе дұрыс орналаспауы) — 20-30% жағдайда;</li>
+            <li>Жүрек ақаулары — 10-15% жағдайда кездеседі (Basu et al., 2002).</li>
+        </ul>
+
+        <h2><i class="fas fa-microscope"></i>Диагностикалық әдістер</h2>
+        <p>Диагностика процесі физикалық тексеруден және рентгенологиялық зерттеулерден басталады. Стандартты рентгенография қисықтың жалпы көрінісін және Кобб бұрышын бағалауға мүмкіндік береді.</p>
+        <p>Алайда, туа біткен аномалиялардың күрделі үшөлшемді құрылымын толық түсіну үшін <strong>Компьютерлік Томография (КТ)</strong> «алтын стандарт» болып саналады. КТ арқылы дәрігерлер гемивертебраның нақты орналасуын және сүйектердің бірігу деңгейін анықтайды. Сонымен қатар, хирургиялық араласуды жоспарламас бұрын немесе неврологиялық белгілер байқалған жағдайда, жұлынның жағдайын тексеру үшін <strong>Магнитті-Резонанстық Томография (МРТ)</strong> тағайындалады (Hedequist & Emans, 2007).</p>
+
+        <h2><i class="fas fa-prescribe"></i>Емдеу стратегиялары және болжам</h2>
+        <p>Туа біткен сколиозды емдеу тактикасы деформацияның түріне, орналасуына және үдеу қаупіне байланысты жеке таңдалады.</p>
+        
+        <h3>Консервативті ем</h3>
+        <p>Корсет кию (брэйсинг) әдетте туа біткен аномалияның өзін тікелей түзете алмайды, себебі сүйек деформациясы қатты және иілгіш емес. Дегенмен, корсет негізгі қисықтың айналасында дамитын компенсаторлық иілістерді бақылау үшін қолданылуы мүмкін.</p>
+        
+        <div class="image-placeholder">
+            
+
+[Image of scoliosis brace types]
+
+            <div class="image-caption">2-сурет. Компенсаторлық қисықтарды бақылауға арналған корсет түрлерінің инфографикасы.</div>
+        </div>
+
+        <h3>Хирургиялық ем</h3>
+        <p>Прогрессивті түрлерінде (әсіресе сегментация ақауларында) ерте хирургиялық араласу жалғыз тиімді шешім болып табылады. Заманауи хирургияда гемивертебраны алып тастау (hemivertebra resection), омыртқаны біріктіру (fusion) немесе баланың бойы өскен сайын ұзартылып отыратын арнайы конструкцияларды (growing rods) орнату әдістері қолданылады (SRS, 2023).</p>
+
+        <h2><i class="fas fa-check-circle"></i>Қорытынды</h2>
+        <p>Туа біткен сколиоз — жай ғана ортопедиялық мәселе емес, ол мультидисциплинарлық тәсілді қажет ететін күрделі жүйелік жағдай. Омыртқаның қалыптасу кезеңіндегі сәтсіздіктер болашақта баланың өмір сапасына елеулі әсер етуі мүмкін. Сондықтан ерте диагностика, ілеспелі ақауларды (жүрек, бүйрек) дер кезінде анықтау және прогрессивті формаларды уақытылы хирургиялық жолмен емдеу — пациенттің денсаулығын сақтаудың негізгі кілті болып табылады.</p>
+
+<div class="next-article-container">
+            <a href="degenerative.html" class="next-button">
+                Келесі мақала: Дегенеративті сколиоз <span>&#8594;</span>
+            </a>
+        </div>
+
+        <div class="references">
+            <h2>Пайдаланылған әдебиеттер (References)</h2>
+            <div class="ref-item">Basu, P. S., Elsebaie, H., & Noordeen, M. H. (2002). Congenital spinal deformity: a comprehensive assessment at presentation. <i>Spine</i>, 27(20), 2255-2259. https://doi.org/10.1097/00007632-200210150-00015</div>
+            <div class="ref-item">Burnei, G., Gavriliu, S., Vlad, C., Georgescu, I., Ghita, R. A., & Daghie, V. (2015). Congenital scoliosis: an up-to-date. <i>Journal of Medicine and Life</i>, 8(3), 388–397.</div>
+            <div class="ref-item">Hedequist, D., & Emans, J. (2007). Congenital scoliosis: a review and update. <i>Journal of Pediatric Orthopaedics</i>, 27(1), 106-116. https://doi.org/10.1097/BPO.0b013e31802b6833</div>
+            <div class="ref-item">Mackel, C. E., Jada, A., Samdani, A. F., Stephen, J. H., Bennett, J. T., Baaj, A. A., & Hwang, S. W. (2018). A comprehensive review of the diagnosis and management of congenital scoliosis. <i>Child's Nervous System</i>, 34(11), 2155–2171. https://doi.org/10.1007/s00381-018-3915-6</div>
+            <div class="ref-item">Scoliosis Research Society. (2023). <i>Congenital Scoliosis</i>. Retrieved from https://www.srs.org/patients-and-families/conditions-and-treatments/parents/scoliosis/congenital-scoliosis</div>
+            <div class="ref-item">Winter, R. B., Moe, J. H., & Eilers, V. E. (1968). Congenital scoliosis: a study of 234 patients treated and untreated. <i>The Journal of Bone & Joint Surgery</i>, 50(1), 1-47.</div>
+        </div>
+
+        
+
+    </div>
+
+</body>
+</html>

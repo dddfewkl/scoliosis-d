@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQA | Омыртқаны Алдын Алу</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand: #02204f;      
+            --muted: #34495e;     
+            --accent: #4a6fa5;    
+            --soft: #eefcf3;       
+            --header-bg: #a7acd9;   
+            --card-bg: #ffffff;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f8faff; 
+            color: #1f2937; 
+            margin: 0;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+
+        header {
+            width: 100%;
+            background-color: var(--header-bg); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000; 
+        }
+
+        .site-nav {
+            max-width: 1200px; 
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            height: 80px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo-img {
+            max-height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-panel {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-panel > li > a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            color: var(--brand);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-panel > li > a:hover {
+            color: #ffffff;
+        }
+
+        .has-sub { position: relative; }
+
+        .submenu {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 240px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 120;
+        }
+
+        .has-sub:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu li { list-style: none; }
+
+        .submenu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--brand);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .submenu a:hover {
+            background-color: #f0f4f8;
+            color: var(--accent);
+        }
+
+        .has-sub-right { position: relative; }
+
+        .submenu-right {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 200px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 140;
+        }
+
+        .has-sub-right:hover .submenu-right {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .bg-primary { background-color: #4a6fa5; }
+        .text-primary { color: #4a6fa5; }
+        .border-primary { border-color: #4a6fa5; }
+
+        /* Стиль активной кнопки навигации */
+        .nav-link.active {
+            color: #4a6fa5;
+            font-weight: 700;
+            background-color: #f3f4f6;
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+        
+        /* Стиль карточек с рекомендациями */
+        .recommendation-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(74, 111, 165, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .site-nav { flex-direction: column; height: auto; padding: 15px; }
+            .nav-panel { flex-direction: column; width: 100%; gap: 10px; margin-top: 15px; }
+            .submenu, .submenu-right { position: static; box-shadow: none; padding-left: 20px; display: none; }
+            .has-sub:hover .submenu { display: block; opacity: 1; visibility: visible; transform: none; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header>
+        <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+            <div class="brand">
+             <a href="index.html" class="logo-link">
+                    <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+                </a>
+            </div>
+
+            <ul class="nav-panel">
+                <li class="has-sub">
+                    <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                      <li class="has-sub-right">
+                            <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                                Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                            </a>
+                          <ul class="submenu-right">
+                                <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                                <li><a href="congenital.html">Туа бітім</a></li>
+                                <li><a href="degenerative.html">Дегенеративті</a></li>
+                                <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                                <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                                <li><a href="syndromic.html">Синдромдық</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="consequences.html">Салдары</a></li>
+                        <li><a href="treatment.html">Емдеу жолдары</a></li>
+                    </ul>
+                </li>
+                <li><a href="test.html">Тексеру</a></li>
+                <li><a href="exercises.html">Жаттығулар</a></li>
+                <li><a href="prevention.html">Алдын алу</a></li>
+                <li><a href="Helplines.html">Клиникалар</a></li>
+                <li><a href="About.html">Біз жайлы</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-10 max-w-7xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+                Омыртқа Саулығы: Алдын Алу (Профилактика)
+            </h1>
+            <p class="text-xl text-gray-600">
+                Омыртқаның қисаюының алдын алу — сау әрі белсенді өмірдің кепілі. Күнделікті қарапайым әдеттер сіздің арқаңызды қорғайды.
+            </p>
+        </header>
+
+        <!-- Main Grid for Recommendations -->
+        <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- 1. Компьютер алдында дұрыс отыру -->
+            <div class="recommendation-card border-l-4 border-primary">
+                <div class="text-primary mb-3 text-3xl">
+                    <i class="fa-solid fa-desktop"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Компьютер алдында дұрыс отыру</h3>
+                <ul class="space-y-3 text-gray-600 text-sm">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Монитор:</strong> Экранды көз деңгейінде ұстаңыз.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Арқа:</strong> Орындықтың арқалығына 90-100° бұрышпен сүйеніңіз. Төменгі арқаға (белге) арнайы тірек (жастық) қойыңыз.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Аяқ:</strong> Екі аяқ та еденге толық тиіп тұруы керек (қажет болса, тірек қолданыңыз).</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Үзіліс:</strong> Әр 45 минут сайын 5-10 минут үзіліс жасап, аздап қозғалыңыз.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 2. Ұйқы қалпы -->
+            <div class="recommendation-card border-l-4 border-primary">
+                <div class="text-primary mb-3 text-3xl">
+                    <i class="fa-solid fa-bed"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Ұйқы қалпы</h3>
+                <ul class="space-y-3 text-gray-600 text-sm">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Матрас:</strong> Омыртқаны тегіс ұстайтын орташа қаттылықтағы (medium-firm) матрас таңдаңыз.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Арқада ұйықтау:</strong> Ең жақсы позиция. Мойын мен белдегі табиғи иілімдерді сақтауға көмектеседі.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Қырынан ұйықтау:</strong> Тізелердің арасына кішкентай жастық қойып ұйықтаңыз. Бұл жамбас пен омыртқаның тегіс болуын қамтамасыз етеді.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Іште ұйықтау:</strong> Бұл қалпы мойын омыртқасына күш түсіреді және оны мүмкіндігінше болдырмаған жөн.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 3. Арнайы құралдар (Жастықтар мен орындықтар) -->
+            <div class="recommendation-card border-l-4 border-primary">
+                <div class="text-primary mb-3 text-3xl">
+                    <i class="fa-solid fa-chair"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Арнайы жастықтар мен орындықтар</h3>
+                <ul class="space-y-3 text-gray-600 text-sm">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Эргономикалық орындық:</strong> Биіктігі, арқалығы және шынтақ тірегі реттелетін орындық таңдаңыз.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Бел тірегі:</strong> Омыртқаның табиғи S-тәрізді иілімін сақтайтын арнайы бел жастығын қолданыңыз.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Ортопедиялық жастық:</strong> Ұйқы кезінде мойын омыртқасы мен басты дұрыс орналастыру үшін пішінді жастықтарды пайдаланыңыз.</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 4. Симметриялық даму (Жаңа кеңес) -->
+            <div class="recommendation-card border-l-4 border-primary">
+                <div class="text-primary mb-3 text-3xl">
+                    <i class="fa-solid fa-hand-holding-hand"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Дене симметриясын дамыту</h3>
+                <ul class="space-y-3 text-gray-600 text-sm">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Қос қолды қолдану:</strong> Егер сіз оң қолды болсаңыз, қарапайым әрекеттерді (мысалы, сөмке көтеру, есік ашу, тысты тазалау) жиірек сол қолмен жасап көріңіз, және керісінше.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Жүктемені теңестіру:</strong> Ауыр заттарды көтергенде оларды екі қолға тең бөліңіз немесе рюкзакты екі иыққа бірдей тағыңыз.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Мақсат:</strong> Бұл әдіс арқаның екі жағындағы бұлшықеттердің тең дамуына көмектеседі, сколиоздың прогрессін баяулатады.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 5. Жүзу (Плаванье) -->
+            <div class="recommendation-card border-l-4 border-primary">
+                <div class="text-primary mb-3 text-3xl">
+                    <i class="fa-solid fa-person-swimming"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Жүзу — ең тиімді спорт</h3>
+                <ul class="space-y-3 text-gray-600 text-sm">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Омыртқаны түсіру:</strong> Суда омыртқа жүктемеден босап, бұлшықеттер оны тігінен ұстауға мәжбүрлемей жұмыс істейді.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Симметриялық күшейту:</strong> Жүзу (әсіресе кроль және арқамен жүзу) арқа бұлшықеттерін екі жағынан да бірдей күшейтеді.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Гибкость:</strong> Судағы қозғалыс омыртқаның икемділігін арттырады және буындарды қатайтады.</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 6. Жалпы Кеңестер -->
+            <div class="recommendation-card border-l-4 border-primary">
+                <div class="text-primary mb-3 text-3xl">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Жалпы өмір салты</h3>
+                <ul class="space-y-3 text-gray-600 text-sm">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Белсенділік:</strong> Күнделікті қозғалыс, серуендеу және жеңіл спорт түрлерімен айналысу.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Салмақты бақылау:</strong> Артық салмақ омыртқаға қосымша жүктеме береді.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-angle-right mt-1 text-primary"></i> 
+                        <span class="flex-grow"><strong>Бақылау:</strong> Балалардың дене қалпын үнемі бақылап, еңбек үстелінің биіктігін қадағалаңыз.</span>
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+  
+</body>
+</html>

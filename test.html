@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQA | Тексеру құралдары</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8faff; }
+        .header-bg { background-color: #6a5398; }
+        .arqa-logo { font-size: 2rem; font-weight: 800; letter-spacing: 0.1em; color: white; }
+        
+        /* Interactive Tabs */
+        .tab-btn { transition: all 0.3s ease; border-bottom: 3px solid transparent; }
+        .tab-btn.active { border-color: #6a5398; color: #6a5398; font-weight: 700; }
+        
+        /* Canvas for X-Ray */
+        #xray-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; display: none; }
+        canvas { border: 2px dashed #cbd5e1; cursor: crosshair; width: 100%; }
+        
+        /* Animations */
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .quiz-option:checked + label {
+            background-color: #ede9fe;
+            border-color: #8b5cf6;
+            color: #5b21b6;
+        }
+
+        /* ===== pp25 home navbar styles (copied/adapted) ===== */
+        :root{
+            --brand: #02204f;
+            --muted: #34495e;
+            --accent: #4a6fa5;
+            --header-bg: #a7acd9;
+        }
+
+        /* Site nav wrapper */
+        .site-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            height: 80px;
+            background: transparent; /* inner container should be transparent so header provides full-bleed color */
+            border-radius: 0;
+        }
+
+        /* Make the header full-bleed so the background spans the entire viewport width */
+        header {
+            width: 100%;
+            background: var(--header-bg);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        .brand { display: flex; align-items: center; }
+
+        .nav-logo-img { max-height: 60px; width: auto; display: block; }
+
+        .nav-panel { display: flex; gap: 20px; align-items: center; margin: 0; padding: 0; list-style: none; }
+
+        .nav-panel > li > a {
+            display: flex; align-items: center; gap: 6px; padding: 8px 12px; color: var(--brand); font-weight: 700; transition: color 0.25s ease, background 0.25s ease; border-radius: 8px;
+            font-size: 0.95rem; /* explicit size so nav text matches other pages */
+            font-family: inherit;
+        }
+
+        .nav-panel > li > a:hover { color: #ffffff; background: rgba(0,0,0,0.12); }
+
+        /* Dropdown */
+        .has-sub { position: relative; }
+
+        .submenu {
+            position: absolute; left: 0; top: 100%; width: 240px; background: #ffffff; border-radius: 8px; padding: 10px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.28s cubic-bezier(.2,.9,.2,1);
+        }
+
+        .has-sub:hover .submenu, .has-sub:focus-within .submenu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        .submenu li { list-style: none; }
+
+        .submenu a { display: block; padding: 10px 20px; color: var(--brand); font-weight: 500; font-size: 0.95rem; }
+
+        .submenu a:hover { background-color: #f0f4f8; color: var(--accent); }
+
+        /* Nested submenu to the right */
+        .has-sub-right { position: relative; }
+
+        .submenu-right { position: absolute; left: 100%; top: 0; width: 200px; background: #ffffff; border-radius: 8px; padding: 10px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0; visibility: hidden; transition: all 0.25s ease; }
+
+        .has-sub-right:hover .submenu-right, .has-sub-right:focus-within .submenu-right { opacity: 1; visibility: visible; transform: none; }
+
+        /* Responsive adjustments */
+        @media (max-width: 980px) {
+            .site-nav { padding: 12px 16px; height: auto; }
+        }
+
+        @media (max-width: 720px) {
+            .site-nav { flex-direction: column; text-align: center; }
+            .nav-panel { flex-direction: column; width: 100%; gap: 10px; margin-top: 12px; }
+            .submenu, .submenu-right { position: static; box-shadow: none; padding-left: 12px; display: none; }
+            .has-sub:hover .submenu { display: block; opacity: 1; visibility: visible; transform: none; }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-800">
+
+    <!-- Header: pp25 home navbar -->
+    <header>
+        <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+            <div class="brand">
+             <a href="index.html" class="logo-link">
+                    <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+                </a>
+            </div>
+
+            <ul class="nav-panel">
+                <li class="has-sub">
+                    <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                        <li class="has-sub-right">
+                            <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                                Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                            </a>
+                            <ul class="submenu-right">
+                                <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                                <li><a href="congenital.html">Туа бітім</a></li>
+                                <li><a href="degenerative.html">Дегенеративті</a></li>
+                                <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                                <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                                <li><a href="syndromic.html">Синдромдық</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="consequences.html">Салдары</a></li>
+                        <li><a href="treatment.html">Емдеу жолдары</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="test.html">Тексеру</a></li>
+                <li><a href="exercises.html">Жаттығулар</a></li>
+                <li><a href="prevention.html">Алдын алу</a></li>
+                <li><a href="Helplines.html">Клиникалар</a></li>
+                <li><a href="About.html">Біз жайлы</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-center mb-2 text-gray-900">Өз-өзіңді тексеру құралдары</h1>
+        <p class="text-center text-gray-600 mb-8">Денсаулығыңызды бақылаудың қарапайым және тиімді жолдары</p>
+
+        <!-- Tabs Navigation -->
+        <div class="flex justify-center space-x-4 mb-8 border-b text-sm md:text-base overflow-x-auto">
+            <button onclick="switchTab('visual')" id="tab-visual" class="tab-btn active px-4 py-2 text-gray-600">👀 Айна & Сызғыш</button>
+            <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-4 py-2 text-gray-600">📝 Симптом-Квиз</button>
+            <button onclick="switchTab('xray')" id="tab-xray" class="tab-btn px-4 py-2 text-gray-600 flex items-center gap-2"><span class="text-violet-600">🧪</span> Рентген Анализ</button>
+        </div>
+
+        <!-- SECTION 1: VISUAL & RULER -->
+        <div id="content-visual" class="fade-in">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Mirror Test -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full text-blue-600 font-bold text-xl">1</div>
+                        <h2 class="text-2xl font-bold">Айна алдындағы тест</h2>
+                    </div>
+                    <p class="text-gray-600 mb-4">Айнаның алдында түзу тұрып, денеңізге мұқият қараңыз. Мына белгілерді іздеңіз:</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-red-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            <span>Иық деңгейінің әртүрлі болуы (біреуі жоғары).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-red-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            <span>Жамбас сүйектерінің асимметриясы.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-red-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            <span>Қол мен дене арасындағы қашықтықтың әртүрлі болуы.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Ruler / Adams Test -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-violet-100 p-3 rounded-full text-violet-600 font-bold text-xl">2</div>
+                        <h2 class="text-2xl font-bold">Адамс тесті (Еңкею)</h2>
+                    </div>
+                    <p class="text-gray-600 mb-4">Бұл тест үшін досыңыздың немесе отбасы мүшесінің көмегі қажет болады.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg text-sm space-y-2 mb-4">
+                        <p><strong>1-қадам:</strong> Тік тұрып, қолдарыңызды бос ұстап, алға қарай баяу еңкейіңіз.</p>
+                        <p><strong>2-қадам:</strong> Көмекші арқаңызға арт жағынан қарау керек.</p>
+                        <p><strong>3-қадам:</strong> Егер арқаның бір жағы екіншісінен жоғары (өркеш сияқты) болса, бұл сколиоз белгісі болуы мүмкін.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: SYMPTOM QUIZ -->
+        <div id="content-quiz" class="hidden fade-in max-w-2xl mx-auto">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Симптомдарды тексеру</h2>
+                <form id="scoliosisQuiz" onsubmit="calculateQuiz(event)">
+                    
+                    <div class="space-y-6">
+                        <!-- Q1 -->
+                        <div>
+                            <p class="font-medium text-lg mb-3">1. Айнаға қарағанда бір иығыңыз екіншісінен жоғары көріне ме?</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <input type="radio" id="q1y" name="q1" value="yes" class="hidden quiz-option" required>
+                                    <label for="q1y" class="block text-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">Иә</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="q1n" name="q1" value="no" class="hidden quiz-option">
+                                    <label for="q1n" class="block text-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">Жоқ</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div>
+                            <p class="font-medium text-lg mb-3">2. Ұзақ отырғанда немесе тұрғанда арқаңызда ауырсыну сезіле ме?</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <input type="radio" id="q2y" name="q2" value="yes" class="hidden quiz-option" required>
+                                    <label for="q2y" class="block text-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">Иә</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="q2n" name="q2" value="no" class="hidden quiz-option">
+                                    <label for="q2n" class="block text-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">Жоқ</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div>
+                            <p class="font-medium text-lg mb-3">3. Киім кигенде белдемше, шалбар белдігі немесе жейде етегі қисық тұра ма?</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <input type="radio" id="q3y" name="q3" value="yes" class="hidden quiz-option" required>
+                                    <label for="q3y" class="block text-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">Иә</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="q3n" name="q3" value="no" class="hidden quiz-option">
+                                    <label for="q3n" class="block text-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">Жоқ</label>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Q4 -->
+                         <div>
+                            <p class="font-medium text-lg mb-3">4. Отбасыңызда (ата-ана, бауырлар) сколиоз бар ма?</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <input type="radio" id="q4y" name="q4" value="yes" class="hidden quiz-option" required>
+                                    <label for="q4y" class="block text-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">Иә</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="q4n" name="q4" value="no" class="hidden quiz-option">
+                                    <label for="q4n" class="block text-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">Жоқ</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full mt-8 bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 px-6 rounded-xl transition shadow-lg">
+                        Нәтижені көру
+                    </button>
+                </form>
+                
+                <!-- Quiz Result -->
+                <div id="quiz-result" class="hidden mt-6 p-4 rounded-xl bg-violet-50 border border-violet-200">
+                    <h3 class="font-bold text-xl text-violet-800 mb-2">Нәтиже:</h3>
+                    <p id="quiz-text" class="text-gray-700"></p>
+                    <a href="#" class="inline-block mt-3 text-violet-600 font-semibold underline">Жаттығулар бөліміне өту &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: X-RAY ANALYZER -->
+        <div id="content-xray" class="hidden fade-in">
+            <div class="max-w-4xl mx-auto bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold mb-2 text-violet-800">Cobb бұрышын өлшеу құралы</h2>
+                    <p class="text-sm text-gray-500">Рентген суретін жүктеп, екі сызық сызыңыз: ең қисайған ЖОҒАРҒЫ омыртқаның үстіңгі жағына және ең қисайған ТӨМЕНГІ омыртқаның астыңғы жағына.</p>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex flex-col md:flex-row justify-center gap-4 mb-4">
+                    <label class="cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg inline-flex items-center justify-center transition">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                        Сурет жүктеу
+                        <input type='file' class="hidden" id="imageLoader" accept="image/*"/>
+                    </label>
+                    <button onclick="resetCanvas()" class="bg-red-50 hover:bg-red-100 text-red-600 font-semibold py-2 px-4 rounded-lg transition">
+                        Тазалау / Қайтадан
+                    </button>
+                </div>
+
+                <!-- Step Indicator -->
+                <div id="step-indicator" class="text-center text-sm font-bold text-violet-600 mb-2">
+                    1-қадам: Сурет жүктеңіз
+                </div>
+
+                <!-- Canvas Area -->
+                <div id="xray-wrapper" class="bg-gray-900 rounded-lg overflow-hidden flex items-center justify-center min-h-[300px]">
+                    <p id="placeholder-text" class="text-gray-400">Сурет осында пайда болады</p>
+                    <div id="xray-container">
+                        <canvas id="xrayCanvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Result Area -->
+                <div id="angle-result" class="hidden mt-6 p-6 bg-gradient-to-r from-violet-50 to-white border-l-4 border-violet-600 rounded-r-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 uppercase font-bold tracking-wide">Өлшенген бұрыш</p>
+                            <p class="text-4xl font-extrabold text-gray-900"><span id="degree-value">0</span>°</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-bold text-lg text-violet-700" id="diagnosis-title">Қалыпты</p>
+                            <p class="text-sm text-gray-600 mt-1 max-w-xs" id="diagnosis-desc"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // --- Tab Switching Logic ---
+        function switchTab(tabId) {
+            // Hide all contents
+            ['visual', 'quiz', 'xray'].forEach(id => {
+                document.getElementById(`content-${id}`).classList.add('hidden');
+                document.getElementById(`tab-${id}`).classList.remove('active');
+            });
+            // Show selected
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+        }
+
+        // --- Quiz Logic ---
+        function calculateQuiz(e) {
+            e.preventDefault();
+            const form = document.getElementById('scoliosisQuiz');
+            const formData = new FormData(form);
+            let yesCount = 0;
+            
+            for(let pair of formData.entries()) {
+                if(pair[1] === 'yes') yesCount++;
+            }
+
+            const resultDiv = document.getElementById('quiz-result');
+            const resultText = document.getElementById('quiz-text');
+            resultDiv.classList.remove('hidden');
+
+            if(yesCount === 0) {
+                resultText.innerHTML = "Сізде сколиоздың айқын белгілері байқалмайды. Дегенмен, <strong>'Алдын алу'</strong> бөліміндегі жаттығуларды жасау артық болмайды.";
+                resultDiv.className = "mt-6 p-4 rounded-xl bg-green-50 border border-green-200";
+            } else if (yesCount <= 2) {
+                resultText.innerHTML = `Сізде ${yesCount} симптом бар. Бұлшықет дисбалансы болуы мүмкін. <strong>'Жаттығулар'</strong> бөліміндегі симметриялық жаттығуларға назар аударыңыз.`;
+                resultDiv.className = "mt-6 p-4 rounded-xl bg-yellow-50 border border-yellow-200";
+            } else {
+                resultText.innerHTML = `Сізде ${yesCount} симптом анықталды. Бұл сколиоздың белгісі болуы мүмкін. Дәрігер ортопедке көрініп, рентген жасату ұсынылады. Әзірге <strong>'Сколиоз деген не?'</strong> бөлімін оқып шығыңыз.`;
+                resultDiv.className = "mt-6 p-4 rounded-xl bg-red-50 border border-red-200";
+            }
+        }
+
+        // --- X-Ray / Cobb Angle Logic ---
+        const imageLoader = document.getElementById('imageLoader');
+        const canvas = document.getElementById('xrayCanvas');
+        const ctx = canvas.getContext('2d');
+        const container = document.getElementById('xray-container');
+        const wrapper = document.getElementById('xray-wrapper');
+        const placeholder = document.getElementById('placeholder-text');
+        const stepIndicator = document.getElementById('step-indicator');
+        
+        let img = new Image();
+        let clicks = []; // Stores {x, y}
+        let lines = [];  // Stores pairs of points [[p1, p2], [p3, p4]]
+
+        imageLoader.addEventListener('change', handleImage, false);
+
+        function handleImage(e) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                img.onload = function() {
+                    placeholder.style.display = 'none';
+                    container.style.display = 'block';
+                    
+                    // Resize logic to fit screen max-width 600
+                    const maxWidth = container.clientWidth;
+                    const scaleFactor = maxWidth / img.width;
+                    canvas.width = maxWidth;
+                    canvas.height = img.height * scaleFactor;
+                    
+                    resetCanvas(); // Draw image
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        }
+
+        canvas.addEventListener('mousedown', function(e) {
+            if(lines.length >= 2) return; // Already drew 2 lines
+
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            clicks.push({x, y});
+            
+            // Draw a small dot
+            ctx.fillStyle = "#ef4444";
+            ctx.beginPath();
+            ctx.arc(x, y, 4, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (clicks.length === 2) {
+                // Line complete
+                lines.push([...clicks]);
+                drawLine(clicks[0], clicks[1]);
+                clicks = []; // Reset for next line
+                
+                if(lines.length === 1) {
+                    stepIndicator.innerText = "2-қадам: Енді ТӨМЕНГІ омыртқаның астыңғы сызығын сызыңыз";
+                    stepIndicator.className = "text-center text-sm font-bold text-violet-600 mb-2";
+                } else if (lines.length === 2) {
+                    calculateCobbAngle();
+                    stepIndicator.innerText = "Нәтиже дайын!";
+                    stepIndicator.className = "text-center text-sm font-bold text-green-600 mb-2";
+                }
+            } else {
+                 // First point of a line
+                 if(lines.length === 0) {
+                     stepIndicator.innerText = "ЖОҒАРҒЫ омыртқаның екінші нүктесін белгілеңіз...";
+                 } else {
+                     stepIndicator.innerText = "ТӨМЕНГІ омыртқаның екінші нүктесін белгілеңіз...";
+                 }
+            }
+        });
+
+        function drawLine(p1, p2) {
+            ctx.strokeStyle = "#ef4444"; // Red
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+        }
+
+        function resetCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            lines = [];
+            clicks = [];
+            document.getElementById('angle-result').classList.add('hidden');
+            stepIndicator.innerText = "1-қадам: Ең қисайған ЖОҒАРҒЫ омыртқаның үстіңгі сызығын сызыңыз (2 нүкте)";
+            stepIndicator.className = "text-center text-sm font-bold text-violet-600 mb-2";
+        }
+
+        function calculateCobbAngle() {
+            // Line 1 coords
+            const L1 = lines[0];
+            const L2 = lines[1];
+
+            // Calculate slopes (m = dy/dx)
+            // Note: Canvas Y increases downwards, but angle calculation holds relative
+            let m1 = (L1[1].y - L1[0].y) / (L1[1].x - L1[0].x);
+            let m2 = (L2[1].y - L2[0].y) / (L2[1].x - L2[0].x);
+
+            // Calculate angle between lines
+            // Tan(theta) = |(m2 - m1) / (1 + m1*m2)|
+            // However, vertical lines (m = infinity) crash this. 
+            // Better to use Atan2 for angles and subtract.
+            
+            const angle1 = Math.atan2(L1[1].y - L1[0].y, L1[1].x - L1[0].x);
+            const angle2 = Math.atan2(L2[1].y - L2[0].y, L2[1].x - L2[0].x);
+            
+            let angleRad = Math.abs(angle1 - angle2);
+            let angleDeg = angleRad * (180 / Math.PI);
+            
+            // We want the acute angle
+            if (angleDeg > 90) {
+                angleDeg = 180 - angleDeg;
+            }
+
+            // Cobb angle is technically the angle between perpendiculars, 
+            // which geometrically is the same as the angle between the lines themselves.
+            // Display result
+            const finalAngle = Math.round(angleDeg);
+            
+            document.getElementById('degree-value').innerText = finalAngle;
+            document.getElementById('angle-result').classList.remove('hidden');
+            
+            // Diagnosis Logic
+            const title = document.getElementById('diagnosis-title');
+            const desc = document.getElementById('diagnosis-desc');
+            
+            if(finalAngle < 10) {
+                title.innerText = "Қалыпты жағдай";
+                title.className = "font-bold text-lg text-green-600";
+                desc.innerText = "10 градусқа дейінгі қисаю физиологиялық асимметрия болып саналады. Тұрақты жаттығу жасау жеткілікті.";
+            } else if (finalAngle < 20) {
+                title.innerText = "Жеңіл сколиоз";
+                title.className = "font-bold text-lg text-yellow-600";
+                desc.innerText = "Арнайы жаттығулар (Шрот, SEAS) және бақылау қажет.";
+            } else if (finalAngle < 40) {
+                title.innerText = "Орташа сколиоз";
+                title.className = "font-bold text-lg text-orange-600";
+                desc.innerText = "Корсет кию және қарқынды терапия қажет болуы мүмкін. Дәрігермен кеңесіңіз.";
+            } else {
+                title.innerText = "Ауыр сколиоз";
+                title.className = "font-bold text-lg text-red-600";
+                desc.innerText = "Бұл жағдай хирургиялық араласуды талап етуі мүмкін. Шұғыл түрде ортопедке барыңыз.";
+            }
+        }
+    </script>
+</body>
+</html>

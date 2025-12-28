@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Идиопатиялық сколиоз: Ғылыми шолу</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root{
+            --brand:#02204f;
+            --muted:#34495e;
+            --accent:#4a6fa5;
+            --soft:#eef5fc;
+            --header-bg:#a7acd9;
+            --card-bg:#ffffff;
+            --radius:12px;
+        }
+
+        *{box-sizing:border-box}
+        body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:0;background:#f5f8fd;color:var(--brand);line-height:1.7}
+
+        /* Navbar - match pp25 home exactly */
+        header{background:var(--header-bg);box-shadow:0 2px 10px rgba(0,0,0,0.1);position:relative;z-index:1000}
+        .site-nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;height:80px}
+        .brand{display:flex;align-items:center}
+        .nav-logo-img{max-height:60px;width:auto;display:block}
+        .nav-panel{display:flex;gap:20px;align-items:center;margin:0;padding:0;list-style:none}
+        .nav-panel > li > a{display:flex;align-items:center;gap:6px;padding:8px 12px;color:var(--brand);font-weight:700;transition:color 0.3s;text-decoration:none}
+        .nav-panel > li > a:hover{color:#ffffff}
+
+        /* Dropdowns */
+        .has-sub{position:relative}
+        .submenu{position:absolute;left:0;top:100%;width:240px;background:#ffffff;border-radius:8px;padding:10px 0;box-shadow:0 10px 30px rgba(0,0,0,0.15);opacity:0;visibility:hidden;transform:translateY(10px);transition:all 0.3s ease;z-index:120}
+        .has-sub:hover .submenu,.has-sub:focus-within .submenu{opacity:1;visibility:visible;transform:translateY(0)}
+        .submenu li{list-style:none}
+        .submenu a{display:block;padding:10px 20px;color:var(--brand);font-weight:500;font-size:0.95rem;text-decoration:none}
+        .submenu a:hover{background-color:#f0f4f8;color:var(--accent)}
+        .has-sub-right{position:relative}
+        .submenu-right{position:absolute;left:100%;top:0;width:200px;background:#ffffff;border-radius:8px;padding:10px 0;box-shadow:0 10px 30px rgba(0,0,0,0.15);opacity:0;visibility:hidden;transition:all 0.3s ease;z-index:120}
+        .has-sub-right:hover .submenu-right,.has-sub-right:focus-within .submenu-right{opacity:1;visibility:visible}
+
+        /* Page content - darker blue theme */
+        .container{max-width:1100px;margin:20px auto;padding:28px 20px;background:var(--card-bg);box-shadow:0 6px 24px rgba(2,32,79,0.08);border-radius:12px}
+        h1{color:var(--brand);font-size:2.2rem;margin:6px 0 14px}
+        h2{color:var(--accent);border-bottom:2px solid rgba(74,111,165,0.15);padding-bottom:10px;margin-top:28px;display:flex;align-items:center;gap:10px}
+        h2 i{color:var(--accent);font-size:1.1em}
+        h3{color:#1f4788;margin-top:20px;font-weight:600}
+        p{margin-bottom:16px;color:var(--muted);text-align:justify;font-size:1.02em}
+
+        ul{margin-bottom:18px;padding-left:24px}
+        ul li{margin-bottom:10px;color:var(--muted)}
+        ul li::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;margin-right:8px;color:var(--accent);position:relative;left:-22px}
+        .nav-panel li::before{content:none}
+
+        .highlight-box{background:var(--soft);border-left:5px solid var(--accent);padding:16px;margin:20px 0;border-radius:8px;color:var(--muted)}
+
+        .references{background:#f0f6fb;border:1px solid #d4e4f5;padding:20px;border-radius:10px;margin-top:32px}
+        .references h2{margin-top:0;border-bottom:none;color:var(--brand)}
+        .ref-item{margin-bottom:10px;padding-left:20px;text-indent:-20px;color:var(--muted)}
+
+        .nav-container{text-align:center;margin-top:34px}
+        .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;transition:all 0.25s}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(74,111,165,0.15)}
+
+        .next-article-container{text-align:center;margin-top:48px;margin-bottom:40px;padding:32px 20px;background:linear-gradient(135deg, rgba(74,111,165,0.06) 0%, rgba(74,111,165,0.02) 100%);border-radius:16px;border:2px solid rgba(74,111,165,0.1)}
+        .next-button{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1.05em;box-shadow:0 12px 32px rgba(74,111,165,0.2);transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)}
+        .next-button:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(74,111,165,0.3);background:#3a5a8a}
+        .next-button span{font-size:1.2em;transition:transform 0.3s}
+        .next-button:hover span{transform:translateX(4px)}
+
+        /* Responsive tweaks */
+        @media (max-width:900px){.site-nav{padding:10px}.nav-panel{gap:8px}}
+        @media (max-width:640px){.container{padding:16px}.nav-panel{overflow-x:auto}h1{font-size:1.6em}}
+    </style>
+</head>
+<body>
+
+     <header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+           <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                  <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                      <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+
+        <h2><i class="fas fa-info-circle"></i>Идиопатиялық сколиоз</h2>
+        <p>Идиопатиялық сколиоз (ИС) — омыртқа бағанасының кеңістіктегі үш жазықтықты (фронтальды, сагиттальды және горизонталды) қамтитын күрделі құрылымдық деформациясы. Бұл патология омыртқаның латеральды (бүйірлік) ауытқуымен қатар, омыртқалардың осьтік ротациясымен (бұралуымен) және сагиттальды профильдің өзгеруімен (гипокифоз) сипатталады (Negrini et al., 2018). "Идиопатиялық" термині аурудың этиологиясының, яғни нақты себебінің әлі күнге дейін толық анықталмағанын білдіреді, бұл барлық сколиоз жағдайларының шамамен 80%-ын құрайды. Бұл жай ғана косметикалық ақау емес, асқынған жағдайда кардиореспираторлық жүйеге теріс әсер ететін прогрессивті ортопедиялық ауру.</p>
+        
+        
+
+[Image of spine anatomy showing normal vs scoliosis curve]
+
+
+        <h2><i class="fas fa-chart-line"></i> Эпидемиология және таралу жиілігі</h2>
+        <p>Идиопатиялық сколиоздың популяциядағы жалпы таралу жиілігі 2-3% шамасында бағаланады. Эпидемиологиялық зерттеулер көрсеткендей, қисаю бұрышы (Кобб бұрышы) аз болған кезде жыныстық айырмашылық байқалмайды. Алайда, клиникалық маңызы бар, прогрессияға бейім деформациялар (Кобб бұрышы >30°) қыздарда ұлдарға қарағанда 8-10 есе жиі кездеседі (Konieczny et al., 2013). Бұл феномен қыздардың пубертаттық кезеңдегі сүйек өсуінің гормондық ерекшеліктерімен байланыстырылады.</p>
+
+        <h2><i class="fas fa-dna"></i> Этиология және Патогенез: Көпфакторлы теориялар</h2>
+        <p>Идиопатиялық сколиоздың даму механизмі "көпфакторлы" деп саналады. Ғылыми қауымдастық қазіргі таңда келесі негізгі теорияларды қарастырады:</p>
+
+        <h3>1. Генетикалық факторлар</h3>
+        <p>Генетикалық бейімділік ИС дамуында шешуші рөл атқарады. Genome-wide association studies (GWAS) зерттеулері <i>LBX1</i>, <i>GPR126</i> және <i>CHD7</i> сияқты гендердің полиморфизмін сколиозбен байланыстырды. Бұл гендер жүйке жүйесінің дамуына, соматосенсорлық қызметке және сүйек тінінің қалыптасуына жауап береді (Takahashi et al., 2011). Егіздерді зерттеу нәтижелері монозиготалы егіздердегі аурудың конкорданттылығы (сәйкестігі) 73%-ға жететінін көрсетті.</p>
+
+        <h3>2. Нейрохимиялық және Гормондық теориялар</h3>
+        <p>Мелатонин сигналының бұзылуы туралы гипотеза кеңінен талқылануда. Эксперименталды зерттеулерде (тауықтарға эпифизэктомия жасау) мелатонин тапшылығы сколиозға ұқсас деформацияны тудыратыны анықталған. Адамдарда бұл тікелей дәлелденбесе де, кальмодулин мен мелатониннің өзара әрекеттесуіндегі ақаулар сүйек өсуінің асимметриясына әкелуі мүмкін деген болжам бар (Machida et al., 2009). Сондай-ақ, <i>Vitamin D</i> рецепторларының полиморфизмі мен оның тапшылығы сүйек тығыздығына әсер етіп, сколиоз қаупін арттыратыны туралы деректер бар (Chlebna-Sokół et al., 2012).</p>
+
+        <h3>3. Биомеханикалық теория (Гютер-Фолькман заңы)</h3>
+        <div class="highlight-box">
+            Биомеханикалық тұрғыдан алғанда, омыртқаның бастапқы шамалы қисаюы омыртқа денелерінің өсу аймақтарына әртүрлі қысым түсіреді. Гютер-Фолькман заңына сәйкес, қысым жоғарылаған жағында (қисықтың ойыс жағы) сүйектің өсуі баяулайды, ал қысым аз жағында (дөңес жағы) өсу жеделдейді. Бұл "қатал шеңбер" (vicious cycle) деформацияның одан әрі үдеуіне алып келеді (Stokes et al., 2006).
+        </div>
+
+        <h2><i class="fas fa-list"></i> Жіктелуі (Классификациясы)</h2>
+        <p>Scoliosis Research Society (SRS) ұсынымы бойынша идиопатиялық сколиоз диагнозы науқастың ауру анықталған жасына қарай жіктеледі:</p>
+        <ul>
+            <li><b>Сәбилік (Infantile):</b> 0–3 жас. Сирек кездеседі (&lt;1%), көбінесе өздігінен жазылады (Resolving type).</li>
+            <li><b>Ювенильді (Juvenile):</b> 3–10 жас. Прогрессия қаупі жоғары, себебі жыныстық жетілуге дейінгі өсу кезеңін қамтиды.</li>
+            <li><b>Жасөспірімдік (Adolescent Idiopathic Scoliosis - AIS):</b> 10–18 жас. Клиникалық тәжірибеде ең жиі кездесетін (80%) және емдеуді қажет ететін негізгі топ.</li>
+        </ul>
+
+        <h2><i class="fas fa-stethoscope"></i> Диагностикалық критерийлер және бағалау</h2>
+        <p>Диагностика физикалық тексеруден (Адамс сынамасы, иық және жамбас асимметриясы, сколиометр көрсеткіштері) басталады. "Алтын стандарт" — бұл омыртқаның толық бойымен түсірілген рентгенографиясы.</p>
+        
+        
+
+        <ul>
+            <li><b>Кобб бұрышы (Cobb angle):</b> Деформацияның ауырлығын анықтайтын негізгі көрсеткіш. Сколиоз диагнозы бұрыш <b>≥10°</b> болғанда ғана қойылады.</li>
+            <li><b>Риссер белгісі (Risser sign):</b> Мықын сүйегінің апофиздерінің сүйектену дәрежесі арқылы қаңқаның жетілуін бағалау (0-ден 5-ке дейін). Риссер көрсеткіші төмен болған сайын (0-2), сколиоздың үдеу қаупі соғұрлым жоғары болады (Weinstein et al., 2008).</li>
+            <li><b>Ленке (Lenke) классификациясы:</b> Хирургиялық емді жоспарлау үшін қолданылатын, омыртқаның құрылымдық және құрылымдық емес иілістерін ажырататын кешенді жүйе.</li>
+        </ul>
+
+        <h2><i class="fas fa-prescribe"></i> Емдеу стратегиялары</h2>
+        <p>Емдеу тактикасы Кобб бұрышына және қаңқаның жетілу дәрежесіне негізделеді (SOSORT Guidelines, 2016):</p>
+
+        <ol>
+            <li><b>Бақылау (Observation):</b> Кобб бұрышы <b>&lt;20-25°</b> болғанда қолданылады. Мақсаты — прогрессияны уақытында анықтау үшін әр 6 ай сайын рентгендік мониторинг жүргізу.</li>
+            <li><b>Консервативті ем (Bracing & PSSE):</b> Кобб бұрышы <b>25–45°</b> аралығында және сүйек өсуі аяқталмаған (Риссер 0-2) балаларға корсет кию (тәулігіне 18-23 сағат) ұсынылады. <i>BRAIST</i> зерттеуі корсет киюдің операция қажеттілігін 72%-ға дейін төмендететінін дәлелдеді (Weinstein et al., 2013). Сонымен қатар, арнайы физиотерапиялық жаттығулар (Schroth, SEAS әдістемелері) қосымша қолданылады.</li>
+            <li><b>Хирургиялық ем:</b> Кобб бұрышы <b>>45-50°</b> асқанда және консервативті ем нәтиже бермегенде ұсынылады. Операция (артқы спондилодез) омыртқаны металл конструкциялармен (транспедикулярлық бұрандалар және стерженьдер) бекіту арқылы деформацияны түзетеді және өкпе қызметінің бұзылуын алдын алады.</li>
+        </ol>
+
+        
+
+[Image of scoliosis brace types]
+
+
+        <h2><i class="fas fa-check-circle"></i> Қорытынды</h2>
+        <p>Идиопатиялық сколиоз — бұл жай ғана сүйек қисаюы емес, генетикалық және биомеханикалық факторлардың күрделі өзара әрекеттесуінен туындайтын жүйелі процесс. Аурудың үдеу қаупін болжауда жыныс, жас және Риссер белгісі маңызды рөл атқарады. Заманауи медицинада дәлелді базаға сүйенген скрининг пен ерте басталған корсеттік ем (bracing) хирургиялық араласудың алдын алудың ең тиімді жолы болып қала береді.</p>
+ <div class="next-article-container">
+            <a href="congenital.html" class="next-button">
+                Келесі мақала: Туа бітім сколиоз <span>&#8594;</span>
+            </a>
+        </div>
+       
+        <div class="references">
+            <h2>Пайдаланылған әдебиеттер тізімі (References)</h2>
+            <div class="ref-item">Chlebna-Sokół, D., Ligenza, I., & Galus, K. (2012). Assessment of vitamin D status in children and adolescents with scoliosis. <i>Ortopedia, Traumatologia, Rehabilitacja</i>, 14(5), 437–444.</div>
+            <div class="ref-item">Konieczny, M. R., Senyurt, H., & Krauspe, R. (2013). Epidemiology of adolescent idiopathic scoliosis. <i>Journal of Children's Orthopaedics</i>, 7(1), 3–9. https://doi.org/10.1007/s11832-012-0457-4</div>
+            <div class="ref-item">Machida, M., Dubousset, J., & Yamada, T. (2009). Serum melatonin levels in adolescent idiopathic scoliosis prediction and prevention for the curve progression--a prospective study. <i>Journal of Pineal Research</i>, 46(2), 218–224.</div>
+            <div class="ref-item">Mohamed, M., Trivedi, J., Davidson, N., & Munigangaiah, S. (2022). Adolescent idiopathic scoliosis: a review of current concepts. <i>Paediatrics and Child Health</i>, 32(6), 227-234. https://doi.org/10.1016/j.paed.2022.01.002</div>
+            <div class="ref-item">Negrini, S., Donzelli, S., Aulisa, A. G., Czaprowski, D., Schreiber, S., de Mauroy, J. C., ... & Zaina, F. (2018). 2016 SOSORT guidelines: orthopaedic and rehabilitation treatment of idiopathic scoliosis during growth. <i>Scoliosis and Spinal Disorders</i>, 13(1), 3. https://doi.org/10.1186/s13013-017-0145-8</div>
+            <div class="ref-item">Stokes, I. A., Burwell, R. G., & Dangerfield, P. H. (2006). Biomechanical spinal growth modulation and progressive adolescent scoliosis – a test of the 'vicious cycle' pathogenetic hypothesis. <i>Scoliosis</i>, 1(1), 16.</div>
+            <div class="ref-item">Takahashi, Y., Kou, I., Takahashi, A., Johnson, T. A., Kono, K., Kawakami, N., ... & Ikegawa, S. (2011). A genome-wide association study identifies common variants near LBX1 associated with adolescent idiopathic scoliosis. <i>Nature Genetics</i>, 43(12), 1237-1240.</div>
+            <div class="ref-item">Weinstein, S. L., Dolan, L. A., Cheng, J. C., Danielsson, A., & Morcuende, J. A. (2008). Adolescent idiopathic scoliosis. <i>The Lancet</i>, 371(9623), 1527-1537. https://doi.org/10.1016/S0140-6736(08)60658-3</div>
+            <div class="ref-item">Weinstein, S. L., Dolan, L. A., Wright, J. G., & Dobbs, M. B. (2013). Effects of bracing in adolescents with idiopathic scoliosis. <i>New England Journal of Medicine</i>, 369(16), 1512-1521.</div>
+        </div>
+    </div>
+
+</body>
+</html>

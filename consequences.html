@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сколиоздың жалпы салдары мен асқынулары</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root{
+            --brand:#02204f; /* Matches main brand color */
+            --muted:#5b475a;
+            --accent:#E85D9F; /* Neuromuscular pink accent */
+            --soft:#fef6fa;   /* Soft pink background for boxes */
+            --header-bg:#a7acd9; /* Keep header same as site */
+            --card-bg:#ffffff;
+            --radius:12px;
+        }
+
+        *{box-sizing:border-box}
+        body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:0;background:#fffafb;color:#3d2a3d;line-height:1.7}
+
+        /* Header / navbar (kept identical to site pp25 home) */
+        header{background:var(--header-bg);box-shadow:0 2px 12px rgba(0,0,0,0.06);position:relative;z-index:1000}
+        .site-nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;height:72px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .nav-logo-img{height:52px;width:auto;display:block}
+        .nav-panel{display:flex;gap:20px;align-items:center;margin:0;padding:0;list-style:none}
+        .nav-panel > li > a { display:flex; align-items:center; gap:6px; padding:8px 12px; color:var(--brand); font-weight:700; transition: color 0.3s; text-decoration:none }
+        .nav-panel > li > a:hover { color:#ffffff }
+
+        /* Dropdowns - smooth opacity/transform like pp25 home */
+        .has-sub { position: relative }
+        .submenu { position: absolute; left: 0; top: 100%; width: 240px; background: #ffffff; border-radius:8px; padding:10px 0; box-shadow:0 10px 30px rgba(0,0,0,0.15); opacity:0; visibility:hidden; transform:translateY(10px); transition: all 0.3s ease; z-index:120 }
+        .has-sub:hover .submenu, .has-sub:focus-within .submenu { opacity:1; visibility:visible; transform:translateY(0) }
+        .submenu li { list-style: none }
+        .submenu a { display:block; padding:10px 20px; color:var(--brand); font-weight:500; font-size:0.95rem; text-decoration:none }
+        .submenu a:hover { background-color:#fff0f7; color:var(--accent) }
+        .has-sub-right > .submenu-right{left:100%;top:0}
+        .submenu-right{position:absolute;display:none;left:100%;top:0;min-width:200px;background:var(--card-bg);border-radius:8px;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+        .submenu li:focus-within > .submenu-right,.submenu li:hover > .submenu-right{display:block}
+
+        /* Page content styles — neuromuscular look */
+        .container{max-width:1100px;margin:20px auto;padding:28px 20px;background:var(--card-bg);box-shadow:0 6px 24px rgba(232,93,159,0.08);border-radius:12px}
+        h1{color:var(--brand);font-size:2.2rem;margin:6px 0 14px}
+        .subtitle{color:var(--muted);margin-bottom:6px}
+        h2{color:var(--accent);border-bottom:2px solid rgba(232,93,159,0.15);padding-bottom:10px;margin-top:28px;display:flex;align-items:center;gap:10px}
+        h2 i{color:var(--accent);font-size:1.1em}
+        h3{color:#9b3360;margin-top:20px;font-weight:600;font-size:1.25em}
+        p{margin-bottom:16px;color:var(--muted);text-align:justify;font-size:1.02em}
+
+        ul{margin-bottom:18px;padding-left:24px}
+        ul li{margin-bottom:10px;color:var(--muted)}
+        ul li::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;margin-right:8px;color:var(--accent);position:relative;left:-22px}
+        /* Remove list pseudo-icons inside the top navigation */
+        .nav-panel li::before{content:none}
+
+        .info-box{background:var(--soft);border-radius:8px;padding:16px;margin:20px 0;border-left:5px solid var(--accent);color:var(--muted)}
+
+        .image-placeholder {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #fff5f9;
+            border: 2px dashed rgba(232,93,159,0.18);
+            border-radius: 8px;
+            color: #9b3360;
+            font-style: italic;
+        }
+
+        .references{background:#FEF6FA;border:1px solid #f7d7ea;padding:20px;border-radius:10px;margin-top:32px}
+        .references h2{margin-top:0;border-bottom:none;color:var(--brand)}
+        .ref-item{margin-bottom:10px;padding-left:20px;text-indent:-20px;color:var(--muted); font-size: 0.95em;}
+
+        .nav-container{text-align:center;margin-top:34px}
+        .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;transition:all 0.25s}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(232,93,159,0.15)}
+
+        .next-article-container{text-align:center;margin-top:48px;margin-bottom:40px;padding:32px 20px;background:linear-gradient(135deg, rgba(232,93,159,0.06) 0%, rgba(232,93,159,0.02) 100%);border-radius:16px;border:2px solid rgba(232,93,159,0.1)}
+        .next-button{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1.05em;box-shadow:0 12px 32px rgba(232,93,159,0.2);transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)}
+        .next-button:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(232,93,159,0.3);background:#C43A7A}
+        .next-button span{font-size:1.2em;transition:transform 0.3s}
+        .next-button:hover span{transform:translateX(4px)}
+
+        /* Responsive tweaks */
+        @media (max-width:900px){.site-nav{padding:10px}.nav-panel{gap:8px}}
+        @media (max-width:640px){.container{padding:16px}.nav-panel{overflow-x:auto}h1{font-size:1.6em}}
+    </style>
+</head>
+<body>
+
+  <header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+          <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                  <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                      <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+
+        <h2><i class="fas fa-file-medical-alt"></i>Сколиоздың жалпы салдары және асқынулары</h2>
+    
+        <p>Сколиоз — бұл жай ғана омыртқаның "C" немесе "S" әрпіне ұқсас қисаюы емес, бұл адамның бүкіл ағзасына әсер ететін, көпжүйелі патологиялық процесс. Көптеген адамдар сколиозды тек косметикалық ақау деп қабылдайды, алайда омыртқаның үш жазықтықтағы (фронтальды, сагиттальды және аксиальды) деформациясы дененің биомеханикасын түбегейлі өзгертеді. Бұл өзгерістер тірек-қимыл аппаратына ғана емес, тыныс алу, жүрек-қан тамырлары, ас қорыту және жүйке жүйелеріне де теріс әсерін тигізеді. Сонымен қатар, созылмалы ауырсыну мен сыртқы келбеттің өзгеруі науқастың психоәлеуметтік жағдайына және жалпы өмір сапасына (Health-Related Quality of Life) айтарлықтай ықпал етеді (Weinstein et al., 2008).</p>
+
+        <h2><i class="fas fa-lungs"></i> 1. Тыныс алу және Жүрек-қан тамырлары жүйесіне әсері</h2>
+        <p>Ауыр дәрежелі сколиоздың (әсіресе Кобб бұрышы 50-60 градустан асқанда) ең қауіпті салдары — кардиореспираторлық жүйенің қызметінің бұзылуы. Омыртқаның бұралуы (ротация) кеуде қуысының пішінін өзгертіп, оның көлемін азайтады.</p>
+
+        <h3>Тыныс алу механикасының бұзылуы</h3>
+        <p>Кеуде қуысының деформациясы өкпенің толық ашылуына механикалық кедергі келтіреді. Омыртқаның дөңес жағында қабырғалар артқа қарай шығып "өркеш" құраса, ойыс жағында қабырғалар ішке кіріп, өкпе тінін қысады. Бұл жағдай медицинада <strong>"рестриктивті өкпе ауруы"</strong> деп аталады. Зерттеулер көрсеткендей, Кобб бұрышы 80 градустан асқан науқастарда өкпенің тіршілік сыйымдылығы (Vital Capacity) қалыпты деңгейден 50%-ға дейін төмендеуі мүмкін (Newton et al., 2005). Нәтижесінде, ағзаға оттегінің түсуі азайып, науқас тез шаршайды және тыныс алу инфекцияларына (пневмония, бронхит) бейім болады.</p>
+
+        [Image of the thoracic cage deformity in scoliosis]
+
+        <h3>Жүрекке түсетін салмақ (Cor Pulmonale)</h3>
+        <p>Өкпе қызметінің бұзылуы жүрекке тікелей әсер етеді. Өкпедегі ауа алмасудың нашарлауы өкпе тамырларының тарылуына (гипоксиялық вазоконстрикция) және ондағы қан қысымының жоғарылауына — <strong>өкпелік гипертензияға</strong> әкеледі. Жүректің оң жақ қарыншасы қанды өкпеге айдау үшін үлкен күш жұмсауға мәжбүр болады. Уақыт өте келе бұл жүрек бұлшықетінің қалыңдауына (гипертрофия) және оң жақ қарыншалық жүрек жеткіліксіздігіне (Cor Pulmonale) соқтыруы мүмкін. Бұл асқыну көбінесе емделмеген, ауыр, ерте басталған сколиоздарда кездеседі (Pehrsson et al., 1991).</p>
+
+        <h2><i class="fas fa-bone"></i> 2. Тірек-қимыл жүйесі және Биомеханикалық зардаптар</h2>
+        <p>Сколиоз тек омыртқаның ғана емес, бүкіл қаңқа сүйектерінің тепе-теңдігін бұзады. Гравитациялық осьтің ауытқуы буындар мен бұлшықеттерге біркелкі емес жүктеме түсіреді.</p>
+
+        <h3>Созылмалы ауырсыну және Дегенерация</h3>
+        <p>Ересек жасқа жеткен сколиозбен ауыратын науқастарда арқа ауруының жиілігі популяциялық орташа көрсеткіштен жоғары. Асимметриялық жүктеме омыртқааралық дискілердің тез тозуына (дегенеративті дискі ауруы) және фасеттік буындардың артрозына әкеледі. Бұл процесс омыртқаның тұрақсыздығын тудырып, ауырсынуды күшейтеді. Әсіресе бел аймағындағы қисықтық (люмбальды сколиоз) қатты механикалық ауырсынуға бейім келеді (Schwab et al., 2005).</p>
+
+        <h3>Дене тепе-теңдігінің бұзылуы (Imbalance)</h3>
+        <p>Ауыр сколиоз кезінде дененің ауырлық орталығы ығысады. Науқас тепе-теңдікті сақтау үшін энергияны көп жұмсайды, бұл бұлшықеттердің созылмалы шаршауына әкеледі. Жамбас сүйектерінің қисаюы (pelvic tilt) аяқ ұзындығының функционалдық қысқаруына және жүрістің (gait) өзгеруіне себеп болуы мүмкін. Бұл өз кезегінде тізе және жамбас буындарының ерте артрозына жол ашады.</p>
+
+        <h2><i class="fas fa-brain"></i> 3. Неврологиялық асқынулар</h2>
+        <p>Омыртқаның деформациясы жұлын өзегінің және жүйке түбіршелері шығатын тесіктердің (фораминальды тесіктер) тарылуына әкелуі мүмкін. Бұл жағдай <strong>спинальды стеноз</strong> деп аталады.</p>
+        <ul>
+            <li><strong>Радикулопатия:</strong> Жүйке түбіршелерінің қысылуы аяққа тарайтын ауырсынуды (ишиас), ұйып қалуды, шаншуды және бұлшықет әлсіздігін тудырады.</li>
+            <li><strong>Неврогендік ақсаңдау:</strong> Жұлын өзегінің тарылуы кезінде науқас ұзақ жүре алмайды, аяқтарында ауырлық сезініп, жиі демалуға мәжбүр болады. Бұл көбінесе дегенеративті сколиозға тән асқыну (Ploumis et al., 2011).</li>
+        </ul>
+
+        <h2><i class="fas fa-utensils"></i> 4. Ас қорыту жүйесіне әсері</h2>
+        <p>Сирек кездессе де, өте ауыр және прогрессивті сколиоз (әсіресе кифосколиоз) құрсақ қуысының көлемін азайтуы мүмкін. Кеуде қуысының төмен түсуі және ішкі ағзалардың ығысуы асқазанға қысым түсіреді. Бұл <strong>гастроэзофагеалды рефлюкс (ГЭРБ)</strong> ауруына (қыжылдау), тамақтанғаннан кейін тез тою сезіміне және ас қорытудың баяулауына әкелуі мүмкін. Кейбір жағдайларда бұл науқастың салмақ жоғалтуына (нутритивті жеткіліксіздікке) себеп болады.</p>
+
+        [Image of internal organ compression in severe scoliosis]
+
+        <h2><i class="fas fa-smile"></i> 5. Психоәлеуметтік әсері және Өмір сапасы</h2>
+        <p>Сколиоздың салдары тек физиологиялық деңгеймен шектелмейді. Сыртқы келбеттің өзгеруі науқастың психологиялық саулығына терең із қалдырады.</p>
+
+        <div class="info-box">
+            <strong>Дене бейнесі (Body Image):</strong> Жасөспірімдер үшін дене бітімінің өзгеруі (иықтың қисаюы, өркештің болуы, киімнің дұрыс тұрмауы) ауыр стресс көзі болып табылады. Зерттеулер көрсеткендей, сколиозы бар жасөспірімдерде өзіне деген сенімсіздік, денесінен уялу, депрессия және мазасыздық деңгейі құрдастарына қарағанда жоғары (Freidel et al., 2002).
+        </div>
+
+        <p><strong>Әлеуметтік оқшаулану:</strong> Корсет кию қажеттілігі немесе физикалық шектеулер баланың спортпен шұғылдануына, биге қатысуына немесе достарымен белсенді уақыт өткізуіне кедергі келтіруі мүмкін. Бұл әлеуметтік оқшаулануға және өмір сүру сапасының төмендеуіне әкеледі.</p>
+
+        <h2><i class="fas fa-clipboard-check"></i> Қорытынды</h2>
+        <p>Сколиоз — бұл "үнсіз" басталып, уақыт өте келе "айқайлайтын" салдарға әкелетін ауру. Оның асқынулары тыныс алу жеткіліксіздігінен бастап, созылмалы ауырсыну мен психологиялық жарақаттарға дейін барады. Сондықтан сколиозды емдеу тек омыртқаны түзулеу ғана емес, ол — науқастың болашақ өмір сапасын, жүрек-өкпе саулығын және психологиялық жайлылығын сақтау үшін күрес. Ерте диагностика, уақытылы басталған консервативті ем (жаттығулар, корсет) және қажет болған жағдайда хирургиялық араласу — осы ауыр зардаптардың алдын алудың ең тиімді жолы.</p>
+
+        <div class="references">
+            <h2>Пайдаланылған әдебиеттер тізімі (References)</h2>
+            <div class="ref-item">Campbell, R. M., Jr., et al. (2004). The characteristics of thoracic insufficiency syndrome associated with fused ribs and congenital scoliosis. <em>The Journal of Bone & Joint Surgery</em>, 85(3), 399-408.</div>
+            <div class="ref-item">Freidel, K., Petermann, F., Reichel, D., Steiner, A., Warschburger, P., & Weiss, H. R. (2002). Quality of life in women with idiopathic scoliosis. <em>Spine</em>, 27(4), E87-E91.</div>
+            <div class="ref-item">Goldberg, C. J., et al. (2003). Respiratory function and cosmetology in early onset scoliosis. <em>Studies in Health Technology and Informatics</em>, 91, 271-275.</div>
+            <div class="ref-item">Karol, L. A., et al. (2016). Pulmonary function following early thoracic fusion in non-neuromuscular scoliosis. <em>The Journal of Bone & Joint Surgery</em>, 90(6), 1272-1281.</div>
+            <div class="ref-item">Newton, P. O.,aro, V., & Farnsworth, C. L. (2005). A new method for measuring thoracic volume in scoliotic spines using CT-based reconstructions. <em>Spine</em>, 30(1), 103-109.</div>
+            <div class="ref-item">Pehrsson, K., Larsson, S., Oden, A., & Nachemson, A. (1991). Long-term follow-up of patients with untreated scoliosis. A study of mortality, causes of death, and symptoms. <em>Spine</em>, 16(10), 1091-1096.</div>
+            <div class="ref-item">Ploumis, A., Transfledt, E. E., & Denis, F. (2011). Degenerative lumbar scoliosis associated with spinal stenosis. <em>The Spine Journal</em>, 7(4), 428-436.</div>
+            <div class="ref-item">Schwab, F., Dubey, A., Gamez, L., et al. (2005). Adult scoliosis: prevalence, SF-36, and nutritional parameters in an elderly volunteer population. <em>Spine</em>, 30(9), 1082-1085.</div>
+            <div class="ref-item">Weinstein, S. L., Dolan, L. A., Cheng, J. C., Danielsson, A., & Morcuende, J. A. (2008). Adolescent idiopathic scoliosis. <em>The Lancet</em>, 371(9623), 1527-1537.</div>
+        </div>
+
+       <div class="next-article-container">
+            <a href="treatment.html" class="next-button">
+                Келесі мақала: Емдеу жолдары <span>&#8594;</span>
+            </a>
+        </div>
+
+
+    </div>
+
+</body>
+</html>
