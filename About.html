@@ -4,30 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Біз жайлы | ARQA</title>
-    <!-- Tailwind CSS -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
-            --brand: #02204f;      
-            --muted: #34495e;     
-            --accent: #4a6fa5;    
-            --soft: #eefcf3;       
-            --header-bg: #a7acd9;   
+            --brand: #02204f;
+            --muted: #34495e;
+            --accent: #4a6fa5;
+            --soft: #eefcf3;
+            --header-bg: #a7acd9;
             --card-bg: #ffffff;
             --radius: 12px;
         }
 
         * { box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f7fbff; 
-            color: var(--brand); 
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fbff;
+            color: var(--brand);
             margin: 0;
         }
 
@@ -35,14 +33,14 @@
 
         header {
             width: 100%;
-            background-color: var(--header-bg); 
+            background-color: var(--header-bg);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: relative;
-            z-index: 1000; 
+            z-index: 1000;
         }
 
         .site-nav {
-            max-width: 1200px; 
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -146,131 +144,141 @@
             visibility: visible;
         }
 
-        /* Small utility for content animation */
         .fade-in { animation: fadeIn 0.6s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         @media (max-width: 768px) {
             .site-nav { flex-direction: column; height: auto; padding: 15px; }
             .nav-panel { flex-direction: column; width: 100%; gap: 10px; margin-top: 15px; }
-            .submenu, .submenu-right { position: static; box-shadow: none; padding-left: 20px; display: none; }
-            .has-sub:hover .submenu { display: block; opacity: 1; visibility: visible; transform: none; }
+            .submenu, .submenu-right {
+                position: static;
+                box-shadow: none;
+                padding-left: 20px;
+                display: none;
+            }
+            .has-sub:hover .submenu {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
         }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col">
 
-    <header>
-        <nav class="site-nav" role="navigation" aria-label="Басты навигация">
-            <div class="brand">
-               <a href="index.html" class="logo-link">
-                    <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
-                </a>
+<header>
+    <nav class="site-nav" role="navigation" aria-label="Басты навигация">
+        <div class="brand">
+            <a href="index.html" class="logo-link">
+                <img src="arqa.png" alt="ARQA Logo" class="nav-logo-img" />
+            </a>
+        </div>
+
+        <ul class="nav-panel">
+            <li class="has-sub">
+                <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
+                <ul class="submenu">
+                    <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
+                    <li class="has-sub-right">
+                        <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
+                            Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
+                        </a>
+                        <ul class="submenu-right">
+                            <li><a href="idiopathic.html">Идиопатиялық</a></li>
+                            <li><a href="congenital.html">Туа бітім</a></li>
+                            <li><a href="degenerative.html">Дегенеративті</a></li>
+                            <li><a href="lumbar.html">Бел омыртқалы</a></li>
+                            <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
+                            <li><a href="syndromic.html">Синдромдық</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="consequences.html">Салдары</a></li>
+                    <li><a href="treatment.html">Емдеу жолдары</a></li>
+                </ul>
+            </li>
+            <li><a href="test.html">Тексеру</a></li>
+            <li><a href="exercises.html">Жаттығулар</a></li>
+            <li><a href="prevention.html">Алдын алу</a></li>
+            <li><a href="Helplines.html">Клиникалар</a></li>
+            <li><a href="About.html">Біз жайлы</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="flex-grow max-w-3xl mx-auto px-6 py-12 fade-in">
+
+    <div class="text-center mb-12">
+        <img src="arqa.png" alt="ARQA Logo" class="h-24 w-auto mx-auto mb-6">
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-4">ARQA жобасы</h1>
+        <div class="w-16 h-1 bg-[#02204f] mx-auto rounded"></div>
+    </div>
+
+    <div class="prose prose-lg text-gray-700 mx-auto mb-16 leading-relaxed">
+        <p class="font-medium text-xl text-center mb-8">
+            "Менде де сколиоз бар. Сондықтан мен сізді жақсы түсінемін."
+        </p>
+        <p>
+            Сәлем! Мен осы платформаны құрған кезде бір ғана ойда болдым: сколиозбен бетпе-бет келген адам өзін жалғыз сезінбеуі керек.
+        </p>
+        <p>
+            Интернетті ақтарғанда байқағаным — орыс немесе ағылшын тілдерінде ақпарат көп, ал өз ана тілімізде сапалы деректер жоқтың қасы.
+            <strong>ARQA</strong> жобасы осы олқылықтың орнын толтыру үшін дүниеге келді.
+        </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+        <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-[#02204f] mb-4">
+                <i class="fa-solid fa-bullseye text-xl"></i>
             </div>
-
-            <ul class="nav-panel">
-                <li class="has-sub">
-                    <a href="info.html">Сколиоз туралы <i class="fa-solid fa-chevron-down" style="font-size: 0.7em;"></i></a>
-                    <ul class="submenu">
-                        <li><a href="info.html">Сколиоз дегеніміз не?</a></li>
-                      <li class="has-sub-right">
-                            <a href="idiopathic.html" style="display:flex; justify-content:space-between;">
-                                Сколиоз түрлері <i class="fa-solid fa-chevron-right" style="font-size: 0.7em;"></i>
-                            </a>
-                          <ul class="submenu-right">
-                                <li><a href="idiopathic.html">Идиопатиялық</a></li>
-                                <li><a href="congenital.html">Туа бітім</a></li>
-                                <li><a href="degenerative.html">Дегенеративті</a></li>
-                                <li><a href="lumbar.html">Бел омыртқалы</a></li>
-                                <li><a href="neuromuscular.html">Нейробұлшықет</a></li>
-                                <li><a href="syndromic.html">Синдромдық</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="consequences.html">Салдары</a></li>
-                        <li><a href="treatment.html">Емдеу жолдары</a></li>
-                    </ul>
-                </li>
-                <li><a href="test.html">Тексеру</a></li>
-                <li><a href="exercises.html">Жаттығулар</a></li>
-                <li><a href="prevention.html">Алдын алу</a></li>
-                <li><a href="Helplines.html">Клиникалар</a></li>
-                <li><a href="About.html">Біз жайлы</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="flex-grow max-w-3xl mx-auto px-6 py-12 fade-in">
-
-        <!-- Logo Section -->
-        <div class="text-center mb-12">
-            <img src="arqa.png" alt="ARQA Logo" class="h-24 w-auto mx-auto mb-6">
-            <h1 class="text-3xl font-extrabold text-gray-900 mb-4">ARQA жобасы</h1>
-            <div class="w-16 h-1 bg-[#02204f] mx-auto rounded"></div>
-        </div>
-
-        <!-- Founder's Story -->
-        <div class="prose prose-lg text-gray-700 mx-auto mb-16 leading-relaxed">
-            <p class="font-medium text-xl text-center mb-8">
-                "Менде де сколиоз бар. Сондықтан мен сізді жақсы түсінемін."
-            </p>
-            <p>
-                Сәлем! Мен осы платформаны құрған кезде бір ғана ойда болдым: сколиозбен бетпе-бет келген адам өзін жалғыз сезінбеуі керек. Диагноз қойылған сәттегі қорқыныш, түсініксіз медициналық терминдер және "енді не болады?" деген сұрақтар маған да таныс.
-            </p>
-            <p>
-                Интернетті ақтарғанда байқағаным — орыс немесе ағылшын тілдерінде ақпарат көп, ал өз ана тілімізде сапалы, ғылыми негізделген және қарапайым түсіндірілген деректер жоқтың қасы. <strong>ARQA</strong> жобасы осы олқылықтың орнын толтыру үшін дүниеге келді.
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Біздің Мақсатымыз</h3>
+            <p class="text-gray-600 text-sm">
+                Қазақстанның әрбір азаматына сколиоз туралы тексерілген ақпаратты қазақ тілінде ұсыну.
             </p>
         </div>
 
-        <!-- Mission & Goals -->
-        <div class="grid md:grid-cols-2 gap-8 mb-16">
-            <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-[#02204f] mb-4">
-                    <i class="fa-solid fa-bullseye text-xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Біздің Мақсатымыз</h3>
-                <p class="text-gray-600 text-sm">
-                    Қазақстанның әрбір азаматына сколиоз туралы сауатты, тексерілген және түсінікті ақпаратты <strong>қазақ тілінде</strong> ұсыну. Біз күрделі медицинаны қарапайым тілмен сөйлетеміз.
-                </p>
+        <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-4">
+                <i class="fa-solid fa-star text-xl"></i>
             </div>
-
-            <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
-                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-4">
-                    <i class="fa-solid fa-star text-xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Жобаның Маңыздылығы</h3>
-                <p class="text-gray-600 text-sm">
-                    Тілдік кедергі денсаулыққа кедергі болмауы тиіс. Көптеген қандастарымыз ақпараттың жоқтығынан емін кешіктіріп алады. Біз бұл кедергіні жойып, қолжетімді медициналық білім беруді көздейміз.
-                </p>
-            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Жобаның Маңыздылығы</h3>
+            <p class="text-gray-600 text-sm">
+                Тілдік кедергі денсаулыққа кедергі болмауы тиіс.
+            </p>
         </div>
+    </div>
 
-        <!-- Values List -->
-        <div class="border-t border-gray-200 pt-12">
-            <h3 class="text-2xl font-bold text-center text-gray-900 mb-8">Біздің Ұстанымдар</h3>
-            <ul class="space-y-4">
-                <li class="flex items-start">
-                    <i class="fa-solid fa-check text-green-500 mt-1 mr-4"></i>
-                    <span class="text-gray-700"><strong>Қазақ тіліндегі контент:</strong> Барлық мақалалар, жаттығулар және нұсқаулықтар таза ана тілімізде.</span>
-                </li>
-                <li class="flex items-start">
-                    <i class="fa-solid fa-check text-green-500 mt-1 mr-4"></i>
-                    <span class="text-gray-700"><strong>Дәлелді медицина:</strong> Біз халық еміне емес, ғылым мен халықаралық стандарттарға (SOSORT, SRS) сүйенеміз.</span>
-                </li>
-                <li class="flex items-start">
-                    <i class="fa-solid fa-check text-green-500 mt-1 mr-4"></i>
-                    <span class="text-gray-700"><strong>Қолдау:</strong> Біз — қауымдастықпыз. Мұнда сізді түсінеді және қолдайды.</span>
-                </li>
-            </ul>
-        </div>
+    <div class="border-t border-gray-200 pt-12">
+        <h3 class="text-2xl font-bold text-center text-gray-900 mb-8">Біздің Ұстанымдар</h3>
+        <ul class="space-y-4">
+            <li class="flex items-start">
+                <i class="fa-solid fa-check text-green-500 mt-1 mr-4"></i>
+                <span class="text-gray-700"><strong>Қазақ тіліндегі контент</strong></span>
+            </li>
+            <li class="flex items-start">
+                <i class="fa-solid fa-check text-green-500 mt-1 mr-4"></i>
+                <span class="text-gray-700"><strong>Дәлелді медицина</strong></span>
+            </li>
+            <li class="flex items-start">
+                <i class="fa-solid fa-check text-green-500 mt-1 mr-4"></i>
+                <span class="text-gray-700"><strong>Қолдау</strong></span>
+            </li>
+        </ul>
+    </div>
 
-    </main>
+</main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 border-t py-8 mt-auto">
-        <div class="text-center text-gray-500 text-sm">
-            <p>&copy; 2023 ARQA Project. Дені сау ұлт — қуатты мемлекет.</p>
-        </div>
-    </footer>
+<footer class="bg-gray-50 border-t py-8 mt-auto">
+    <div class="text-center text-gray-500 text-sm">
+        <p>&copy; 2023 ARQA Project. Дені сау ұлт — қуатты мемлекет.</p>
+    </div>
+</footer>
 
 </body>
 </html>
